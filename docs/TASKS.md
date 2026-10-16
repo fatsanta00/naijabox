@@ -4,7 +4,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 
 ## Phase 0: Foundation
 
-- [ ] **0.1 Repo scaffold.** Next.js + TypeScript + Tailwind + pnpm, ESLint, Prettier, Vitest, Playwright.
+- [x] **0.1 Repo scaffold.** Next.js + TypeScript + Tailwind + pnpm, ESLint, Prettier, Vitest, Playwright.
   AC: `pnpm dev`, `pnpm lint`, `pnpm typecheck`, `pnpm test` all run clean.
 - [ ] **0.2 Docker and env.** `Dockerfile`, `docker-compose.yml` (app + Postgres), `.env.example`.
   AC: `docker compose up -d db` works; app builds in Docker.
