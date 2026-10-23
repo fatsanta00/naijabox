@@ -1,5 +1,5 @@
 import { db } from '@/server/db';
-import { responses, questionStats, listings, priceSnapshots, questions, products } from '@/server/db/schema';
+import { responses, questionStats, listings, priceSnapshots } from '@/server/db/schema';
 import { eq, sql, and } from 'drizzle-orm';
 
 /**

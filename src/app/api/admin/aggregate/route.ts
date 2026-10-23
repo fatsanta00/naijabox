@@ -5,7 +5,7 @@ import { runAggregationJob } from '@/server/services/aggregationService';
  * POST /api/admin/aggregate
  * Manually trigger or schedule the aggregation job
  */
-export async function POST(req: NextRequest) {
+export async function POST(_req: NextRequest) {
   try {
     const result = await runAggregationJob();
     return NextResponse.json({
