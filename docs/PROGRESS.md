@@ -26,6 +26,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Unit tests in `src/boxes/registry.test.ts` verifying registry discovery, recommendation logic avoiding current box, and lazy loading; `pnpm typecheck`, `pnpm lint`, and `pnpm test` all pass cleanly.
   - **Learnings:** Isolated box code ensures adding or modifying an experience never touches unrelated boxes.
 
+- **Task 0.6: Session and analytics client**
+  - **What was built:** First-party anonymous session cookie (`nb_sid`) middleware (`src/middleware.ts`), client-side batched analytics reporter (`src/lib/analytics.ts`) using `sendBeacon` and `visibilitychange` listeners, and `POST /api/public/events` route handler (`src/app/api/public/events/route.ts`). Device class detection and traffic source categorization without saving IP addresses (ADR-007, ADR-012).
+  - **Verification:** Unit tests in `src/lib/analytics.test.ts` verifying referrer categorization (WhatsApp, X, TikTok, IG, Google, etc.) and device class parsing; `pnpm test`, `pnpm typecheck`, and `pnpm lint` all pass clean.
+  - **Learnings:** Handled safe client-side cookie reading with local storage fallbacks.
+
+
 
 
 
