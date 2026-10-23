@@ -95,6 +95,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Unit tests in `src/components/ads/AdSlot.test.tsx` verifying default null render and accessible display when enabled. Total 28 tests pass cleanly.
   - **Learnings:** Centralizing advertising behind an interface guarantees no gameplay degradation, popups, or SDK clutter in box logic.
 
+- **Task 2.5: Static pages and SEO basics**
+  - **What was built:** Static `/about` and `/privacy` policy pages, dynamic XML sitemap generation (`src/app/sitemap.ts`) automatically populating from `getAllBoxes()`, and metadata coverage.
+  - **Verification:** `pnpm typecheck` and `pnpm lint` pass with 0 warnings or errors. All 28 unit tests pass clean.
+  - **Learnings:** Generating the sitemap directly from the box registry ensures all present and future experiences are immediately crawlable.
+
+
 
 
 

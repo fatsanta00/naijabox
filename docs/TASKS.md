@@ -46,7 +46,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: shared link opens the exact result/question with a correct preview.
 - [x] **2.4 AdSlot abstraction.** Provider adapter, placement rules, disabled by default.
   AC: no ads render during gameplay screens.
-- [ ] **2.5 Static pages and SEO basics.** About, privacy, sitemap generated from registry, robots, metadata.
+- [x] **2.5 Static pages and SEO basics.** About, privacy, sitemap generated from registry, robots, metadata.
 
 ## Phase 3: Launch boxes
 
