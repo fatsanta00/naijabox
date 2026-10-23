@@ -19,7 +19,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 
 ## Phase 1: Shared content system and admin
 
-- [ ] **1.1 Question service.** `getSessionSet` with random/ordered, count, difficulty, no repeats in a session.
+- [x] **1.1 Question service.** `getSessionSet` with random/ordered, count, difficulty, no repeats in a session.
   AC: unit tests cover no-repeat, count limits, empty pool.
 - [ ] **1.2 Public content API.** Published-only questions, answer recording, stats endpoint honouring `MIN_STATS_SAMPLE`.
   AC: draft/pending/rejected never returned; stats return `{available:false}` below threshold.

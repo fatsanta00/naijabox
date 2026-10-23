@@ -31,6 +31,14 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Unit tests in `src/lib/analytics.test.ts` verifying referrer categorization (WhatsApp, X, TikTok, IG, Google, etc.) and device class parsing; `pnpm test`, `pnpm typecheck`, and `pnpm lint` all pass clean.
   - **Learnings:** Handled safe client-side cookie reading with local storage fallbacks.
 
+### Phase 1: Shared content system and admin
+
+- **Task 1.1: Question service**
+  - **What was built:** `QuestionService` in `src/server/services/questionService.ts` providing `getSessionSet` with SQL/Drizzle query support and in-memory algorithm `filterAndSortQuestions`. Handles random vs ordered selection mode, question pool count limits, difficulty filtering, exclusion of previously answered questions within the current anonymous session, and ensures only published questions are returned.
+  - **Verification:** Unit tests in `src/server/services/questionService.test.ts` covering published-only filtering, ordered vs random sorting, count limits, session no-repeat exclusions, difficulty filters, and empty pool handling. All 19 tests pass cleanly.
+  - **Learnings:** Separated database query logic from pure filtering logic to enable comprehensive unit testing.
+
+
 
 
 
