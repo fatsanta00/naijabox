@@ -11,3 +11,9 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm dev`, and `pnpm build` all pass cleanly with zero warnings or errors. Initial JS payload for homepage is ~105 kB (within the <120 kB target).
   - **Learnings:** pnpm v12 requires build scripts approval in `pnpm-workspace.yaml`. On Windows, Next.js standalone tracing requires symlinks which need elevation unless running in Docker/Linux; made standalone output conditional on `BUILD_STANDALONE=true` for Docker builds.
 
+- **Task 0.3: Database schema**
+  - **What was built:** Complete Drizzle ORM schema (`src/server/db/schema.ts`) covering all tables in `DATA_MODEL.md` (experiences, categories, tags, question_tags, questions, sessions, responses, results, reaction_results, question_stats, question_reports, products, sellers, listings, price_snapshots, users, events, sponsors, sponsorships, settings). Migration runner (`scripts/migrate.ts`), drizzle config (`drizzle.config.ts`), generated migration SQL (`drizzle/0000_greedy_proudstar.sql`), and comprehensive Nigerian seed script (`scripts/seed.ts`) with 80+ original questions flagged `source = 'seed'`.
+  - **Verification:** `drizzle-kit generate` successfully generated the complete migration with all 20 tables, enums, and indexes. `pnpm typecheck`, `pnpm lint`, and `pnpm test` all pass cleanly.
+  - **Learnings:** Handled string escaping in seed data; verified all question option and scoring payloads conform to the schema specifications.
+
+

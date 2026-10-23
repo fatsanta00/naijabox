@@ -8,7 +8,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: `pnpm dev`, `pnpm lint`, `pnpm typecheck`, `pnpm test` all run clean.
 - [ ] **0.2 Docker and env.** `Dockerfile`, `docker-compose.yml` (app + Postgres), `.env.example`.
   AC: `docker compose up -d db` works; app builds in Docker.
-- [ ] **0.3 Database schema.** Drizzle schema for content, play data, moderation, PriceCheck, events, users (`DATA_MODEL.md`), initial migration, `db:migrate`, `db:seed`.
+- [x] **0.3 Database schema.** Drizzle schema for content, play data, moderation, PriceCheck, events, users (`DATA_MODEL.md`), initial migration, `db:migrate`, `db:seed`.
   AC: migration applies on a clean DB; seed inserts categories and a few clearly flagged `source = 'seed'` questions per experience.
 - [ ] **0.4 Design tokens and base UI.** Colours, type, spacing, Card, Button, Chip, ProgressBar, 44px tap targets.
   AC: tokens documented; works at 360px; reduced-motion respected.
