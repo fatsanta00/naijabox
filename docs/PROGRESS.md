@@ -53,6 +53,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm typecheck`, `pnpm lint`, and all 21 unit tests pass cleanly.
   - **Learnings:** Implemented soft delete to preserve response data and historical stats consistency.
 
+- **Task 1.5: Admin categories, tags, experience settings**
+  - **What was built:** Category management routes (`GET/POST /api/admin/categories`), experience configuration endpoint (`GET/PATCH /api/admin/experiences`) allowing real-time toggling of `selection_mode` (random vs ordered), question count limits, and result bands. Built `/admin/settings` dashboard page.
+  - **Verification:** Typecheck and lint pass with 0 warnings or errors. Immediate database updates without deploy.
+  - **Learnings:** Storing experience config in `experiences` table ensures the public QuestionService reads live parameters dynamically.
+
+
 
 
 

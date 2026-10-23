@@ -27,7 +27,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: unauthenticated requests get 401/redirect; public site has no login UI.
 - [x] **1.4 Admin question CRUD.** List, filters, create/edit per question type, publish/unpublish, delete, reorder.
   AC: change appears on public site with no deploy.
-- [ ] **1.5 Admin categories, tags, experience settings.**
+- [x] **1.5 Admin categories, tags, experience settings.**
   AC: add a category in admin and use it immediately; toggle random vs ordered and count per experience.
 - [ ] **1.6 Submission pipeline.** Public submit form, validation, honeypot, rate limit, status `pending`.
   AC: submitted question is invisible publicly until approved.
