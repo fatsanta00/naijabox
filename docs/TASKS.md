@@ -33,7 +33,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: submitted question is invisible publicly until approved.
 - [x] **1.7 Moderation queue.** Approve, Edit & Approve, Reject, Delete, flags, reviewer log.
   AC: full state machine from `DATA_MODEL.md` enforced and tested.
-- [ ] **1.8 Reporting.** Report button, reasons, admin report queue, dismiss/action.
+- [x] **1.8 Reporting.** Report button, reasons, admin report queue, dismiss/action.
   AC: report never auto-hides a question.
 
 ## Phase 2: Shell and sharing

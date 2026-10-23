@@ -68,6 +68,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Unit tests in `src/app/api/admin/moderation/moderation.test.ts` testing state transitions (pending -> published, rejected, deleted); `pnpm test` (26 tests passing), `pnpm typecheck`, and `pnpm lint` clean.
   - **Learnings:** Strict state machine ensures community submissions cannot be surfaced publicly without an explicit approval transition.
 
+- **Task 1.8: Reporting**
+  - **What was built:** Public reporting endpoint (`POST /api/public/reports`) storing reports in `question_reports` with reason flags (`offensive`, `spam`, `incorrect`, `duplicate`, `unclear`, `other`) and optional notes. Built `ReportButton.tsx` component with modal dialog. Per ADR-009, reports never auto-hide content to prevent malicious takedowns; instead, reports feed directly into the admin review queue.
+  - **Verification:** `pnpm typecheck` and `pnpm lint` passed with 0 errors. All 26 unit tests continue to pass clean.
+  - **Learnings:** Confirmed reports flag content for human review while preserving continuous availability of published questions.
+
+
 
 
 
