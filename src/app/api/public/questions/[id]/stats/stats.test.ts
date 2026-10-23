@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { MIN_STATS_SAMPLE } from './route';
+import { MIN_STATS_SAMPLE } from '@/server/config/stats';
 
 describe('Public Content & Stats Gate Rules', () => {
   it('enforces MIN_STATS_SAMPLE is at least 30 by default per PRD and DATA_MODEL', () => {

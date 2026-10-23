@@ -2,8 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/server/db';
 import * as schema from '@/server/db/schema';
 import { eq } from 'drizzle-orm';
-
-export const MIN_STATS_SAMPLE = Number(process.env.MIN_STATS_SAMPLE || 30);
+import { MIN_STATS_SAMPLE } from '@/server/config/stats';
 
 export async function GET(
   req: NextRequest,
