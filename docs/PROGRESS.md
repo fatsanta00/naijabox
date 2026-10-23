@@ -38,6 +38,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Unit tests in `src/server/services/questionService.test.ts` covering published-only filtering, ordered vs random sorting, count limits, session no-repeat exclusions, difficulty filters, and empty pool handling. All 19 tests pass cleanly.
   - **Learnings:** Separated database query logic from pure filtering logic to enable comprehensive unit testing.
 
+- **Task 1.2: Public content API**
+  - **What was built:** `GET /api/public/questions` route for session question fetching, `POST /api/public/answers` for recording anonymous user responses with vote-stuffing deduplication, and `GET /api/public/questions/[id]/stats` with anti-fabrication sample size gating (`MIN_STATS_SAMPLE >= 30`).
+  - **Verification:** Unit tests in `src/app/api/public/questions/[id]/stats/stats.test.ts` testing sample size thresholding; `pnpm test`, `pnpm typecheck`, and `pnpm lint` all pass clean with 21 tests.
+  - **Learnings:** Handled strict status check so questions in draft, pending, or rejected states are never returned or recorded against.
+
+
 
 
 
