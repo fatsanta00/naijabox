@@ -90,6 +90,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm typecheck` and `pnpm lint` pass with 0 errors. All 26 unit tests continue to pass clean.
   - **Learnings:** Leveraging `next/og` dynamically generates high-fidelity branded social cards on-the-fly without needing headless Chrome or heavy external canvas libraries.
 
+- **Task 2.4: AdSlot abstraction**
+  - **What was built:** Canonical `<AdSlot>` component (`src/components/ads/AdSlot.tsx`) abstracting all ad networks (ADR-011, ADR-017). Strictly disabled by default (`NEXT_PUBLIC_ADS_ENABLED === 'true'`), renders zero DOM/layout shift when off, requires accessible ARIA attributes when enabled, and strictly prohibits SDK imports inside boxes or rendering during active gameplay screens.
+  - **Verification:** Unit tests in `src/components/ads/AdSlot.test.tsx` verifying default null render and accessible display when enabled. Total 28 tests pass cleanly.
+  - **Learnings:** Centralizing advertising behind an interface guarantees no gameplay degradation, popups, or SDK clutter in box logic.
+
+
 
 
 

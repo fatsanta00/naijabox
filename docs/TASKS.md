@@ -44,7 +44,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: all boxes use it; no dead ends.
 - [x] **2.3 Sharing.** ShareBar (WhatsApp, X, Facebook, copy link, native share, save image), `/r/[id]`, `/q/[id]`, OG images via `next/og`.
   AC: shared link opens the exact result/question with a correct preview.
-- [ ] **2.4 AdSlot abstraction.** Provider adapter, placement rules, disabled by default.
+- [x] **2.4 AdSlot abstraction.** Provider adapter, placement rules, disabled by default.
   AC: no ads render during gameplay screens.
 - [ ] **2.5 Static pages and SEO basics.** About, privacy, sitemap generated from registry, robots, metadata.
 
