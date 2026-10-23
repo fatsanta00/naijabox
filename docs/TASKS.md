@@ -42,7 +42,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: first-time visitor understands the product above the fold at 360px.
 - [x] **2.2 ResultLayout.** Result → Share → Try Again → Recommended → Back to the Box.
   AC: all boxes use it; no dead ends.
-- [ ] **2.3 Sharing.** ShareBar (WhatsApp, X, Facebook, copy link, native share, save image), `/r/[id]`, `/q/[id]`, OG images via `next/og`.
+- [x] **2.3 Sharing.** ShareBar (WhatsApp, X, Facebook, copy link, native share, save image), `/r/[id]`, `/q/[id]`, OG images via `next/og`.
   AC: shared link opens the exact result/question with a correct preview.
 - [ ] **2.4 AdSlot abstraction.** Provider adapter, placement rules, disabled by default.
   AC: no ads render during gameplay screens.

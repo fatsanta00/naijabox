@@ -85,6 +85,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Typecheck, lint, and all 26 tests pass with 0 errors. Verified recommendation lookup avoids current box slug.
   - **Learnings:** Standardizing the result container guarantees every box conforms to the PRD retention and sharing loops.
 
+- **Task 2.3: Sharing**
+  - **What was built:** Dynamic deep links `/r/[id]` (result page) and `/q/[id]` (single question share page), coupled with Edge-compatible dynamic OpenGraph image generators (`/api/og/result/[id]` and `/api/og/question/[id]`) using `next/og` (ImageResponse). Shared URLs render custom viral previews on WhatsApp, X, and Facebook.
+  - **Verification:** `pnpm typecheck` and `pnpm lint` pass with 0 errors. All 26 unit tests continue to pass clean.
+  - **Learnings:** Leveraging `next/og` dynamically generates high-fidelity branded social cards on-the-fly without needing headless Chrome or heavy external canvas libraries.
+
+
 
 
 
