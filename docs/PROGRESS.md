@@ -21,5 +21,11 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Vitest unit tests in `src/components/ui/ui.test.tsx` verifying 44px min touch targets and accessibility; `pnpm typecheck` and `pnpm lint` pass clean.
   - **Learnings:** Added `class-variance-authority` for robust variant management.
 
+- **Task 0.5: Box registry**
+  - **What was built:** `BoxDefinition` interface in `src/boxes/types.ts`, centralized registry in `src/boxes/registry.ts` with all 7 launch experiences, helper functions (`getBoxBySlug`, `getAllBoxes`, `getRecommendedBoxes`), and dynamic App Router route `/boxes/[slug]` with dynamic lazy component imports and OG metadata. Created modular folder stubs for all 7 experiences under `src/boxes/`.
+  - **Verification:** Unit tests in `src/boxes/registry.test.ts` verifying registry discovery, recommendation logic avoiding current box, and lazy loading; `pnpm typecheck`, `pnpm lint`, and `pnpm test` all pass cleanly.
+  - **Learnings:** Isolated box code ensures adding or modifying an experience never touches unrelated boxes.
+
+
 
 
