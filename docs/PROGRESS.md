@@ -16,4 +16,10 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `drizzle-kit generate` successfully generated the complete migration with all 20 tables, enums, and indexes. `pnpm typecheck`, `pnpm lint`, and `pnpm test` all pass cleanly.
   - **Learnings:** Handled string escaping in seed data; verified all question option and scoring payloads conform to the schema specifications.
 
+- **Task 0.4: Design tokens and base UI**
+  - **What was built:** Complete Tailwind CSS design system with brand colors and dark surface tokens, plus core UI components in `src/components/ui/` (`Button`, `Card`, `Chip`, `ProgressBar`). Ensured 44px minimum tap targets across all interactive variants, accessible ARIA attributes on progress bars, and `prefers-reduced-motion` animations handling in CSS.
+  - **Verification:** Vitest unit tests in `src/components/ui/ui.test.tsx` verifying 44px min touch targets and accessibility; `pnpm typecheck` and `pnpm lint` pass clean.
+  - **Learnings:** Added `class-variance-authority` for robust variant management.
+
+
 

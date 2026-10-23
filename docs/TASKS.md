@@ -10,7 +10,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: `docker compose up -d db` works; app builds in Docker.
 - [x] **0.3 Database schema.** Drizzle schema for content, play data, moderation, PriceCheck, events, users (`DATA_MODEL.md`), initial migration, `db:migrate`, `db:seed`.
   AC: migration applies on a clean DB; seed inserts categories and a few clearly flagged `source = 'seed'` questions per experience.
-- [ ] **0.4 Design tokens and base UI.** Colours, type, spacing, Card, Button, Chip, ProgressBar, 44px tap targets.
+- [x] **0.4 Design tokens and base UI.** Colours, type, spacing, Card, Button, Chip, ProgressBar, 44px tap targets.
   AC: tokens documented; works at 360px; reduced-motion respected.
 - [ ] **0.5 Box registry.** `BoxDefinition`, `registry.ts`, lazy-loaded box route `/boxes/[slug]`.
   AC: a dummy box can be added by creating one folder and one registry line.
