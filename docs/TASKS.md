@@ -25,7 +25,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: draft/pending/rejected never returned; stats return `{available:false}` below threshold.
 - [x] **1.3 Admin auth.** Auth.js credentials, seeded owner, middleware on `/admin` and `/api/admin`.
   AC: unauthenticated requests get 401/redirect; public site has no login UI.
-- [ ] **1.4 Admin question CRUD.** List, filters, create/edit per question type, publish/unpublish, delete, reorder.
+- [x] **1.4 Admin question CRUD.** List, filters, create/edit per question type, publish/unpublish, delete, reorder.
   AC: change appears on public site with no deploy.
 - [ ] **1.5 Admin categories, tags, experience settings.**
   AC: add a category in admin and use it immediately; toggle random vs ordered and count per experience.

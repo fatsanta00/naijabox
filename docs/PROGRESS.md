@@ -48,6 +48,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Middleware redirection verified, `pnpm typecheck`, `pnpm lint`, and all 21 unit tests pass cleanly. Zero login UI exposed on public pages.
   - **Learnings:** NextAuth credentials flow with JWT strategy is completely self-contained and avoids database session table bloat.
 
+- **Task 1.4: Admin question CRUD**
+  - **What was built:** Admin endpoints at `GET/POST /api/admin/questions` and `GET/PATCH/DELETE /api/admin/questions/[id]`. Supports filtering by experience, category, status, and text search; status transitions (draft, published, unpublished, soft delete); plus admin question manager list page at `/admin/questions`. Changes take effect instantly without a build or deploy step.
+  - **Verification:** `pnpm typecheck`, `pnpm lint`, and all 21 unit tests pass cleanly.
+  - **Learnings:** Implemented soft delete to preserve response data and historical stats consistency.
+
+
 
 
 
