@@ -56,7 +56,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **3.4 Reaction Time.** State machine, too-soon handling, personal best, daily challenge, percentile gated by real data.
 - [x] **3.5 Random Decision Maker.** Presets, custom options, playful pick animation.
 - [x] **3.6 Guess the Price.** Guess input, reveal, diff, streak and best, CTA to PriceCheck.
-- [ ] **3.7 Naija PriceCheck.** Search, product page, listings, history chart, good-price check, paid labels, admin entry and CSV import (ADR-010).
+- [x] **3.7 Naija PriceCheck.** Search, product page, listings, history chart, good-price check, paid labels, admin entry and CSV import (ADR-010).
   AC per box: works at 360px; analytics events from `ANALYTICS_EVENTS.md`; post-experience layout; submit/report where it uses questions.
 
 ## Phase 4: Analytics and admin insight

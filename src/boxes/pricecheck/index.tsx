@@ -120,7 +120,6 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
   const loadProductDetail = useCallback(
     async (productSlug: string) => {
       setIsLoadingProduct(true);
-      setSelectedProductSlug(productSlug);
       setCustomVerdict(null);
       setCustomPriceCheck('');
 
