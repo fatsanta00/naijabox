@@ -52,7 +52,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 
 - [x] **3.1 How Nigerian Are You?** Personality scoring, result bands from experience settings.
 - [x] **3.2 Naija Would You Rather.** Voting, one vote per session, stats gate, share a question.
-- [ ] **3.3 Nigerian Slang Quiz.** Difficulty levels, instant feedback, humorous result labels.
+- [x] **3.3 Nigerian Slang Quiz.** Difficulty levels, instant feedback, humorous result labels.
 - [ ] **3.4 Reaction Time.** State machine, too-soon handling, personal best, daily challenge, percentile gated by real data.
 - [ ] **3.5 Random Decision Maker.** Presets, custom options, playful pick animation.
 - [ ] **3.6 Guess the Price.** Guess input, reveal, diff, streak and best, CTA to PriceCheck.

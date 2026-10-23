@@ -112,7 +112,10 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Typecheck and lint pass with zero warnings; verified sample threshold logic and vote deduplication.
   - **Learnings:** Dynamic inline question share allows viral loops straight from individual dilemmas without completing an entire quiz.
 
-
+- **Task 3.3: Nigerian Slang Quiz**
+  - **What was built:** Quiz experience (`src/boxes/slang-quiz/index.tsx`) with three difficulty tiers (Easy/Medium/Hard). Players choose difficulty, then answer 10 multiple-choice questions drawn from DB filtered by difficulty. Instant correct/wrong feedback highlights the chosen option and correct answer, with explanation reveal after each answer. Score tallied and mapped to 4 humorous result tiers ("Naija Professor", "Sharp Sharp", "Still Learning", "Say What?"). Emits full analytics event suite. ReportButton and SubmitQuestionModal available throughout.
+  - **Verification:** `pnpm typecheck` and `pnpm lint` both pass with 0 errors. All 28 unit tests pass.
+  - **Learnings:** Difficulty-filtered fetch (`?difficulty=easy&experienceKey=slang-quiz`) keeps the question pool relevant per tier. Explanation field on questions makes the learning loop engaging.
 
 
 
