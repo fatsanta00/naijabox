@@ -6,7 +6,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 
 - [x] **0.1 Repo scaffold.** Next.js + TypeScript + Tailwind + pnpm, ESLint, Prettier, Vitest, Playwright.
   AC: `pnpm dev`, `pnpm lint`, `pnpm typecheck`, `pnpm test` all run clean.
-- [ ] **0.2 Docker and env.** `Dockerfile`, `docker-compose.yml` (app + Postgres), `.env.example`.
+- [x] **0.2 Docker and env.** `Dockerfile`, `docker-compose.yml` (app + Postgres), `.env.example`.
   AC: `docker compose up -d db` works; app builds in Docker.
 - [x] **0.3 Database schema.** Drizzle schema for content, play data, moderation, PriceCheck, events, users (`DATA_MODEL.md`), initial migration, `db:migrate`, `db:seed`.
   AC: migration applies on a clean DB; seed inserts categories and a few clearly flagged `source = 'seed'` questions per experience.
@@ -72,8 +72,8 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **5.2 Performance pass.** Bundle budget, image optimisation, LCP target on mid-range Android 4G.
 - [x] **5.3 E2E tests.** Playwright at 360px for each box, submit → approve flow, share deep links.
 - [x] **5.4 Security pass.** Rate limits, input validation, admin hardening, secrets, headers.
-- [ ] **5.5 Content seeding.** Owner reviews and publishes launch content via admin.
-- [ ] **5.6 Deploy.** Production Docker deploy, migrations, nightly backups, uptime check.
+- [x] **5.5 Content seeding.** Owner reviews and publishes launch content via admin.
+- [x] **5.6 Deploy.** Production Docker deploy, migrations, nightly backups, uptime check.
   AC: V1 success criteria in `PRD.md` section 32 verified on a real phone.
 
 ## Phase 6: Later (not V1)

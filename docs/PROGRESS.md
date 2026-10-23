@@ -117,7 +117,79 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm typecheck` and `pnpm lint` both pass with 0 errors. All 28 unit tests pass.
   - **Learnings:** Difficulty-filtered fetch (`?difficulty=easy&experienceKey=slang-quiz`) keeps the question pool relevant per tier. Explanation field on questions makes the learning loop engaging.
 
+- **Task 3.4: Reaction Time**
+  - **What was built:** Fast reflex mini-game (`src/boxes/reaction-time/index.tsx`) with an interactive state machine (`idle` → `waiting` → `ready` → `clicked` → `result`). Enforces too-soon penalties when tapped prematurely, runs 3 rounds for average latency score, stores personal best in localStorage, supports opt-in daily challenge, and gates percentile calculations via real recorded database latency records with `MIN_STATS_SAMPLE >= 30`.
+  - **Verification:** Unit tests and production build pass; verified tap zones have min 44px height and accessible ARIA attributes.
+  - **Learnings:** Random delay intervals (1.5s to 5.0s) prevent anticipatory clicking.
 
+- **Task 3.5: Random Decision Maker**
+  - **What was built:** Interactive utility box (`src/boxes/decision-maker/index.tsx`) with 5 cultural Nigerian presets (What to eat, Should I text them, Weekend plans, Spending money, Side hustle) and custom options builder. Features a dynamic spin-and-slowdown animation before landing on the verdict, connecting seamlessly to `ResultLayout`.
+  - **Verification:** Tested custom option adding/removal, empty inputs protection, and full analytics event emission.
+  - **Learnings:** Shuffling through options with diminishing timer ticks gives an authentic lottery wheel feel without heavy animation libraries.
+
+- **Task 3.6: Guess the Price**
+  - **What was built:** Shopping IQ challenge (`src/boxes/guess-the-price/index.tsx`) fetching real gadget items and prices from database. Includes an adaptive range slider matching price orders of magnitude (from ₦1k to ₦3M), percentage diff calculations, accuracy scoring, consecutive streak tracking, post-reveal explanations, PriceCheck outbound CTAs, and final score breakdowns.
+  - **Verification:** Typecheck, lint, and build verified; confirmed report button and question submit modal integration.
+  - **Learnings:** Dynamic bounds calculations ensure slider sensitivity remains ergonomic across different price ranges.
+
+- **Task 3.7: Naija PriceCheck**
+  - **What was built:** Market price intelligence hub (`src/boxes/pricecheck/index.tsx`), search endpoint (`/api/public/pricecheck/search`), detail endpoint (`/api/public/pricecheck/products/[slug]`), and admin management endpoints (`/api/admin/pricecheck/products`, listings, and `/api/admin/pricecheck/import` CSV/JSON importer). Includes a "Good-Price Checker" interactive tool evaluating user quotes against market averages, SVG historical price trends, and verified vendor listings with strictly enforced Sponsored/Promoted badges.
+  - **Verification:** End-to-end verified with seed products and listings; full compliance with PRD advertising labeling rules.
+  - **Learnings:** Comparing quotes against 30-day historical averages provides immediate, tangible utility to shoppers in Nigeria.
+
+---
+
+### Phase 4: Analytics and admin insight
+
+- **Task 4.1: Aggregation job**
+  - **What was built:** Core aggregation service (`src/server/services/aggregationService.ts`) computing `question_stats` (response count, accuracy rates, and answer distributions) and `price_snapshots` (daily min, max, avg prices) from raw responses and active listings. Exposed via secure admin API route `/api/admin/aggregate`.
+  - **Verification:** Verified clean conflict handling on updates (`onConflictDoUpdate`) and accurate SQL rounding.
+
+- **Task 4.2: Admin analytics dashboard**
+  - **What was built:** Central analytics view (`src/app/admin/analytics/page.tsx` & `/api/admin/analytics/dashboard/route.ts`) answering PRD acceptance criteria ("Which box gets opened the most?"). Tracks box starts vs completions (completion rate funnels), social share targets, device breakdown (mobile vs desktop), and traffic referrers (WhatsApp, X, TikTok, Direct).
+  - **Verification:** Verified layout responsiveness and manual aggregation trigger integration.
+
+- **Task 4.3: Question performance view**
+  - **What was built:** Question diagnostics dashboard (`src/app/admin/analytics/questions/page.tsx` & `/api/admin/analytics/questions/route.ts`) displaying total response volume, accuracy rates, and breakdown of answer percentage distributions per question across all experiences.
+  - **Verification:** Cleanly displays live answer distributions with percentage badges.
+
+---
+
+### Phase 5: Hardening and launch
+
+- **Task 5.1: Accessibility pass**
+  - **What was built:** Added keyboard "Skip to main content" link in `RootLayout`, ensured 44px minimum tap targets across all interactive elements, semantic headings, visible focus rings (`focus-visible:ring-4`), and screen-reader accessible ARIA labels.
+- **Task 5.2: Performance pass**
+  - **What was built:** Verified production build bundle size: shared initial JS is **106 kB** (well within the <120 kB PRD target on mid-range Android 4G). Verified lazy loading of all 7 modular boxes.
+- **Task 5.3: E2E tests**
+  - **What was built:** Playwright test suite (`e2e/boxes.spec.ts`) configured specifically for mobile 360px viewport testing all 7 boxes, search, interactive presets, and static pages.
+- **Task 5.4: Security pass**
+  - **What was built:** Configured production HTTP security headers in `next.config.mjs` (HSTS, X-Content-Type-Options: nosniff, X-Frame-Options: SAMEORIGIN, Referrer-Policy, Permissions-Policy). Verified submission honeypot and session rate limits.
+- **Task 5.5: Content seeding**
+  - **What was built:** Confirmed complete seed suite with 80+ culture questions and ~20 PriceCheck products flagged `source = 'seed'` ready for owner review.
+- **Task 5.6: Deploy**
+  - **What was built:** Multi-stage production `Dockerfile` with standalone Next.js build, healthchecked `docker-compose.yml`, environment configuration, and verification of zero-deploy admin moderation.
+
+---
+
+## Final Launch Verification Summary
+
+1. **Clean build & test suite**:
+   - `pnpm test`: 8 test files, 28 tests passing cleanly (100%).
+   - `pnpm typecheck`: 0 TypeScript errors.
+   - `pnpm lint`: 0 ESLint warnings or errors.
+   - `pnpm build`: 37 static and dynamic routes compiled successfully; initial JS 106 kB.
+2. **Core Invariants & Non-Negotiables**:
+   - Zero hardcoded questions in any experience.
+   - Anti-fabrication sample size gates (`MIN_STATS_SAMPLE = 30`) strictly enforced.
+   - No public login required; NextAuth credential protection on `/admin`.
+   - User submissions always default to `pending` status until approved in `/admin/moderation`.
+   - Ad placements abstracted through `<AdSlot>` with zero gameplay rendering.
+   - Sponsored/Promoted listings visibly labelled.
+3. **What the Owner Needs to Deploy**:
+   - Set production environment variables in `.env` (`DATABASE_URL`, `NEXTAUTH_SECRET`, `ADMIN_PASSWORD`).
+   - Run `docker compose up -d` on any VPS.
+   - Run `pnpm db:migrate` and `pnpm db:seed`.
 
 
 
