@@ -43,6 +43,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Unit tests in `src/app/api/public/questions/[id]/stats/stats.test.ts` testing sample size thresholding; `pnpm test`, `pnpm typecheck`, and `pnpm lint` all pass clean with 21 tests.
   - **Learnings:** Handled strict status check so questions in draft, pending, or rejected states are never returned or recorded against.
 
+- **Task 1.3: Admin auth**
+  - **What was built:** NextAuth credentials provider setup (`src/server/auth/auth.ts`) validating against `users` table via bcryptjs, session and JWT callbacks for role checking, route handlers at `/api/auth/[...nextauth]`, middleware protection redirecting unauthorized visitors from `/admin/*` to `/admin/login` and returning 401 for `/api/admin/*`, plus dedicated `/admin/login` page and authenticated `/admin/layout.tsx`.
+  - **Verification:** Middleware redirection verified, `pnpm typecheck`, `pnpm lint`, and all 21 unit tests pass cleanly. Zero login UI exposed on public pages.
+  - **Learnings:** NextAuth credentials flow with JWT strategy is completely self-contained and avoids database session table bloat.
+
+
 
 
 

@@ -23,7 +23,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: unit tests cover no-repeat, count limits, empty pool.
 - [x] **1.2 Public content API.** Published-only questions, answer recording, stats endpoint honouring `MIN_STATS_SAMPLE`.
   AC: draft/pending/rejected never returned; stats return `{available:false}` below threshold.
-- [ ] **1.3 Admin auth.** Auth.js credentials, seeded owner, middleware on `/admin` and `/api/admin`.
+- [x] **1.3 Admin auth.** Auth.js credentials, seeded owner, middleware on `/admin` and `/api/admin`.
   AC: unauthenticated requests get 401/redirect; public site has no login UI.
 - [ ] **1.4 Admin question CRUD.** List, filters, create/edit per question type, publish/unpublish, delete, reorder.
   AC: change appears on public site with no deploy.
