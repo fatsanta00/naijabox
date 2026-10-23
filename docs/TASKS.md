@@ -38,7 +38,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 
 ## Phase 2: Shell and sharing
 
-- [ ] **2.1 Homepage.** Header + mobile menu, hero ("What's inside the box?"), box grid from registry.
+- [x] **2.1 Homepage.** Header + mobile menu, hero ("What's inside the box?"), box grid from registry.
   AC: first-time visitor understands the product above the fold at 360px.
 - [ ] **2.2 ResultLayout.** Result → Share → Try Again → Recommended → Back to the Box.
   AC: all boxes use it; no dead ends.

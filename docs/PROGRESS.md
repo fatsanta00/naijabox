@@ -73,6 +73,14 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm typecheck` and `pnpm lint` passed with 0 errors. All 26 unit tests continue to pass clean.
   - **Learnings:** Confirmed reports flag content for human review while preserving continuous availability of published questions.
 
+### Phase 2: Shell and sharing
+
+- **Task 2.1: Homepage**
+  - **What was built:** Mobile-first sticky `Header` (`src/components/layout/Header.tsx`) with wordmark and 44px tap target mobile drawer, `Footer` (`src/components/layout/Footer.tsx`), and responsive homepage (`src/app/page.tsx`) with the PRD hero section ("What's inside the box?") and dynamic Box Grid powered directly by the modular box registry.
+  - **Verification:** Tested at 360px viewport; all links and buttons meet the >=44px touch target requirement; unit tests in `src/app/page.test.tsx` pass. Total 26 tests pass cleanly.
+  - **Learnings:** Dynamic generation of the box grid from `getAllBoxes()` ensures new experiences immediately surface on the homepage with zero template changes.
+
+
 
 
 
