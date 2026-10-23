@@ -69,7 +69,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 ## Phase 5: Hardening and launch
 
 - [x] **5.1 Accessibility pass.** Keyboard, focus, labels, contrast, screen reader checks on all boxes.
-- [ ] **5.2 Performance pass.** Bundle budget, image optimisation, LCP target on mid-range Android 4G.
+- [x] **5.2 Performance pass.** Bundle budget, image optimisation, LCP target on mid-range Android 4G.
 - [ ] **5.3 E2E tests.** Playwright at 360px for each box, submit → approve flow, share deep links.
 - [ ] **5.4 Security pass.** Rate limits, input validation, admin hardening, secrets, headers.
 - [ ] **5.5 Content seeding.** Owner reviews and publishes launch content via admin.
