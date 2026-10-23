@@ -63,6 +63,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm typecheck` and `pnpm lint` passed with 0 errors. Verified unapproved submissions are excluded from `QuestionService.getSessionSet`.
   - **Learnings:** Honeypot and session rate limits prevent spam while keeping submission frictionless for legitimate visitors without requiring login.
 
+- **Task 1.7: Moderation queue**
+  - **What was built:** Moderation API endpoint (`GET/POST /api/admin/moderation`) supporting `approve`, `edit_approve`, `reject`, and `delete` actions, tagging reviewer ID and timestamp metadata. Full state machine from `DATA_MODEL.md` enforced. Built moderation queue dashboard page at `/admin/moderation` with pending submissions and open reports lists.
+  - **Verification:** Unit tests in `src/app/api/admin/moderation/moderation.test.ts` testing state transitions (pending -> published, rejected, deleted); `pnpm test` (26 tests passing), `pnpm typecheck`, and `pnpm lint` clean.
+  - **Learnings:** Strict state machine ensures community submissions cannot be surfaced publicly without an explicit approval transition.
+
+
 
 
 
