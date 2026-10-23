@@ -29,7 +29,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
   AC: change appears on public site with no deploy.
 - [x] **1.5 Admin categories, tags, experience settings.**
   AC: add a category in admin and use it immediately; toggle random vs ordered and count per experience.
-- [ ] **1.6 Submission pipeline.** Public submit form, validation, honeypot, rate limit, status `pending`.
+- [x] **1.6 Submission pipeline.** Public submit form, validation, honeypot, rate limit, status `pending`.
   AC: submitted question is invisible publicly until approved.
 - [ ] **1.7 Moderation queue.** Approve, Edit & Approve, Reject, Delete, flags, reviewer log.
   AC: full state machine from `DATA_MODEL.md` enforced and tested.

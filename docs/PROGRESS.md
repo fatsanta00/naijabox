@@ -58,6 +58,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Typecheck and lint pass with 0 warnings or errors. Immediate database updates without deploy.
   - **Learnings:** Storing experience config in `experiences` table ensures the public QuestionService reads live parameters dynamically.
 
+- **Task 1.6: Submission pipeline**
+  - **What was built:** Public user question submission endpoint (`POST /api/public/submissions`) enforcing validation, honeypot field check (`website`), rate limiting per session (max 5 per hour), and setting `status = 'pending'`, `source = 'community'`. Built responsive modal component `SubmitQuestionModal.tsx` with 44px tap targets and attribution option. Submissions remain strictly hidden from public endpoints until approved.
+  - **Verification:** `pnpm typecheck` and `pnpm lint` passed with 0 errors. Verified unapproved submissions are excluded from `QuestionService.getSessionSet`.
+  - **Learnings:** Honeypot and session rate limits prevent spam while keeping submission frictionless for legitimate visitors without requiring login.
+
+
 
 
 
