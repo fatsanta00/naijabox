@@ -107,6 +107,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Typecheck, lint, and all 28 unit tests pass cleanly with 0 warnings.
   - **Learnings:** Dynamic personality weighting calculates authentic percentage bands seamlessly without hardcoded quiz data.
 
+- **Task 3.2: Naija Would You Rather**
+  - **What was built:** Dilemma voting experience (`src/boxes/would-you-rather/index.tsx`). Emits `box_opened`, `experience_started`, and `question_answered` events. Records votes to `responses` with one vote per session restriction to prevent vote stuffing. Fetches community statistics gated by `MIN_STATS_SAMPLE >= 30` (anti-fabrication). Renders animated proportional result bars, single dilemma social share bar (`/q/[id]`), and in-game question submission and reporting modals.
+  - **Verification:** Typecheck and lint pass with zero warnings; verified sample threshold logic and vote deduplication.
+  - **Learnings:** Dynamic inline question share allows viral loops straight from individual dilemmas without completing an entire quiz.
+
+
 
 
 
