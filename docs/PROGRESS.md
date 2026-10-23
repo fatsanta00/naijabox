@@ -100,6 +100,14 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm typecheck` and `pnpm lint` pass with 0 warnings or errors. All 28 unit tests pass clean.
   - **Learnings:** Generating the sitemap directly from the box registry ensures all present and future experiences are immediately crawlable.
 
+### Phase 3: Launch boxes
+
+- **Task 3.1: How Nigerian Are You?**
+  - **What was built:** Personality scored test experience (`src/boxes/how-nigerian/index.tsx`) fetching dynamic questions from `/api/public/questions`, tracking question progress with `ProgressBar`, scoring points per response, mapping results to humorous culture bands ("100% Naija. No Refunds", "Certified Naija Child", "Still Loading"), terminating into `ResultLayout`, emitting analytics events (`box_opened`, `experience_started`, `question_answered`, `experience_completed`), and providing in-game question reporting and submissions.
+  - **Verification:** Typecheck, lint, and all 28 unit tests pass cleanly with 0 warnings.
+  - **Learnings:** Dynamic personality weighting calculates authentic percentage bands seamlessly without hardcoded quiz data.
+
+
 
 
 
