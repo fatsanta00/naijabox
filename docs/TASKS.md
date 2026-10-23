@@ -64,7 +64,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **4.1 Aggregation job.** `question_stats`, `price_snapshots`, refresh schedule.
 - [x] **4.2 Admin analytics dashboard.** Most opened box, funnels, completion, shares, top questions, traffic, device.
   AC: "Which box gets opened the most?" answered in one view.
-- [ ] **4.3 Question performance view.** Response rate and answer distribution per question.
+- [x] **4.3 Question performance view.** Response rate and answer distribution per question.
 
 ## Phase 5: Hardening and launch
 

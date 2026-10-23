@@ -20,7 +20,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen bg-naija-ink text-gray-100 antialiased selection:bg-brand-500 selection:text-white">
-        {children}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded-lg focus:font-bold focus:shadow-xl focus:outline-none"
+        >
+          Skip to main content
+        </a>
+        <div id="main-content">{children}</div>
       </body>
     </html>
   );
