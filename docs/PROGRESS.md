@@ -199,6 +199,11 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Verified 401 unauthorized on admin APIs without session; verified `pnpm typecheck`, `pnpm lint`, and all 28 unit tests pass clean.
   - **Learnings:** Grouping questions by experience and source gives the owner instant visibility into seed versus community review queues.
 
+- **Task 2.6: Error Handling**
+  - **What was built:** Created custom 404 page (`src/app/not-found.tsx`) with cultural humor (&quot;You Don Enter Bush!&quot;), branding, and direct CTAs to homepage and box catalog. Created global error boundary (`src/app/error.tsx`) with reset/retry handler. Updated homepage (`src/app/page.tsx`) to query published question counts and automatically hide any question-based experience whose active published question pool is empty, preventing player dead-ends.
+  - **Verification:** Verified `/this-page-does-not-exist` returns 404 with custom branded UI; verified `pnpm typecheck`, `pnpm lint`, and 28/28 unit tests pass.
+  - **Learnings:** Graceful fallback for empty pools ensures the public catalog only surfaces experiences ready for immediate play.
+
 
 
 

@@ -95,7 +95,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **2.5 Content Review Tooling.** Admin questions `?source=seed` filter, bulk actions (Publish/Unpublish/Delete Selected), `/admin/content-health` page and API.
   AC: content health shows Warning (<10) / Critical (<5) per experience; bulk actions work.
 
-- [ ] **2.6 Error Handling.** Custom `not-found.tsx` (404), `error.tsx` (500), hide boxes with 0 published questions from homepage.
+- [x] **2.6 Error Handling.** Custom `not-found.tsx` (404), `error.tsx` (500), hide boxes with 0 published questions from homepage.
   AC: 404/500 pages have branding and links; boxes with empty pools not shown on homepage.
 
 - [ ] **2.7 Security and Abuse.** Admin login rate limiting (10 attempts / 5 min / IP-hash), Playwright `e2e/security.spec.ts` for headers + auth enforcement.

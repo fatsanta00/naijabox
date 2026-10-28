@@ -1,11 +1,44 @@
 import { getAllBoxes } from '@/boxes/registry';
+import { BoxDefinition } from '@/boxes/types';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, Chip } from '@/components/ui';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import Link from 'next/link';
+import { db } from '@/server/db';
+import * as schema from '@/server/db/schema';
+import { eq, sql } from 'drizzle-orm';
 
-export default function HomePage() {
-  const boxes = getAllBoxes();
+async function getVisibleBoxes(): Promise<BoxDefinition[]> {
+  const allBoxes = getAllBoxes();
+  try {
+    const publishedCounts = await db
+      .select({
+        experienceId: schema.questions.experienceId,
+        count: sql<number>`count(*)::int`,
+      })
+      .from(schema.questions)
+      .where(eq(schema.questions.status, 'published'))
+      .groupBy(schema.questions.experienceId);
+
+    const allExperiences = await db.select().from(schema.experiences);
+    const expMap = new Map(allExperiences.map((e) => [e.key, e.id]));
+    const countMap = new Map(publishedCounts.map((c) => [c.experienceId, c.count]));
+
+    return allBoxes.filter((box) => {
+      // Standalone/algorithmic boxes don't rely on question pools
+      if (!box.usesQuestionSystem) return true;
+      const expId = expMap.get(box.slug);
+      const count = expId ? countMap.get(expId) || 0 : 0;
+      return count > 0;
+    });
+  } catch {
+    // Graceful fallback for test runners or if DB is offline
+    return allBoxes;
+  }
+}
+
+export default async function HomePage() {
+  const boxes = await getVisibleBoxes();
 
   return (
     <div className="min-h-screen bg-naija-ink flex flex-col">
