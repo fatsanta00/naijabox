@@ -1,9 +1,28 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
+const siteUrl = process.env.SITE_URL || 'https://naijabox.app';
+
 export const metadata: Metadata = {
-  title: 'NaijaBox | A box full of things to do',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'NaijaBox | A box full of things to do',
+    template: '%s | NaijaBox',
+  },
   description: 'Games, quizzes, weird questions, useful tools and things you probably didn’t know you needed.',
+  openGraph: {
+    title: 'NaijaBox | A box full of things to do',
+    description: 'Games, quizzes, weird questions, useful tools and things you probably didn’t know you needed.',
+    url: siteUrl,
+    siteName: 'NaijaBox',
+    locale: 'en_NG',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'NaijaBox | A box full of things to do',
+    description: 'Games, quizzes, weird questions, useful tools and things you probably didn’t know you needed.',
+  },
 };
 
 export const viewport: Viewport = {

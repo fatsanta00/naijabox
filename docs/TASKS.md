@@ -89,7 +89,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **2.3 Legal and Trust Pages.** Update privacy page, create terms and contact pages, footer links, `.env.example` CONTACT_EMAIL, PriceCheck sponsored label note.
   AC: /privacy, /terms, /contact all render; footer includes Terms and Contact links.
 
-- [ ] **2.4 SEO and Sharing Polish.** Fix `metadataBase`, verify sitemap covers all boxes + static pages, per-box `generateMetadata`, `robots.ts`.
+- [x] **2.4 SEO and Sharing Polish.** Fix `metadataBase`, verify sitemap covers all boxes + static pages, per-box `generateMetadata`, `robots.ts`.
   AC: `metadataBase` uses `SITE_URL` env var; sitemap includes all pages; OG metadata correct per box.
 
 - [ ] **2.5 Content Review Tooling.** Admin questions `?source=seed` filter, bulk actions (Publish/Unpublish/Delete Selected), `/admin/content-health` page and API.

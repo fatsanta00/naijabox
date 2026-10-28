@@ -16,14 +16,33 @@ export async function generateMetadata({ params }: BoxPageProps): Promise<Metada
   const box = getBoxBySlug(slug);
   if (!box) return { title: 'Box Not Found | NaijaBox' };
 
+  const ogImageUrl = `/api/og/box/${slug}`;
+
   return {
-    title: `${box.title} | NaijaBox`,
+    title: box.title,
     description: box.tagline,
+    alternates: {
+      canonical: `/boxes/${slug}`,
+    },
     openGraph: {
-      title: box.title,
+      title: `${box.title} | NaijaBox`,
       description: box.tagline,
       type: 'website',
-      images: [`/api/og/box/${slug}`],
+      url: `/boxes/${slug}`,
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: box.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${box.title} | NaijaBox`,
+      description: box.tagline,
+      images: [ogImageUrl],
     },
   };
 }

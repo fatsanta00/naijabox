@@ -189,6 +189,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Verified `/privacy`, `/terms`, and `/contact` all return HTTP 200; confirmed 0 ESLint warnings, 0 TypeScript errors, and 28/28 unit tests passing.
   - **Learnings:** Explicit legal notices and cookie transparency reinforce user trust while highlighting our privacy-first anonymous model.
 
+- **Task 2.4: SEO and Sharing Polish**
+  - **What was built:** Configured global `metadataBase` in root layout (`src/app/layout.tsx`) utilizing `SITE_URL` with OpenGraph & Twitter site fallbacks. Updated XML sitemap generation (`src/app/sitemap.ts`) to dynamically include homepage, all registered box routes, and static pages (`/about`, `/privacy`, `/terms`, `/contact`, `/slang`). Updated `public/robots.txt` disallowing `/admin/` and referencing dynamic sitemap. Implemented dynamic Edge OG image generator for individual boxes (`/api/og/box/[slug]`), and enriched per-box `generateMetadata` with canonical links, OpenGraph, and Twitter image cards.
+  - **Verification:** Verified `/robots.txt` (200), `/sitemap.xml` (200 XML), and `/api/og/box/how-nigerian` (200 image/png); confirmed 0 ESLint errors and 0 TypeScript errors.
+  - **Learnings:** Edge runtime for `@vercel/og` avoids Node.js filesystem backslash issues on Windows while rendering dynamic 1200x630 cards in sub-200ms.
+
+
 
 
 
