@@ -21,6 +21,30 @@ function checkLoginRateLimit(ip: string): boolean {
   return true;
 }
 
+/** Decode a NextAuth JWT payload (Base64url middle segment) without verifying signature.
+ *  We only need to read the role — the signature is already verified by NextAuth on API calls.
+ */
+function peekJwtRole(token: string): string | null {
+  try {
+    const parts = token.split('.');
+    if (parts.length < 2) return null;
+    const payload = JSON.parse(
+      Buffer.from(parts[1].replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8')
+    ) as { role?: string };
+    return payload.role ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/** Routes that require the 'owner' role (moderators are denied). */
+const OWNER_ONLY_PATHS = [
+  '/admin/users',
+  '/admin/settings',
+  '/admin/analytics',
+  '/api/admin/users',
+];
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -56,6 +80,19 @@ export function middleware(request: NextRequest) {
       const loginUrl = new URL('/admin/login', request.url);
       loginUrl.searchParams.set('callbackUrl', pathname);
       return NextResponse.redirect(loginUrl);
+    }
+
+    // 1b. Owner-only route enforcement
+    const isOwnerOnlyPath = OWNER_ONLY_PATHS.some((p) => pathname.startsWith(p));
+    if (isOwnerOnlyPath) {
+      const role = peekJwtRole(token);
+      if (role !== 'owner') {
+        if (pathname.startsWith('/api/admin')) {
+          return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+        }
+        // Redirect moderators to admin home
+        return NextResponse.redirect(new URL('/admin', request.url));
+      }
     }
   }
 

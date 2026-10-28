@@ -266,3 +266,14 @@ This document tracks execution progress, verification steps, and learnings acros
 
 
 
+
+- **Task 3.1: Admin Moderators**
+  - **What was built:**
+    - `src/app/api/admin/users/route.ts`: GET (list users), POST (create moderator, owner-only), DELETE (remove moderator by `?id=`, owner-only, cannot delete other owners). Returns 403 for moderators attempting owner-only actions.
+    - `src/app/admin/users/UsersPageClient.tsx`: Client component showing full user list, add-moderator form (email + password, min 8 chars), remove button on each moderator row.
+    - `src/app/admin/users/page.tsx`: SSR wrapper that calls `auth()` and redirects non-owners to `/admin` before even rendering the client component.
+    - `src/app/admin/layout.tsx` updated: Settings, Analytics, and Users links now conditionally rendered only when `role === 'owner'`. Role badge displayed next to email in header.
+    - `src/middleware.ts` updated: Added `peekJwtRole()` helper to read role from JWT cookie without external calls. `OWNER_ONLY_PATHS` list (`/admin/users`, `/admin/settings`, `/admin/analytics`, `/api/admin/users`) forces 403/redirect for any authenticated non-owner session.
+  - **Verification:** `pnpm lint`, `pnpm typecheck`, `pnpm test` all pass (8 files, 28 tests).
+  - **Learnings:** JWT payload can be peeked in middleware with a simple Base64 decode (no crypto needed) since signature verification is handled by NextAuth upstream.
+

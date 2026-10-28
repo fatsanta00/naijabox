@@ -3,6 +3,8 @@ import Link from 'next/link';
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
+  const userRole = (session?.user as { role?: string })?.role;
+  const isOwner = userRole === 'owner';
 
   // If not authenticated, render bare children (e.g. for /admin/login)
   // Protected admin pages are strictly guarded by middleware.ts which redirects to /admin/login
@@ -16,7 +18,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <Link href="/admin" className="font-bold text-lg text-white">
-              Naija<span className="text-brand-500">Box</span> <span className="text-xs px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 font-mono">ADMIN</span>
+              Naija<span className="text-brand-500">Box</span>{' '}
+              <span className="text-xs px-2 py-0.5 rounded bg-brand-500/20 text-brand-300 font-mono">ADMIN</span>
             </Link>
             <nav className="hidden md:flex items-center space-x-4 text-sm font-medium">
               <Link href="/admin/questions" className="text-gray-300 hover:text-white px-2 py-1 rounded">
@@ -28,16 +31,33 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <Link href="/admin/moderation" className="text-gray-300 hover:text-white px-2 py-1 rounded">
                 Moderation
               </Link>
-              <Link href="/admin/settings" className="text-gray-300 hover:text-white px-2 py-1 rounded">
-                Settings
-              </Link>
-              <Link href="/admin/analytics" className="text-gray-300 hover:text-white px-2 py-1 rounded">
-                Analytics
-              </Link>
+              {/* Owner-only nav items */}
+              {isOwner && (
+                <>
+                  <Link href="/admin/settings" className="text-gray-300 hover:text-white px-2 py-1 rounded">
+                    Settings
+                  </Link>
+                  <Link href="/admin/analytics" className="text-gray-300 hover:text-white px-2 py-1 rounded">
+                    Analytics
+                  </Link>
+                  <Link href="/admin/users" className="text-gray-300 hover:text-white px-2 py-1 rounded">
+                    Users
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
           <div className="flex items-center space-x-3">
             <span className="text-xs text-naija-muted hidden sm:inline">{session.user.email}</span>
+            {userRole && (
+              <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase font-bold border hidden sm:inline ${
+                isOwner
+                  ? 'bg-brand-500/20 border-brand-500/40 text-brand-300'
+                  : 'bg-amber-500/20 border-amber-500/40 text-amber-300'
+              }`}>
+                {userRole}
+              </span>
+            )}
             <form
               action={async () => {
                 'use server';
@@ -46,7 +66,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             >
               <button
                 type="submit"
-                className="h-9 min-h-[36px] px-3 text-xs font-medium rounded-lg bg-naija-card text-gray-300 hover:text-white border border-naija-border"
+                className="min-h-[44px] px-3 text-xs font-medium rounded-lg bg-naija-card text-gray-300 hover:text-white border border-naija-border inline-flex items-center justify-center"
               >
                 Sign out
               </button>
