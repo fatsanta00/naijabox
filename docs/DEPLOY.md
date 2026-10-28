@@ -133,8 +133,8 @@ docker compose -f docker-compose.production.yml exec app node scripts/seed.js
 > Run this **once** after initial deploy. If `ADMIN_EMAIL` and `ADMIN_PASSWORD` are set in `.env`, the seed script creates the owner. Alternatively, use the dedicated script:
 
 ```bash
-# Using the create-owner script (safe — refuses to run if owner already exists)
-docker compose -f docker-compose.production.yml exec app npx tsx scripts/create-owner.ts
+# Using the dedicated create-owner script (safe — refuses to run if owner already exists)
+docker compose -f docker-compose.production.yml exec app pnpm admin:create-owner
 ```
 
 Then immediately log in at `https://yourdomain.app/admin` and **change your password** via the settings page.

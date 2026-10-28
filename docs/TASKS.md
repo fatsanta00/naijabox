@@ -83,7 +83,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **2.1 Deployment Infrastructure.** `/api/health` route, `docker-compose.production.yml`, `Caddyfile`, `scripts/backup.sh`, `docs/DEPLOY.md`, updated `.env.example`.
   AC: health endpoint returns `{"status":"ok","db":"connected","ts":"..."}`, production compose runs app+db+caddy, DEPLOY.md covers full VPS setup.
 
-- [ ] **2.2 Admin Account Safety.** `scripts/create-owner.ts` CLI script, warning in seed.ts, DEPLOY.md updated.
+- [x] **2.2 Admin Account Safety.** `scripts/create-owner.ts` CLI script, warning in seed.ts, DEPLOY.md updated.
   AC: script creates owner only if none exists; refuses and warns if owner already present.
 
 - [ ] **2.3 Legal and Trust Pages.** Update privacy page, create terms and contact pages, footer links, `.env.example` CONTACT_EMAIL, PriceCheck sponsored label note.

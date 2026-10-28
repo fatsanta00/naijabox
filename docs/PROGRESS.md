@@ -179,6 +179,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `/api/health` tested and verified returning HTTP 200 with DB status "connected". Production docker compose verified for syntax and network definitions.
   - **Learnings:** Caddy handles automatic TLS certificate provisioning and renewals with zero manual certbot maintenance.
 
+- **Task 2.2: Admin Account Safety**
+  - **What was built:** Created `scripts/create-owner.ts` CLI tool (`pnpm admin:create-owner`), which safely initializes the owner account with bcryptjs hashed passwords, strictly refuses to overwrite existing owners, prevents weak or default passwords in production, and provides clear CLI instructions. Added hard guard in `scripts/seed.ts` blocking default seed password in production environments. Updated `docs/DEPLOY.md` to document the first-run owner creation workflow.
+  - **Verification:** Ran `pnpm admin:create-owner` against populated database; verified it detected existing owner and refused to overwrite. Verified `pnpm typecheck`, `pnpm lint`, and all 28 unit tests pass clean.
+  - **Learnings:** Explicit CLI creation prevents accidental credential overwrites during automated redeploys.
+
+
 
 1. **Clean build & test suite**:
    - `pnpm test`: 8 test files, 28 tests passing cleanly (100%).

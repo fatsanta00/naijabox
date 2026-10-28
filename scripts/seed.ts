@@ -44,9 +44,14 @@ async function insertQ(data: schema.InsertQuestion) {
 async function main() {
   console.log('🌱 Seeding NaijaBox database...');
 
-  // ── Admin user ───────────────────────────────────────────────────────────
+  // ── Admin user (Development Only) ─────────────────────────────────────────
+  // WARNING: In production, do NOT rely on default credentials in seed.ts!
+  // Always use `pnpm admin:create-owner` or pass explicit secure ADMIN_EMAIL/ADMIN_PASSWORD.
   const adminEmail = process.env.ADMIN_EMAIL || 'owner@naijabox.app';
   const adminPassword = process.env.ADMIN_PASSWORD || 'naijabox_admin_secret_123';
+  if (process.env.NODE_ENV === 'production' && adminPassword === 'naijabox_admin_secret_123') {
+    throw new Error('SECURITY VIOLATION: Default admin password cannot be used in production! Set ADMIN_PASSWORD or use scripts/create-owner.ts.');
+  }
   const passwordHash = await hashPassword(adminPassword);
 
   await db
