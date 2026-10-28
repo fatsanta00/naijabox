@@ -127,7 +127,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **3.4c Higher or Lower (prices) box.** `src/boxes/higher-or-lower/index.tsx`, registered as `higher-or-lower`, reuses pricecheck products, 5 rounds, score at end.
   AC: box playable; uses real product data; analytics events fire; ResultLayout.
 
-- [ ] **3.4d Football Trivia box.** `src/boxes/football-trivia/index.tsx`, registered as `football-trivia`, 20 seeded questions, difficulty levels.
+- [x] **3.4d Football Trivia box.** `src/boxes/football-trivia/index.tsx`, registered as `football-trivia`, 20 seeded questions, difficulty levels.
   AC: box playable; difficulty filtering works; analytics events fire; ResultLayout.
 
 - [ ] **3.5 Optional Public Accounts.** `user_id` nullable column in sessions, `/api/public/auth/register` + `/api/public/auth/login`, `/account` page, anonymous play still works fully.

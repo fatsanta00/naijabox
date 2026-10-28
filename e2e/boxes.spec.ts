@@ -97,6 +97,33 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await expect(page.locator('text=Round 2 of 5')).toBeVisible();
   });
 
+  test('Football Trivia box interactive flow at 360px', async ({ page }) => {
+    await page.goto('/boxes/football-trivia');
+    // Difficulty selection screen appears first
+    await expect(page.locator('h1')).toContainText('Naija Football Trivia');
+    await expect(page.locator('text=All Rounder')).toBeVisible();
+
+    // Click All Rounder to start
+    await page.click('button:has-text("All Rounder")');
+
+    // Wait for questions to load (spinner hides, first question visible)
+    await expect(page.locator('text=Setting the pitch and loading trivia...')).toBeHidden({ timeout: 15000 });
+    await expect(page.locator('text=Question 1 of')).toBeVisible();
+
+    // Answer the first question (always click first option)
+    const firstOption = page.locator('button[class*="rounded-xl"]').first();
+    await expect(firstOption).toBeVisible();
+    await firstOption.click();
+
+    // Explanation / Next Question button appears
+    const nextBtn = page.locator('button:has-text("Next Question ➡️")');
+    await expect(nextBtn).toBeVisible();
+    await nextBtn.click();
+
+    // Verify question 2
+    await expect(page.locator('text=Question 2 of')).toBeVisible();
+  });
+
   test('Random Decision Maker preset flow', async ({ page }) => {
     await page.goto('/boxes/decision-maker');
     await expect(page.locator('h2')).toContainText('Random Decision Maker');

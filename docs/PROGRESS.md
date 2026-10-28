@@ -333,3 +333,13 @@ This document tracks execution progress, verification steps, and learnings acros
     - `e2e/boxes.spec.ts`: Added Playwright test testing question loading, round 1 guess (HIGHER), reveal card, and advancing to round 2 at 360px.
   - **Verification:** `pnpm db:seed` succeeded; Vitest passed 32/32 tests; Playwright passed 13/13 tests on Mobile Chrome (360px); `tsc --noEmit` clean; `next lint` clean.
   - **Learnings:** Reusing structured price items across multiple gameplay formats (Guess the Price + Higher or Lower) multiplies engagement value without adding database bloat or duplicate maintenance overhead.
+
+- **Task 3.4d: Naija Football Trivia box (`football-trivia`)**
+  - **What was built:**
+    - `src/boxes/football-trivia/index.tsx`: Quiz box covering Super Eagles history from the 1980 AFCON through 1994/1996 golden era, 2014 World Cup through Osimhen's Scudetto. Features difficulty tier selector (Easy/Medium/Hard/All), per-question explanation banners, 52px answer option tap targets, streak-aware `ResultLayout` with 4 humorous result bands ("Bench Warmer" → "Super Eagles Legend"), ReportButton, SubmitQuestionModal, and full analytics instrumentation.
+    - `src/boxes/registry.ts`: Registered `football-trivia` under `quizzes` nav group with `New` badge.
+    - `scripts/seed.ts`: Created `football-trivia` experience and seeded 20 original Nigerian football trivia questions (7 Easy, 8 Medium, 5 Hard) flagged `source = 'seed'`.
+    - `src/boxes/registry.test.ts`: Updated to verify `football-trivia` in registry.
+    - `e2e/boxes.spec.ts`: Added Playwright test navigating difficulty select, starting game, answering question 1, checking explanation, and advancing to question 2 at 360px.
+  - **Verification:** `pnpm db:seed` succeeded; Vitest passed 32/32 tests; Playwright passed 14/14 tests on Mobile Chrome (360px); `tsc --noEmit` clean; `next lint` clean.
+  - **Learnings:** Wrapping the difficulty selector as the initial screen (before loading questions) improves perceived performance since the API fetch only fires after user commits to a tier.

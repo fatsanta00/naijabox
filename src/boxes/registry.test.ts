@@ -16,6 +16,7 @@ describe('Box Registry', () => {
     expect(slugs).toContain('food-personality');
     expect(slugs).toContain('excuse-generator');
     expect(slugs).toContain('higher-or-lower');
+    expect(slugs).toContain('football-trivia');
   });
 
   it('can look up a box by slug', () => {
