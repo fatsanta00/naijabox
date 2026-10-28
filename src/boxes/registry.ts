@@ -2,6 +2,18 @@ import { BoxDefinition } from './types';
 
 export const boxRegistry: BoxDefinition[] = [
   {
+    slug: 'excuse-generator',
+    title: 'Nigerian Excuse Generator',
+    tagline: 'Need a quick way out of an event, late arrival, or loan request? Generate an airtight Naija excuse.',
+    kind: 'tool',
+    navGroup: 'tools',
+    badge: 'Popular',
+    usesQuestionSystem: true,
+    experienceKey: 'excuse-generator',
+    component: () => import('./excuse-generator'),
+    recommendNext: ['decision-maker', 'how-nigerian'],
+  },
+  {
     slug: 'food-personality',
     title: 'Which Nigerian Food Are You?',
     tagline: 'Smoky party jollof, solid pounded yam, or lifesaver garri? Discover your soul food.',

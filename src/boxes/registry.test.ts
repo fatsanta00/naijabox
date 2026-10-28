@@ -14,6 +14,7 @@ describe('Box Registry', () => {
     expect(slugs).toContain('decision-maker');
     expect(slugs).toContain('pricecheck');
     expect(slugs).toContain('food-personality');
+    expect(slugs).toContain('excuse-generator');
   });
 
   it('can look up a box by slug', () => {

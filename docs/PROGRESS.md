@@ -313,3 +313,13 @@ This document tracks execution progress, verification steps, and learnings acros
     - `e2e/boxes.spec.ts`: Added mobile Playwright test verifying question loading, hydration, answering, and progress updating at 360px.
   - **Verification:** `pnpm db:seed` succeeded; Vitest passed 32/32 tests across 10 files; Playwright passed 11/11 tests on Mobile Chrome (360px); TypeScript and ESLint clean.
   - **Learnings:** Personality score bands allow granular, culturally nuanced archetype matching while preserving zero-hardcoding database-backed question loading.
+
+- **Task 3.4b: Nigerian Excuse Generator box (`excuse-generator`)**
+  - **What was built:**
+    - `src/boxes/excuse-generator/index.tsx`: Interactive emergency excuse generator for late arrival, dodging events, urgent 2k requests, and late-night wahala. Includes scenario filtering, quick shuffle with smooth animations, believability meter ("98% Believable"), comedic delivery advice, instant copy-to-clipboard, WhatsApp one-tap share, report button, submission modal, and cross-box recommendations.
+    - `src/boxes/registry.ts`: Registered `excuse-generator` under `tools` nav group.
+    - `scripts/seed.ts`: Seeded 30 hilarious, authentic Nigerian excuse questions across all scenarios (`source = 'seed'`).
+    - `src/boxes/registry.test.ts`: Updated test suite verifying registered boxes count and metadata.
+    - `e2e/boxes.spec.ts`: Added interactive flow test at 360px testing scenario selection, shuffle, believability badge, and copy-to-clipboard functionality.
+  - **Verification:** Vitest passed 32/32 tests; Playwright passed 12/12 tests on Mobile Chrome (360px); TypeScript check clean; ESLint clean.
+  - **Learnings:** Client components fetching async questions in e2e tests should wait for loading indicators to hide before asserting against interactive elements.

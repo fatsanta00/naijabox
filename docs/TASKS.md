@@ -121,7 +121,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **3.4a Which Nigerian Food Are You? box.** `src/boxes/food-personality/index.tsx`, registered as `food-personality`, 15 seeded questions, full box contract.
   AC: box playable; analytics events fire; ResultLayout; 360px; 44px targets.
 
-- [ ] **3.4b Nigerian Excuse Generator box.** `src/boxes/excuse-generator/index.tsx`, registered as `excuse-generator`, 30 seeded excuse items, share excuse text.
+- [x] **3.4b Nigerian Excuse Generator box.** `src/boxes/excuse-generator/index.tsx`, registered as `excuse-generator`, 30 seeded excuse items, share excuse text.
   AC: box playable; generates excuse from DB; share works; analytics events fire.
 
 - [ ] **3.4c Higher or Lower (prices) box.** `src/boxes/higher-or-lower/index.tsx`, registered as `higher-or-lower`, reuses pricecheck products, 5 rounds, score at end.

@@ -47,6 +47,34 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await expect(page.locator('text=Question 2 of')).toBeVisible();
   });
 
+  test('Excuse Generator box interactive flow at 360px', async ({ page, context }) => {
+    // Grant clipboard permissions
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await page.goto('/boxes/excuse-generator');
+    await expect(page.locator('text=Preparing excuse generator...')).toBeHidden({ timeout: 15000 });
+    await expect(page.locator('h1')).toContainText('Nigerian Excuse Generator');
+
+    // Scenario chips should be visible
+    await expect(page.locator('text=Late to Work')).toBeVisible();
+
+    // Click 'Late to Work' scenario
+    await page.click('button:has-text("Late to Work")');
+
+    // Shuffle button should be enabled
+    const shuffleBtn = page.locator('button:has-text("Shuffle")');
+    await expect(shuffleBtn).toBeVisible();
+    await shuffleBtn.click();
+
+    // Believability score and delivery tip should be present
+    await expect(page.locator('text=Believable')).toBeVisible();
+    await expect(page.locator('text=Delivery Tip')).toBeVisible();
+
+    // Test Copy button
+    const copyBtn = page.locator('button:has-text("Copy Text")');
+    await copyBtn.click();
+    await expect(page.locator('text=Copied!')).toBeVisible();
+  });
+
   test('Random Decision Maker preset flow', async ({ page }) => {
     await page.goto('/boxes/decision-maker');
     await expect(page.locator('h2')).toContainText('Random Decision Maker');
