@@ -303,3 +303,13 @@ This document tracks execution progress, verification steps, and learnings acros
     - Unit test suite `src/components/ads/SponsorBadge.test.tsx` verifying label enforcement, null handling, and impression/click analytics event dispatching.
   - **Verification:** Vitest passed 32/32 tests; TypeScript check clean; ESLint clean.
   - **Learnings:** Encapsulating active sponsorship resolution inside `ResultLayout` guarantees that every present and future box experience receives sponsorship capabilities automatically without repeating boilerplate.
+
+- **Task 3.4a: Which Nigerian Food Are You? (personality_scored box)**
+  - **What was built:**
+    - `src/boxes/food-personality/index.tsx`: New box experience using `personality_scored` engine with witty Nigerian food archetypes (Cold Garri & Groundnut, Midnight Indomie & Egg, Hot Suya with Extra Yaji, Pounded Yam & Egusi, Smoky Party Jollof). Follows full box contract: 44px tap targets, mobile-first at 360px, ReportButton, SubmitQuestionModal, and standard post-experience `ResultLayout` with deep links, social share bar, try again, and recommendations.
+    - `src/boxes/registry.ts`: Registered `food-personality` box under `quizzes` group.
+    - `scripts/seed.ts`: Seeded `food-personality` experience and 15 original food dilemma questions flagged `source = 'seed'`.
+    - `src/boxes/registry.test.ts`: Updated test suite to verify registry includes all launch boxes plus `food-personality`.
+    - `e2e/boxes.spec.ts`: Added mobile Playwright test verifying question loading, hydration, answering, and progress updating at 360px.
+  - **Verification:** `pnpm db:seed` succeeded; Vitest passed 32/32 tests across 10 files; Playwright passed 11/11 tests on Mobile Chrome (360px); TypeScript and ESLint clean.
+  - **Learnings:** Personality score bands allow granular, culturally nuanced archetype matching while preserving zero-hardcoding database-backed question loading.

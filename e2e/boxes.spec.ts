@@ -35,6 +35,18 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await expect(anyButton.first()).toBeVisible({ timeout: 5000 });
   });
 
+  test('Food Personality box interactive flow at 360px', async ({ page }) => {
+    await page.goto('/boxes/food-personality');
+    await expect(page.locator('text=Preparing your food personality test...')).toBeHidden({ timeout: 15000 });
+    // Option buttons should appear
+    const anyButton = page.getByRole('button');
+    await expect(anyButton.first()).toBeVisible({ timeout: 5000 });
+    // Click first answer
+    await anyButton.first().click();
+    // Progress updates or next question loads
+    await expect(page.locator('text=Question 2 of')).toBeVisible();
+  });
+
   test('Random Decision Maker preset flow', async ({ page }) => {
     await page.goto('/boxes/decision-maker');
     await expect(page.locator('h2')).toContainText('Random Decision Maker');
@@ -83,9 +95,13 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
 
   test('Full loop: Community submit -> pending -> not public (moderation gate)', async ({ request }) => {
     const testQText = `E2E Community Question ${Date.now()}`;
+    const uniqueSession = `e2e_${Date.now()}_${Math.random().toString(36).substring(2, 8)}`;
 
-    // 1. Submit anonymously via public endpoint
+    // 1. Submit anonymously via public endpoint with unique session cookie
     const submitRes = await request.post('/api/public/submissions', {
+      headers: {
+        Cookie: `nb_sid=${uniqueSession}`,
+      },
       data: {
         experience_key: 'how-nigerian',
         text: testQText,

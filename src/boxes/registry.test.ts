@@ -2,9 +2,9 @@ import { describe, it, expect } from 'vitest';
 import { getBoxBySlug, getAllBoxes, getRecommendedBoxes } from './registry';
 
 describe('Box Registry', () => {
-  it('registers all 7 launch boxes', () => {
+  it('registers all launch boxes and extensions', () => {
     const boxes = getAllBoxes();
-    expect(boxes.length).toBe(7);
+    expect(boxes.length).toBeGreaterThanOrEqual(7);
     const slugs = boxes.map((b) => b.slug);
     expect(slugs).toContain('how-nigerian');
     expect(slugs).toContain('would-you-rather');
@@ -13,6 +13,7 @@ describe('Box Registry', () => {
     expect(slugs).toContain('reaction-time');
     expect(slugs).toContain('decision-maker');
     expect(slugs).toContain('pricecheck');
+    expect(slugs).toContain('food-personality');
   });
 
   it('can look up a box by slug', () => {

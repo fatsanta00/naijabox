@@ -146,6 +146,24 @@ async function main() {
     questionCount: 10,
   });
 
+  // Which Nigerian Food Are You?
+  const foodPersonality = await upsertExperience({
+    key: 'food-personality',
+    title: 'Which Nigerian Food Are You?',
+    questionType: 'personality_scored',
+    selectionMode: 'random',
+    questionCount: 10,
+    settings: {
+      bands: [
+        { min: 0, max: 20, label: 'Cold Garri & Groundnut', emoji: '🥣' },
+        { min: 21, max: 40, label: 'Midnight Indomie & Fried Egg', emoji: '🍜' },
+        { min: 41, max: 60, label: 'Hot Suya with Extra Yaji', emoji: '🥩' },
+        { min: 61, max: 80, label: 'Pounded Yam & Egusi Soup', emoji: '🍲' },
+        { min: 81, max: 100, label: 'Smoky Party Jollof Rice', emoji: '🍛' },
+      ],
+    },
+  });
+
   console.log('✓ Experiences created');
 
   // ── How Nigerian Are You? questions ──────────────────────────────────────
@@ -1513,6 +1531,240 @@ async function main() {
     await insertQ(q);
   }
   console.log(`✓ ${guessQuestions.length} "Guess the Price" questions`);
+
+  // ── Which Nigerian Food Are You? questions ───────────────────────────────
+  const foodQuestions: schema.InsertQuestion[] = [
+    {
+      experienceId: foodPersonality.id,
+      text: "It's Saturday afternoon and there's an owambe nearby. What is your reaction?",
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'I came strictly for the dance floor and souvenir bag', points: 3 },
+        { id: 'b', text: 'Sit respectfully with the elders and wait for real food', points: 2 },
+        { id: 'c', text: 'Check who has small chops or drink, then leave', points: 1 },
+        { id: 'd', text: 'Stay in my room with AC and mind my business', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'Your phone battery drops to 3% and NEPA just took the light. How do you handle it?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'Panic, complain in family group chat, light rechargeable lamp immediately', points: 3 },
+        { id: 'b', text: 'Calmly find power bank, start generator without noise', points: 2 },
+        { id: 'c', text: 'Step outside to the junction to buy suya and charge phone with aboki', points: 1 },
+        { id: 'd', text: 'Just sleep. Problem no dey finish', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'How do you handle someone who owes you money and is posting vacations on Instagram?',
+      categoryId: cats['food'],
+      difficulty: 'medium',
+      options: [
+        { id: 'a', text: 'Comment "Safe journey boss, hope you remember that 50k" on every photo', points: 3 },
+        { id: 'b', text: 'Call their older sibling or church pastor directly', points: 2 },
+        { id: 'c', text: 'Post cryptic status about wicked people and karma', points: 1 },
+        { id: 'd', text: 'Cut your losses and count it as giving to charity', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'What is your natural temperament when someone cuts you off in Lagos traffic?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'Wind down glass, shout "Werey!", make hand gesture', points: 3 },
+        { id: 'b', text: 'Look at them with sheer disappointment, shake head', points: 2 },
+        { id: 'c', text: 'Speed up and block them immediately at the next bend', points: 1 },
+        { id: 'd', text: 'Let them go, life is too short to fight yellow bus drivers', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'Your ideal Friday night looks like:',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'Club, lounge, VIP section, loud amapiano, sparklers', points: 3 },
+        { id: 'b', text: 'Quiet dinner with two close friends, discussing investments', points: 2 },
+        { id: 'c', text: 'Street side bar, pepper soup, cold malt, loud banter', points: 1 },
+        { id: 'd', text: 'In bed by 9:30 PM with laptop and movie', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'How do you pack when travelling for a 2-day weekend trip?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'Two massive boxes, iron, 6 outfits, extra shoes "just in case"', points: 3 },
+        { id: 'b', text: 'Well-organised duffel bag with ironed native and toiletries', points: 2 },
+        { id: 'c', text: 'One backpack with essentials, buy whatever else at destination', points: 1 },
+        { id: 'd', text: 'Throw two shirts into a polythene bag and leave', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'When cooking in the kitchen, what is your relationship with seasoning cubes and pepper?',
+      categoryId: cats['food'],
+      difficulty: 'medium',
+      options: [
+        { id: 'a', text: 'Red oil must float, aroma must reach next compound', points: 3 },
+        { id: 'b', text: 'Rich stock with goat meat and crayfish, balanced perfection', points: 2 },
+        { id: 'c', text: 'Extra chili pepper until forehead is sweating', points: 1 },
+        { id: 'd', text: 'Just pinch of salt and water, simplicity is king', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'What role do you play in your circle of friends?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'The hype person: planning events, bringing the vibes', points: 3 },
+        { id: 'b', text: 'The anchor: gives sober advice, settles fights', points: 2 },
+        { id: 'c', text: 'The spontaneous one: always ready for unexpected trouble', points: 1 },
+        { id: 'd', text: 'The ghost: only appears when food is confirmed', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'If a tailor tells you "Your cloth will be ready on Friday morning", what do you believe?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'He is lying, so I will arrive at his shop unannounced on Thursday', points: 3 },
+        { id: 'b', text: 'Call him Friday 7 a.m. with stern elder voice', points: 2 },
+        { id: 'c', text: 'Threaten to involve area boys if sewing fails', points: 1 },
+        { id: 'd', text: 'Mentally prepare to wear an old outfit', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'What is your superpower in a crisis?',
+      categoryId: cats['food'],
+      difficulty: 'medium',
+      options: [
+        { id: 'a', text: 'Making everybody laugh and forget the pain', points: 3 },
+        { id: 'b', text: 'Staying calm and executing the logical rescue plan', points: 2 },
+        { id: 'c', text: 'Fighting back with fire until victory', points: 1 },
+        { id: 'd', text: 'Adapting instantly with zero complaints', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'Which compliment would warm your soul the most?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: '"Your presence alone made this party complete!"', points: 3 },
+        { id: 'b', text: '"You are one of the most dependable people I have ever met."', points: 2 },
+        { id: 'c', text: '"You are dangerous in a good way, no one can play with you."', points: 1 },
+        { id: 'd', text: '"You saved my life today, thank you."', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'How do you respond when someone offers you unsolicited advice?',
+      categoryId: cats['food'],
+      difficulty: 'medium',
+      options: [
+        { id: 'a', text: 'Laugh it off and turn it into a joke for Twitter', points: 3 },
+        { id: 'b', text: '"Thank you sir/ma" with a respectful nod, then ignore completely', points: 2 },
+        { id: 'c', text: 'Defend your choices immediately with facts and attitude', points: 1 },
+        { id: 'd', text: 'Smile awkwardly and look for an escape route', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'What is your honest morning wake-up routine?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'Wake up energized, play Afrobeats, seize the day', points: 3 },
+        { id: 'b', text: 'Pray, stretch, review daily tasks systematically', points: 2 },
+        { id: 'c', text: 'Jump out of bed late, rushing against the clock', points: 1 },
+        { id: 'd', text: 'Check notifications for 45 minutes while lying motionless', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'At a buffet, how do you approach the food station?',
+      categoryId: cats['food'],
+      difficulty: 'easy',
+      options: [
+        { id: 'a', text: 'Mountain of jollof, fried rice, dodo, salad, and beef touching the roof', points: 3 },
+        { id: 'b', text: 'Swallow section first: clean solid portion with thick soup', points: 2 },
+        { id: 'c', text: 'Double meat and protein, minimal carbs', points: 1 },
+        { id: 'd', text: 'Moderate plate, come back if necessary', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+    {
+      experienceId: foodPersonality.id,
+      text: 'If Nigeria was completely reset today, what would be your immediate move?',
+      categoryId: cats['food'],
+      difficulty: 'hard',
+      options: [
+        { id: 'a', text: 'Host a nationwide street carnival to celebrate new beginnings', points: 3 },
+        { id: 'b', text: 'Run for local government chairman to fix infrastructure', points: 2 },
+        { id: 'c', text: 'Open a reliable logistics business immediately', points: 1 },
+        { id: 'd', text: 'Wait 6 months to see if the reset is real or fake', points: 0 },
+      ],
+      status: 'published',
+      source: 'seed',
+      publishedAt: new Date(),
+    },
+  ];
+
+  for (const q of foodQuestions) {
+    await insertQ(q);
+  }
+  console.log(`✓ ${foodQuestions.length} "Food Personality" questions`);
 
   // ── PriceCheck seed data ──────────────────────────────────────────────────
   const [seller] = await db

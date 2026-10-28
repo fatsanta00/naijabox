@@ -2,6 +2,18 @@ import { BoxDefinition } from './types';
 
 export const boxRegistry: BoxDefinition[] = [
   {
+    slug: 'food-personality',
+    title: 'Which Nigerian Food Are You?',
+    tagline: 'Smoky party jollof, solid pounded yam, or lifesaver garri? Discover your soul food.',
+    kind: 'quiz',
+    navGroup: 'quizzes',
+    badge: 'Popular',
+    usesQuestionSystem: true,
+    experienceKey: 'food-personality',
+    component: () => import('./food-personality'),
+    recommendNext: ['how-nigerian', 'slang-quiz'],
+  },
+  {
     slug: 'how-nigerian',
     title: 'How Nigerian Are You?',
     tagline: 'Take the ultimate test. Certified Naija child or still loading?',
