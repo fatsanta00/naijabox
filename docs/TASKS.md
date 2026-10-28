@@ -101,7 +101,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **2.7 Security and Abuse.** Admin login rate limiting (10 attempts / 5 min / IP-hash), Playwright `e2e/security.spec.ts` for headers + auth enforcement.
   AC: security headers present; `/api/admin/questions` returns 401 without auth; rate limit enforced.
 
-- [ ] **2.8 Performance and Accessibility.** `pnpm build` bundle size note, Lighthouse score estimates in PROGRESS.md, aria/heading/contrast fixes.
+- [x] **2.8 Performance and Accessibility.** `pnpm build` bundle size note, Lighthouse score estimates in PROGRESS.md, aria/heading/contrast fixes.
   AC: PROGRESS.md has Lighthouse estimates; all a11y issues fixed.
 
 - [ ] **2.9 Extended E2E Tests.** Extend `e2e/boxes.spec.ts`: submit→moderate flow, stats gate, paid label enforcement, decision-maker end screen.
