@@ -31,6 +31,9 @@ export default async function AdminLayout({ children }: { children: React.ReactN
               <Link href="/admin/moderation" className="text-gray-300 hover:text-white px-2 py-1 rounded">
                 Moderation
               </Link>
+              <Link href="/admin/sponsors" className="text-gray-300 hover:text-white px-2 py-1 rounded">
+                Sponsors
+              </Link>
               {/* Owner-only nav items */}
               {isOwner && (
                 <>

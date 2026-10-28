@@ -115,7 +115,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **3.2 Searchable Slang Dictionary.** `/slang` page, `/slang/[term]` detail page, `/api/public/slang` and `/api/public/slang/[term]` routes, link from slang-quiz, sitemap.
   AC: all published slang-quiz questions browsable; JSON-LD DefinedTerm schema; SSR; SEO metadata.
 
-- [ ] **3.3 Sponsorship Editions.** `/api/admin/sponsors` + `/api/admin/sponsorships` routes, `/admin/sponsors` page, `SponsorBadge` component, ResultLayout integration, analytics events.
+- [x] **3.3 Sponsorship Editions.** `/api/admin/sponsors` + `/api/admin/sponsorships` routes, `/admin/sponsors` page, `SponsorBadge` component, ResultLayout integration, analytics events.
   AC: sponsor badge shows on result screens; never during gameplay; `sponsor_impression`/`sponsor_click` events fired; ANALYTICS_EVENTS.md updated.
 
 - [ ] **3.4a Which Nigerian Food Are You? box.** `src/boxes/food-personality/index.tsx`, registered as `food-personality`, 15 seeded questions, full box contract.

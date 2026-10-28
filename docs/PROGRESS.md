@@ -290,3 +290,16 @@ This document tracks execution progress, verification steps, and learnings acros
     - Added "Slang" link to both desktop and mobile navigation in `Header.tsx` and `Footer.tsx`.
   - **Verification:** Unit tests pass (`pnpm test`); TypeScript check clean (`pnpm typecheck`); ESLint clean (`pnpm lint`); Playwright Mobile Chrome 360px test passes for both `/slang` directory and `/slang/omo` detail page (`e2e/boxes.spec.ts`).
   - **Learnings:** Reusing quiz questions as dictionary content ensures the database remains the sole source of truth and administrative edits to slang questions instantly update the public dictionary without redeployment.
+
+- **Task 3.3: Sponsorship Editions**
+  - **What was built:**
+    - `src/app/api/admin/sponsors/route.ts`: Admin REST API for registering advertiser brand profiles (name, website URL, logo URL).
+    - `src/app/api/admin/sponsorships/route.ts`: Admin REST API for launching, toggling, and managing active campaigns per box or platform-wide.
+    - `src/app/api/public/sponsorships/route.ts`: Public endpoint returning active sponsorship campaigns for a requested experience.
+    - `src/components/ads/SponsorBadge.tsx`: Strictly labelled sponsorship badge (`SPONSORED` pill + custom sponsor copy). Meets 44px min tap targets for links. Automatically tracks `sponsor_badge_viewed` impression on mount and `sponsor_clicked` on outbound navigation. Guaranteed NEVER to render during active gameplay questions.
+    - `src/components/layout/ResultLayout.tsx`: Embedded `SponsorBadge` directly into post-experience result layouts, automatically resolving active campaigns for any box experience.
+    - `src/app/admin/sponsors/page.tsx` & `SponsorsPageClient.tsx`: Admin sponsorship dashboard for brand registration, campaign activation, and pause/resume toggling.
+    - Added "Sponsors" link to admin navigation in `src/app/admin/layout.tsx`.
+    - Unit test suite `src/components/ads/SponsorBadge.test.tsx` verifying label enforcement, null handling, and impression/click analytics event dispatching.
+  - **Verification:** Vitest passed 32/32 tests; TypeScript check clean; ESLint clean.
+  - **Learnings:** Encapsulating active sponsorship resolution inside `ResultLayout` guarantees that every present and future box experience receives sponsorship capabilities automatically without repeating boilerplate.

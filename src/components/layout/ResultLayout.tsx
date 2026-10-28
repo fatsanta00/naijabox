@@ -1,10 +1,11 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getRecommendedBoxes } from '@/boxes/registry';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, Button } from '@/components/ui';
 import { ShareBar } from '@/components/sharing/ShareBar';
+import { SponsorBadge, SponsorInfo } from '@/components/ads/SponsorBadge';
 
 export interface ResultLayoutProps {
   currentSlug: string;
@@ -18,6 +19,7 @@ export interface ResultLayoutProps {
   resultId?: string;
   onTryAgain?: () => void;
   customResultSlot?: React.ReactNode;
+  sponsor?: SponsorInfo | null;
 }
 
 export function ResultLayout({
@@ -32,7 +34,32 @@ export function ResultLayout({
   resultId,
   onTryAgain,
   customResultSlot,
+  sponsor: initialSponsor,
 }: ResultLayoutProps) {
+  const [activeSponsor, setActiveSponsor] = useState<SponsorInfo | null | undefined>(initialSponsor);
+
+  useEffect(() => {
+    if (initialSponsor !== undefined) return;
+    let mounted = true;
+    fetch(`/api/public/sponsorships?experience=${currentSlug}`)
+      .then((res) => res.json())
+      .then((data) => {
+        if (mounted && data.success && data.data) {
+          setActiveSponsor({
+            id: data.data.sponsorId,
+            name: data.data.sponsorName,
+            url: data.data.sponsorUrl,
+            logoUrl: data.data.sponsorLogoUrl,
+            label: data.data.label,
+          });
+        }
+      })
+      .catch(() => {});
+    return () => {
+      mounted = false;
+    };
+  }, [currentSlug, initialSponsor]);
+
   const recommended = getRecommendedBoxes(currentSlug, 3);
   const currentUrl =
     shareUrl || (typeof window !== 'undefined' ? window.location.href : `https://naijabox.app/boxes/${currentSlug}`);
@@ -56,6 +83,12 @@ export function ResultLayout({
         </p>
 
         {customResultSlot && <div className="pt-2">{customResultSlot}</div>}
+
+        {activeSponsor && (
+          <div className="pt-2 border-t border-naija-border/40">
+            <SponsorBadge experienceKey={currentSlug} sponsor={activeSponsor} />
+          </div>
+        )}
       </Card>
 
       {/* 2. Share Section */}
