@@ -194,6 +194,11 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Verified `/robots.txt` (200), `/sitemap.xml` (200 XML), and `/api/og/box/how-nigerian` (200 image/png); confirmed 0 ESLint errors and 0 TypeScript errors.
   - **Learnings:** Edge runtime for `@vercel/og` avoids Node.js filesystem backslash issues on Windows while rendering dynamic 1200x630 cards in sub-200ms.
 
+- **Task 2.5: Content Review Tooling**
+  - **What was built:** Enhanced `/api/admin/questions` with `?source=seed` query filtering and a batch `PATCH` handler supporting atomic bulk actions (`publish`, `unpublish`, `delete`). Replaced static questions table with interactive `QuestionManagerClient` featuring source, status, experience, and text search filters, row selection checkboxes, and a bulk action toolbar. Built Content Health monitoring page (`/admin/content-health`) and API (`/api/admin/content-health`) flagging question pools as Healthy (≥10), Warning (5–9), or Critical (<5). Linked Content Health in the admin navigation header.
+  - **Verification:** Verified 401 unauthorized on admin APIs without session; verified `pnpm typecheck`, `pnpm lint`, and all 28 unit tests pass clean.
+  - **Learnings:** Grouping questions by experience and source gives the owner instant visibility into seed versus community review queues.
+
 
 
 

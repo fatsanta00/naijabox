@@ -92,7 +92,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **2.4 SEO and Sharing Polish.** Fix `metadataBase`, verify sitemap covers all boxes + static pages, per-box `generateMetadata`, `robots.ts`.
   AC: `metadataBase` uses `SITE_URL` env var; sitemap includes all pages; OG metadata correct per box.
 
-- [ ] **2.5 Content Review Tooling.** Admin questions `?source=seed` filter, bulk actions (Publish/Unpublish/Delete Selected), `/admin/content-health` page and API.
+- [x] **2.5 Content Review Tooling.** Admin questions `?source=seed` filter, bulk actions (Publish/Unpublish/Delete Selected), `/admin/content-health` page and API.
   AC: content health shows Warning (<10) / Critical (<5) per experience; bulk actions work.
 
 - [ ] **2.6 Error Handling.** Custom `not-found.tsx` (404), `error.tsx` (500), hide boxes with 0 published questions from homepage.

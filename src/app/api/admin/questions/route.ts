@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/server/db';
 import * as schema from '@/server/db/schema';
-import { eq, and, desc, like } from 'drizzle-orm';
+import { eq, and, desc, like, inArray } from 'drizzle-orm';
 import { z } from 'zod';
 
 const createQuestionSchema = z.object({
@@ -26,6 +26,7 @@ export async function GET(req: NextRequest) {
     const status = searchParams.get('status') as schema.Question['status'] | null;
     const categoryId = searchParams.get('category_id');
     const search = searchParams.get('q');
+    const source = searchParams.get('source') as schema.Question['source'] | null;
 
     const conditions = [];
 
@@ -37,6 +38,9 @@ export async function GET(req: NextRequest) {
     }
     if (categoryId) {
       conditions.push(eq(schema.questions.categoryId, categoryId));
+    }
+    if (source) {
+      conditions.push(eq(schema.questions.source, source));
     }
     if (search) {
       conditions.push(like(schema.questions.text, `%${search}%`));
@@ -103,5 +107,45 @@ export async function POST(req: NextRequest) {
   } catch (err) {
     console.error('Admin create question error:', err);
     return NextResponse.json({ error: 'Failed to create question' }, { status: 500 });
+  }
+}
+
+const bulkActionSchema = z.object({
+  action: z.enum(['publish', 'unpublish', 'delete']),
+  ids: z.array(z.string().uuid()).min(1),
+});
+
+export async function PATCH(req: NextRequest) {
+  try {
+    const json = await req.json();
+    const parsed = bulkActionSchema.safeParse(json);
+
+    if (!parsed.success) {
+      return NextResponse.json({ error: 'Invalid bulk action payload', details: parsed.error.format() }, { status: 400 });
+    }
+
+    const { action, ids } = parsed.data;
+
+    if (action === 'publish') {
+      await db
+        .update(schema.questions)
+        .set({ status: 'published', publishedAt: new Date() })
+        .where(inArray(schema.questions.id, ids));
+    } else if (action === 'unpublish') {
+      await db
+        .update(schema.questions)
+        .set({ status: 'unpublished' })
+        .where(inArray(schema.questions.id, ids));
+    } else if (action === 'delete') {
+      await db
+        .update(schema.questions)
+        .set({ status: 'deleted' })
+        .where(inArray(schema.questions.id, ids));
+    }
+
+    return NextResponse.json({ success: true, count: ids.length, action });
+  } catch (err) {
+    console.error('Admin bulk questions error:', err);
+    return NextResponse.json({ error: 'Failed to perform bulk action' }, { status: 500 });
   }
 }
