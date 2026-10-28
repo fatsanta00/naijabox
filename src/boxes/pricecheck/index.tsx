@@ -385,9 +385,14 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
 
             {/* Market Listings Table */}
             <div className="space-y-3 pt-2">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-naija-muted">
-                Available Listings & Verified Sellers
-              </h4>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-naija-muted">
+                  Available Listings & Verified Sellers
+                </h4>
+                <p className="text-[11px] text-amber-300/90 font-medium">
+                  ✦ Paid placements are clearly labelled &quot;Sponsored&quot; or &quot;Promoted&quot;
+                </p>
+              </div>
 
               {productData.listings.length === 0 ? (
                 <div className="text-xs text-naija-muted text-center py-4">

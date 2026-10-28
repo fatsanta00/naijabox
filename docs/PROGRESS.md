@@ -184,6 +184,12 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Ran `pnpm admin:create-owner` against populated database; verified it detected existing owner and refused to overwrite. Verified `pnpm typecheck`, `pnpm lint`, and all 28 unit tests pass clean.
   - **Learnings:** Explicit CLI creation prevents accidental credential overwrites during automated redeploys.
 
+- **Task 2.3: Legal and Trust Pages**
+  - **What was built:** Comprehensive Privacy Policy (`/privacy`) detailing anonymous `nb_sid` session cookies, zero IP logging, first-party event analytics (device class and referrer channels), 13-month raw retention policy, and zero third-party tracking scripts. Created Terms of Service (`/terms`) covering user submissions license, moderation rights, and Nigerian jurisdiction. Created Contact page (`/contact`) with email contact, partnership links, and bug reporting. Updated `Footer.tsx` with links to Terms and Contact. Added prominent transparency note on PriceCheck market listings explicitly stating paid placements are always labelled &quot;Sponsored&quot; or &quot;Promoted&quot;.
+  - **Verification:** Verified `/privacy`, `/terms`, and `/contact` all return HTTP 200; confirmed 0 ESLint warnings, 0 TypeScript errors, and 28/28 unit tests passing.
+  - **Learnings:** Explicit legal notices and cookie transparency reinforce user trust while highlighting our privacy-first anonymous model.
+
+
 
 
 1. **Clean build & test suite**:
