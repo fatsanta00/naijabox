@@ -112,7 +112,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **3.1 Admin Moderators.** `/api/admin/users` route, `/admin/users` page, middleware role-based access, admin nav role visibility.
   AC: owner can create/delete moderators; moderators can access moderation but not user/settings pages.
 
-- [ ] **3.2 Searchable Slang Dictionary.** `/slang` page, `/slang/[term]` detail page, `/api/public/slang` and `/api/public/slang/[term]` routes, link from slang-quiz, sitemap.
+- [x] **3.2 Searchable Slang Dictionary.** `/slang` page, `/slang/[term]` detail page, `/api/public/slang` and `/api/public/slang/[term]` routes, link from slang-quiz, sitemap.
   AC: all published slang-quiz questions browsable; JSON-LD DefinedTerm schema; SSR; SEO metadata.
 
 - [ ] **3.3 Sponsorship Editions.** `/api/admin/sponsors` + `/api/admin/sponsorships` routes, `/admin/sponsors` page, `SponsorBadge` component, ResultLayout integration, analytics events.

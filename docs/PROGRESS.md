@@ -277,3 +277,16 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** `pnpm lint`, `pnpm typecheck`, `pnpm test` all pass (8 files, 28 tests).
   - **Learnings:** JWT payload can be peeked in middleware with a simple Base64 decode (no crypto needed) since signature verification is handled by NextAuth upstream.
 
+
+- **Task 3.2: Searchable Nigerian Slang Dictionary**
+  - **What was built:**
+    - `src/server/services/slangService.ts`: Single source of truth query pulling published slang terms directly from `questions` table for experience `slang-quiz` (zero duplicated content). Generates URL slugs (`toSlangSlug`), extracts correct option text as primary meaning, and includes cultural context from `explanation`.
+    - `src/server/services/slangService.test.ts`: Unit tests validating slug generation for Nigerian slang terms (including punctuation and whitespace handling).
+    - `src/app/api/public/slang/route.ts` & `src/app/api/public/slang/[term]/route.ts`: Public REST endpoints for the slang dictionary.
+    - `src/app/(public)/slang/page.tsx` & `SlangDictionaryClient.tsx`: Public SSR dictionary directory with live search, category chips, term cards, and cross-promotion card for the Slang Quiz.
+    - `src/app/(public)/slang/[term]/page.tsx`: SSR term detail page with definition, cultural context, difficulty/category tags, and Google-compliant JSON-LD `DefinedTerm` schema for search rich snippets.
+    - `src/boxes/slang-quiz/index.tsx`: Linked to Slang Dictionary from difficulty selector and end-screen `customResultSlot`.
+    - `src/app/sitemap.ts`: Dynamically fetches and includes all published slang terms with high SEO priority.
+    - Added "Slang" link to both desktop and mobile navigation in `Header.tsx` and `Footer.tsx`.
+  - **Verification:** Unit tests pass (`pnpm test`); TypeScript check clean (`pnpm typecheck`); ESLint clean (`pnpm lint`); Playwright Mobile Chrome 360px test passes for both `/slang` directory and `/slang/omo` detail page (`e2e/boxes.spec.ts`).
+  - **Learnings:** Reusing quiz questions as dictionary content ensures the database remains the sole source of truth and administrative edits to slang questions instantly update the public dictionary without redeployment.

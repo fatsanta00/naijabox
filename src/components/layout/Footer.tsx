@@ -17,6 +17,9 @@ export function Footer() {
           <Link href="/contact" className="hover:text-white transition-colors">
             Contact
           </Link>
+          <Link href="/slang" className="hover:text-white transition-colors">
+            Slang Dictionary
+          </Link>
           <Link href="/#boxes" className="hover:text-white transition-colors">
             All Boxes
           </Link>

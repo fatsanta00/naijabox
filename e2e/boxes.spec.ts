@@ -135,6 +135,32 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await searchInput.fill('iPhone');
   });
 
+  test('Slang Dictionary directory and term detail page render at 360px', async ({ page, request }) => {
+    // 1. Verify API returns slang terms
+    const apiRes = await request.get('/api/public/slang');
+    expect(apiRes.status()).toBe(200);
+    const apiJson = await apiRes.json();
+    expect(apiJson.success).toBe(true);
+    expect(apiJson.data.length).toBeGreaterThan(0);
+
+    // 2. Visit /slang directory
+    await page.goto('/slang');
+    await expect(page.locator('h1')).toContainText('Nigerian Slang Dictionary');
+    await expect(page.locator('text=Take the Slang Quiz')).toBeVisible();
+
+    // 3. Search for a term
+    const searchInput = page.locator('input[aria-label="Search slang words"]');
+    await expect(searchInput).toBeVisible();
+    await searchInput.fill('Omo');
+    await expect(page.locator('text=Omo').first()).toBeVisible();
+
+    // 4. Navigate to detail page
+    await page.goto('/slang/omo');
+    await expect(page.locator('h1')).toContainText('Omo');
+    await expect(page.locator('text=Definition & Meaning')).toBeVisible();
+    await expect(page.locator('text=Test Your Slang in Quiz')).toBeVisible();
+  });
+
   test('Static pages render cleanly at 360px', async ({ page }) => {
     await page.goto('/about');
     await expect(page.locator('h1')).toContainText('About NaijaBox');

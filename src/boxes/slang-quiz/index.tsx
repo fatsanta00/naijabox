@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
+import Link from 'next/link';
 import { BoxProps } from '../types';
 import { Card, Button, ProgressBar, Chip } from '@/components/ui';
 import { ResultLayout } from '@/components/layout/ResultLayout';
@@ -198,6 +199,15 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
               <span className="text-xs text-rose-400 font-semibold">Start &rarr;</span>
             </div>
           </Card>
+
+          <div className="pt-2 text-center">
+            <Link
+              href="/slang"
+              className="inline-flex items-center gap-1.5 text-xs text-brand-400 hover:text-brand-300 font-semibold"
+            >
+              📖 Looking for definitions? Explore the Nigerian Slang Dictionary &rarr;
+            </Link>
+          </div>
         </div>
       </div>
     );
@@ -223,6 +233,16 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
         resultDescription={tier.desc}
         resultId={savedResultId}
         onTryAgain={restart}
+        customResultSlot={
+          <div className="pt-2">
+            <Link
+              href="/slang"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors py-2 px-3 rounded-lg bg-brand-500/10 border border-brand-500/20"
+            >
+              📖 Browse the full Nigerian Slang Dictionary &rarr;
+            </Link>
+          </div>
+        }
       />
     );
   }

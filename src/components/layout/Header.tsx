@@ -34,6 +34,9 @@ export function Header() {
           <Link href="/boxes/pricecheck" className="hover:text-white transition-colors">
             PriceCheck
           </Link>
+          <Link href="/slang" className="hover:text-white transition-colors">
+            Slang
+          </Link>
           <Link href="/about" className="hover:text-white transition-colors">
             About
           </Link>
@@ -90,6 +93,13 @@ export function Header() {
             className="block py-2.5 px-3 rounded-lg text-base font-medium text-gray-200 hover:bg-naija-card"
           >
             PriceCheck
+          </Link>
+          <Link
+            href="/slang"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2.5 px-3 rounded-lg text-base font-medium text-gray-200 hover:bg-naija-card"
+          >
+            Slang Dictionary
           </Link>
           <Link
             href="/about"

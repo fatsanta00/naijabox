@@ -1,7 +1,8 @@
 import { getAllBoxes } from '@/boxes/registry';
 import { MetadataRoute } from 'next';
+import { SlangService } from '@/server/services/slangService';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.SITE_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://naijabox.app';
   const boxes = getAllBoxes();
 
@@ -47,9 +48,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${baseUrl}/slang`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 0.7,
+      priority: 0.8,
     },
   ];
 
-  return [...staticUrls, ...boxUrls];
+  // Dynamically include all published slang terms for SEO
+  let slangUrls: MetadataRoute.Sitemap = [];
+  try {
+    const slangTerms = await SlangService.getAllTerms();
+    slangUrls = slangTerms.map((t) => ({
+      url: `${baseUrl}/slang/${t.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
+    }));
+  } catch {
+    // Graceful fallback during isolated builds
+  }
+
+  return [...staticUrls, ...boxUrls, ...slangUrls];
 }
