@@ -124,7 +124,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **3.4b Nigerian Excuse Generator box.** `src/boxes/excuse-generator/index.tsx`, registered as `excuse-generator`, 30 seeded excuse items, share excuse text.
   AC: box playable; generates excuse from DB; share works; analytics events fire.
 
-- [ ] **3.4c Higher or Lower (prices) box.** `src/boxes/higher-or-lower/index.tsx`, registered as `higher-or-lower`, reuses pricecheck products, 5 rounds, score at end.
+- [x] **3.4c Higher or Lower (prices) box.** `src/boxes/higher-or-lower/index.tsx`, registered as `higher-or-lower`, reuses pricecheck products, 5 rounds, score at end.
   AC: box playable; uses real product data; analytics events fire; ResultLayout.
 
 - [ ] **3.4d Football Trivia box.** `src/boxes/football-trivia/index.tsx`, registered as `football-trivia`, 20 seeded questions, difficulty levels.

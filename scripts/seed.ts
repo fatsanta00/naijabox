@@ -173,6 +173,15 @@ async function main() {
     questionCount: 30,
   });
 
+  // Higher or Lower (Price Edition)
+  const higherOrLower = await upsertExperience({
+    key: 'higher-or-lower',
+    title: 'Higher or Lower: Price Edition',
+    questionType: 'price_guess',
+    selectionMode: 'random',
+    questionCount: 10,
+  });
+
   console.log('✓ Experiences created');
 
   // ── How Nigerian Are You? questions ──────────────────────────────────────
@@ -1540,6 +1549,15 @@ async function main() {
     await insertQ(q);
   }
   console.log(`✓ ${guessQuestions.length} "Guess the Price" questions`);
+
+  // ── Higher or Lower price questions (reusing price dataset) ────────────────
+  for (const q of guessQuestions) {
+    await insertQ({
+      ...q,
+      experienceId: higherOrLower.id,
+    });
+  }
+  console.log(`✓ ${guessQuestions.length} "Higher or Lower" price questions`);
 
   // ── Which Nigerian Food Are You? questions ───────────────────────────────
   const foodQuestions: schema.InsertQuestion[] = [

@@ -323,3 +323,13 @@ This document tracks execution progress, verification steps, and learnings acros
     - `e2e/boxes.spec.ts`: Added interactive flow test at 360px testing scenario selection, shuffle, believability badge, and copy-to-clipboard functionality.
   - **Verification:** Vitest passed 32/32 tests; Playwright passed 12/12 tests on Mobile Chrome (360px); TypeScript check clean; ESLint clean.
   - **Learnings:** Client components fetching async questions in e2e tests should wait for loading indicators to hide before asserting against interactive elements.
+
+- **Task 3.4c: Higher or Lower: Price Edition box (`higher-or-lower`)**
+  - **What was built:**
+    - `src/boxes/higher-or-lower/index.tsx`: 5-round price comparison game pitting everyday Nigerian goods, electronics, and staples against each other using actual database prices. Features anchor item price display, mystery target item with animated reveal, big 52px Higher/Lower tap targets, round-by-round breakdown in post-experience `ResultLayout`, PriceCheck cross-promotion, ReportButton, and SubmitQuestionModal.
+    - `src/boxes/registry.ts`: Registered `higher-or-lower` under `games` nav group with `New` badge.
+    - `scripts/seed.ts`: Created `higher-or-lower` experience and seeded 20 price items reusing real market prices flagged `source = 'seed'`.
+    - `src/boxes/registry.test.ts`: Updated test suite verifying registry contains `higher-or-lower`.
+    - `e2e/boxes.spec.ts`: Added Playwright test testing question loading, round 1 guess (HIGHER), reveal card, and advancing to round 2 at 360px.
+  - **Verification:** `pnpm db:seed` succeeded; Vitest passed 32/32 tests; Playwright passed 13/13 tests on Mobile Chrome (360px); `tsc --noEmit` clean; `next lint` clean.
+  - **Learnings:** Reusing structured price items across multiple gameplay formats (Guess the Price + Higher or Lower) multiplies engagement value without adding database bloat or duplicate maintenance overhead.

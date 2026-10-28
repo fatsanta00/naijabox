@@ -75,6 +75,28 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await expect(page.locator('text=Copied!')).toBeVisible();
   });
 
+  test('Higher or Lower box interactive flow at 360px', async ({ page }) => {
+    await page.goto('/boxes/higher-or-lower');
+    await expect(page.locator('text=Fetching real Nigerian market prices...')).toBeHidden({ timeout: 15000 });
+    await expect(page.locator('h1')).toContainText('Higher or Lower');
+
+    // Round 1 check
+    await expect(page.locator('text=Round 1 of 5')).toBeVisible();
+
+    // Click HIGHER
+    const higherBtn = page.locator('button:has-text("HIGHER")');
+    await expect(higherBtn).toBeVisible();
+    await higherBtn.click();
+
+    // Verify reveal card appeared
+    const nextBtn = page.locator('button:has-text("Next Round ➡️")');
+    await expect(nextBtn).toBeVisible();
+    await nextBtn.click();
+
+    // Round 2 should be active
+    await expect(page.locator('text=Round 2 of 5')).toBeVisible();
+  });
+
   test('Random Decision Maker preset flow', async ({ page }) => {
     await page.goto('/boxes/decision-maker');
     await expect(page.locator('h2')).toContainText('Random Decision Maker');
