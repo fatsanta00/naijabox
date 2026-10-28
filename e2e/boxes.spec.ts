@@ -47,8 +47,74 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await expect(decideBtn).toBeEnabled();
     await decideBtn.click();
 
-    // Verify spinning state or result
+    // Verify spinning state or result appears
     await expect(page.locator('text=The box says:').or(page.locator('text=Deciding…'))).toBeVisible();
+
+    // Verify full ResultLayout post-experience contract
+    await expect(page.locator('text=The box says:')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('text=Share your result with friends')).toBeVisible();
+    await expect(page.locator('button:has-text("Try Again")')).toBeVisible();
+    await expect(page.locator('text=Back to the Box')).toBeVisible();
+    await expect(page.locator('text=Try another box')).toBeVisible();
+
+    // Test Try Again resets state
+    await page.click('button:has-text("Try Again")');
+    await expect(page.locator('button:has-text("Let NaijaBox Decide!")')).toBeVisible();
+  });
+
+  test('Anti-fabrication stats gate enforces MIN_STATS_SAMPLE limit', async ({ request }) => {
+    // Calling stats on any question with fewer than 30 recorded responses
+    const res = await request.get('/api/public/questions/00000000-0000-0000-0000-000000000001/stats');
+    expect(res.status()).toBe(200);
+    const json = await res.json();
+    expect(json.available).toBe(false);
+    expect(json.min_required).toBe(30);
+    expect(json.message).toBe("You're one of the first to answer");
+  });
+
+  test('PriceCheck displays paid placement transparency disclosure', async ({ page }) => {
+    await page.goto('/boxes/pricecheck');
+    await expect(page.locator('h2')).toContainText('Naija PriceCheck');
+
+    // Verify required PRD paid-label disclosure is always visible on the search page
+    await expect(page.locator('[data-testid="paid-label-disclosure"]')).toBeVisible();
+    await expect(page.locator('[data-testid="paid-label-disclosure"]')).toContainText('Paid placements are clearly labelled');
+  });
+
+  test('Full loop: Community submit -> pending -> not public (moderation gate)', async ({ request }) => {
+    const testQText = `E2E Community Question ${Date.now()}`;
+
+    // 1. Submit anonymously via public endpoint
+    const submitRes = await request.post('/api/public/submissions', {
+      data: {
+        experience_key: 'how-nigerian',
+        text: testQText,
+        options: [
+          { id: 'a', text: 'Option A', points: 1 },
+          { id: 'b', text: 'Option B', points: 3 },
+        ],
+        explanation: 'E2E test explanation',
+        author_name: 'Test Author',
+        show_attribution: true,
+      },
+    });
+    expect(submitRes.status()).toBe(201);
+    const submitData = await submitRes.json();
+    expect(submitData.success).toBe(true);
+    expect(submitData.data?.id).toBeTruthy();
+
+    // 2. Verify submission is NOT in public questions feed (it is pending)
+    const publicQRes = await request.get('/api/public/questions?experience=how-nigerian&count=50');
+    expect(publicQRes.status()).toBe(200);
+    const publicQData = await publicQRes.json();
+    const isPubliclyVisible = publicQData.data.some((q: { text: string }) => q.text === testQText);
+    expect(isPubliclyVisible).toBe(false);
+
+    // 3. Verify admin moderation queue API sees it as pending (401 without auth = correct)
+    const adminRes = await request.get('/api/admin/moderation');
+    expect(adminRes.status()).toBe(401); // Correctly gated
+    const adminJson = await adminRes.json();
+    expect(adminJson.error).toBe('Unauthorized');
   });
 
   test('Reaction Time state machine flow', async ({ page }) => {

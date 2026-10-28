@@ -101,9 +101,9 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      id: inserted.id,
+      data: { id: inserted.id },
       message: "Thanks! It'll show up once it's reviewed.",
-    });
+    }, { status: 201 });
   } catch (err) {
     console.error('Submission pipeline error:', err);
     return NextResponse.json({ error: 'Failed to submit question' }, { status: 500 });

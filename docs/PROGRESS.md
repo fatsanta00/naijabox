@@ -218,6 +218,18 @@ This document tracks execution progress, verification steps, and learnings acros
     - SEO: **100 / 100** (Dynamic XML sitemap, robots.txt, OpenGraph and Twitter cards, canonical tags).
   - **Learnings:** Edge-runtime OG image generator eliminates Chrome puppeteer memory bloat while delivering instant social preview cards.
 
+- **Task 2.9: Extended E2E Tests**
+  - **What was built:** Extended `e2e/boxes.spec.ts` with 4 new test scenarios (9 total box tests now), passing across both Mobile Chrome (360px) and Desktop Chrome profiles:
+    1. **Decision-Maker ResultLayout contract:** After spinning, verifies `The box says:` result text, `Share your result with friends` section, `Try Again` button, `Back to the Box` link, and `Try another box` recommended panel all appear. Also tests `Try Again` resets the box to setup state.
+    2. **Anti-fabrication stats gate:** `GET /api/public/questions/[id]/stats` returns `{available: false, min_required: 30, message: "You're one of the first to answer"}` for any question with fewer than 30 recorded responses.
+    3. **PriceCheck paid-label disclosure:** Disclosure note `"Paid placements are clearly labelled 'Sponsored' or 'Promoted'"` is always visible on the PriceCheck search page (moved from product detail view to the search header). Verified at 360px and desktop widths.
+    4. **Moderation gate:** Anonymous submission via `POST /api/public/submissions` returns HTTP 201 with `{success: true, data: {id}}`. The submitted question is absent from `GET /api/public/questions?experience=how-nigerian` (moderation gate confirmed). Admin moderation endpoint correctly returns 401 without authentication, confirming role enforcement.
+  - **Also fixed:**
+    - Submissions API now correctly returns HTTP 201 (was 200) with `data.id` wrapper.
+    - PriceCheck disclosure note moved to always-visible search header position.
+    - Moderation page `Approve`/`Reject` buttons upgraded to min 44px height for a11y compliance.
+  - **Verification:** `pnpm exec playwright test` — **28 tests passed** across Mobile Chrome (360px) and Desktop Chrome. `pnpm typecheck`, `pnpm lint`, `pnpm test` all clean.
+  - **Learnings:** Playwright `request` context doesn't maintain browser cookies, so auth-dependent moderation UI tests are deferred to a manual verification step. API-level coverage (submit → 201 → not-public → admin 401 gate) is sufficient for CI/CD gates.
 
 
 

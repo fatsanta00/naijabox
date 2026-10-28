@@ -74,7 +74,7 @@ export default async function AdminModerationPage() {
                     >
                       <button
                         type="submit"
-                        className="h-9 min-h-[36px] px-3 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white"
+                        className="min-h-[44px] px-4 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white inline-flex items-center justify-center"
                       >
                         Approve
                       </button>
@@ -90,7 +90,7 @@ export default async function AdminModerationPage() {
                     >
                       <button
                         type="submit"
-                        className="h-9 min-h-[36px] px-3 text-xs font-semibold rounded-lg bg-naija-card hover:bg-naija-border text-gray-300 border border-naija-border"
+                        className="min-h-[44px] px-4 text-xs font-semibold rounded-lg bg-naija-card hover:bg-naija-border text-gray-300 border border-naija-border inline-flex items-center justify-center"
                       >
                         Reject
                       </button>

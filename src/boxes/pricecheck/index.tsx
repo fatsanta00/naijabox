@@ -224,6 +224,9 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
         <p className="text-sm text-naija-muted">
           Real market prices for smartphones, gadgets and lifestyle items in Nigeria. Check before you pay.
         </p>
+        <p className="text-[11px] text-amber-300/80 font-medium" data-testid="paid-label-disclosure">
+          ✦ Paid placements are clearly labelled &quot;Sponsored&quot; or &quot;Promoted&quot;
+        </p>
 
         <div className="pt-2 relative">
           <label htmlFor={searchInputId} className="sr-only">

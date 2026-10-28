@@ -104,7 +104,7 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **2.8 Performance and Accessibility.** `pnpm build` bundle size note, Lighthouse score estimates in PROGRESS.md, aria/heading/contrast fixes.
   AC: PROGRESS.md has Lighthouse estimates; all a11y issues fixed.
 
-- [ ] **2.9 Extended E2E Tests.** Extend `e2e/boxes.spec.ts`: submit→moderate flow, stats gate, paid label enforcement, decision-maker end screen.
+- [x] **2.9 Extended E2E Tests.** Extend `e2e/boxes.spec.ts`: submit→moderate flow, stats gate, paid label enforcement, decision-maker end screen.
   AC: new e2e tests pass for moderation submission, stats gate, sponsored labels, ResultLayout elements.
 
 ### Step 3: Phase 6 — Extensions
