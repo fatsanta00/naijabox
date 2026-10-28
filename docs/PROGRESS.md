@@ -204,6 +204,11 @@ This document tracks execution progress, verification steps, and learnings acros
   - **Verification:** Verified `/this-page-does-not-exist` returns 404 with custom branded UI; verified `pnpm typecheck`, `pnpm lint`, and 28/28 unit tests pass.
   - **Learnings:** Graceful fallback for empty pools ensures the public catalog only surfaces experiences ready for immediate play.
 
+- **Task 2.7: Security and Abuse**
+  - **What was built:** Added in-memory sliding-window rate limiting on admin login requests (max 10 attempts per 5 minutes per client IP). Added rate limit checks on question reporting endpoint (max 10 reports per hour per anonymous session). Resolved an infinite redirect loop on `/admin/login` by decoupling layout auth checking. Authored comprehensive Playwright security test suite (`e2e/security.spec.ts`) asserting security headers (X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy), verifying strict 401 returns on `/api/admin/*`, confirming `/admin` unauthorized redirection, and testing abuse rate limit tripping (HTTP 429).
+  - **Verification:** Ran `pnpm exec playwright test e2e/security.spec.ts` (10/10 tests passing across Mobile and Desktop viewports); verified full 22-test Playwright suite passes clean.
+  - **Learnings:** Next.js layout components should not duplicate middleware redirection logic when route groups or login pages share the root admin layout.
+
 
 
 

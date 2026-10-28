@@ -1,13 +1,13 @@
 import { auth, signOut } from '@/server/auth';
-import { redirect } from 'next/navigation';
 import Link from 'next/link';
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const session = await auth();
 
-  // Redirect if not signed in (server-side verification)
+  // If not authenticated, render bare children (e.g. for /admin/login)
+  // Protected admin pages are strictly guarded by middleware.ts which redirects to /admin/login
   if (!session?.user) {
-    redirect('/admin/login');
+    return <div className="min-h-screen bg-naija-ink">{children}</div>;
   }
 
   return (

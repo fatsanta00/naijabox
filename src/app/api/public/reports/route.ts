@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/server/db';
 import * as schema from '@/server/db/schema';
 import { SESSION_COOKIE_NAME } from '@/middleware';
-import { eq } from 'drizzle-orm';
+import { eq, and, gte } from 'drizzle-orm';
 import { z } from 'zod';
 
 const reportSchema = z.object({
@@ -25,6 +25,25 @@ export async function POST(req: NextRequest) {
 
     const { question_id, reason, note } = parsed.data;
     const sessionId = req.cookies.get(SESSION_COOKIE_NAME)?.value || 'anon_session';
+
+    // Rate limit check: max 10 reports per session per hour
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000);
+    const recentReports = await db
+      .select({ id: schema.questionReports.id })
+      .from(schema.questionReports)
+      .where(
+        and(
+          eq(schema.questionReports.sessionId, sessionId),
+          gte(schema.questionReports.createdAt, oneHourAgo)
+        )
+      );
+
+    if (recentReports.length >= 10) {
+      return NextResponse.json(
+        { error: 'Rate limit exceeded. Please wait a bit before submitting another report.' },
+        { status: 429 }
+      );
+    }
 
     // Verify question exists
     const [q] = await db
