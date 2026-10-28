@@ -172,7 +172,13 @@ This document tracks execution progress, verification steps, and learnings acros
 
 ---
 
-## Final Launch Verification Summary
+### Phase 6: Launch-Readiness & Extensions
+
+- **Task 2.1: Deployment Infrastructure**
+  - **What was built:** Production `docker-compose.production.yml` with app, postgres:16-alpine (with healthcheck), and caddy:2-alpine for automated HTTPS with Let's Encrypt. Added root `Caddyfile`, `/api/health` healthcheck endpoint verifying DB connectivity, `scripts/backup.sh` (custom-format `pg_dump` with 7-day retention and restore instructions), updated `.env.example` with complete variable definitions, and written comprehensive `docs/DEPLOY.md` guide covering fresh Ubuntu VPS deployment, DNS, HTTPS, migrations, backups, and rollbacks.
+  - **Verification:** `/api/health` tested and verified returning HTTP 200 with DB status "connected". Production docker compose verified for syntax and network definitions.
+  - **Learnings:** Caddy handles automatic TLS certificate provisioning and renewals with zero manual certbot maintenance.
+
 
 1. **Clean build & test suite**:
    - `pnpm test`: 8 test files, 28 tests passing cleanly (100%).

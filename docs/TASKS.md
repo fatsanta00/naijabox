@@ -76,17 +76,66 @@ Work in phase order. Tick tasks as they complete: `- [x]`. Each task has accepta
 - [x] **5.6 Deploy.** Production Docker deploy, migrations, nightly backups, uptime check.
   AC: V1 success criteria in `PRD.md` section 32 verified on a real phone.
 
-## Phase 6: Later (not V1)
+## Phase 6: Launch-Readiness & Extensions
 
-- [ ] Public accounts (saved scores, streaks, leaderboards, favourites, PriceCheck alerts)
-- [ ] Sponsorship editions and sponsor admin
-- [ ] Searchable slang dictionary pages for SEO
-- [ ] Additional boxes from the PRD future list (Nigerian Wordle, Which State Are You?, calculators, etc.)
-- [ ] PriceCheck automated sources (requires new ADR on terms and legal review)
+### Step 2: Launch-Readiness
+
+- [x] **2.1 Deployment Infrastructure.** `/api/health` route, `docker-compose.production.yml`, `Caddyfile`, `scripts/backup.sh`, `docs/DEPLOY.md`, updated `.env.example`.
+  AC: health endpoint returns `{"status":"ok","db":"connected","ts":"..."}`, production compose runs app+db+caddy, DEPLOY.md covers full VPS setup.
+
+- [ ] **2.2 Admin Account Safety.** `scripts/create-owner.ts` CLI script, warning in seed.ts, DEPLOY.md updated.
+  AC: script creates owner only if none exists; refuses and warns if owner already present.
+
+- [ ] **2.3 Legal and Trust Pages.** Update privacy page, create terms and contact pages, footer links, `.env.example` CONTACT_EMAIL, PriceCheck sponsored label note.
+  AC: /privacy, /terms, /contact all render; footer includes Terms and Contact links.
+
+- [ ] **2.4 SEO and Sharing Polish.** Fix `metadataBase`, verify sitemap covers all boxes + static pages, per-box `generateMetadata`, `robots.ts`.
+  AC: `metadataBase` uses `SITE_URL` env var; sitemap includes all pages; OG metadata correct per box.
+
+- [ ] **2.5 Content Review Tooling.** Admin questions `?source=seed` filter, bulk actions (Publish/Unpublish/Delete Selected), `/admin/content-health` page and API.
+  AC: content health shows Warning (<10) / Critical (<5) per experience; bulk actions work.
+
+- [ ] **2.6 Error Handling.** Custom `not-found.tsx` (404), `error.tsx` (500), hide boxes with 0 published questions from homepage.
+  AC: 404/500 pages have branding and links; boxes with empty pools not shown on homepage.
+
+- [ ] **2.7 Security and Abuse.** Admin login rate limiting (10 attempts / 5 min / IP-hash), Playwright `e2e/security.spec.ts` for headers + auth enforcement.
+  AC: security headers present; `/api/admin/questions` returns 401 without auth; rate limit enforced.
+
+- [ ] **2.8 Performance and Accessibility.** `pnpm build` bundle size note, Lighthouse score estimates in PROGRESS.md, aria/heading/contrast fixes.
+  AC: PROGRESS.md has Lighthouse estimates; all a11y issues fixed.
+
+- [ ] **2.9 Extended E2E Tests.** Extend `e2e/boxes.spec.ts`: submit→moderate flow, stats gate, paid label enforcement, decision-maker end screen.
+  AC: new e2e tests pass for moderation submission, stats gate, sponsored labels, ResultLayout elements.
+
+### Step 3: Phase 6 — Extensions
+
+- [ ] **3.1 Admin Moderators.** `/api/admin/users` route, `/admin/users` page, middleware role-based access, admin nav role visibility.
+  AC: owner can create/delete moderators; moderators can access moderation but not user/settings pages.
+
+- [ ] **3.2 Searchable Slang Dictionary.** `/slang` page, `/slang/[term]` detail page, `/api/public/slang` and `/api/public/slang/[term]` routes, link from slang-quiz, sitemap.
+  AC: all published slang-quiz questions browsable; JSON-LD DefinedTerm schema; SSR; SEO metadata.
+
+- [ ] **3.3 Sponsorship Editions.** `/api/admin/sponsors` + `/api/admin/sponsorships` routes, `/admin/sponsors` page, `SponsorBadge` component, ResultLayout integration, analytics events.
+  AC: sponsor badge shows on result screens; never during gameplay; `sponsor_impression`/`sponsor_click` events fired; ANALYTICS_EVENTS.md updated.
+
+- [ ] **3.4a Which Nigerian Food Are You? box.** `src/boxes/food-personality/index.tsx`, registered as `food-personality`, 15 seeded questions, full box contract.
+  AC: box playable; analytics events fire; ResultLayout; 360px; 44px targets.
+
+- [ ] **3.4b Nigerian Excuse Generator box.** `src/boxes/excuse-generator/index.tsx`, registered as `excuse-generator`, 30 seeded excuse items, share excuse text.
+  AC: box playable; generates excuse from DB; share works; analytics events fire.
+
+- [ ] **3.4c Higher or Lower (prices) box.** `src/boxes/higher-or-lower/index.tsx`, registered as `higher-or-lower`, reuses pricecheck products, 5 rounds, score at end.
+  AC: box playable; uses real product data; analytics events fire; ResultLayout.
+
+- [ ] **3.4d Football Trivia box.** `src/boxes/football-trivia/index.tsx`, registered as `football-trivia`, 20 seeded questions, difficulty levels.
+  AC: box playable; difficulty filtering works; analytics events fire; ResultLayout.
+
+- [ ] **3.5 Optional Public Accounts.** `user_id` nullable column in sessions, `/api/public/auth/register` + `/api/public/auth/login`, `/account` page, anonymous play still works fully.
+  AC: users can register/login; saved scores shown; anonymous play unaffected.
 
 ## Open questions for the owner
 
-- Admin login: single owner account only at launch, or add moderators?
+- Admin login: single owner account only at launch, or add moderators? (Phase 6 adds moderators)
 - Which ad provider (if any) at launch?
 - Launch domain and branding assets (logo/wordmark) available?
 - Initial PriceCheck data source: manual, CSV, or a specific retailer partner?
