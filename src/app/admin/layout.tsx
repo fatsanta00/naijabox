@@ -1,12 +1,21 @@
 import { auth, signOut } from '@/server/auth';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const headerList = await headers();
+  const pathname = headerList.get('x-pathname') || '';
+
+  // The login page must NEVER display the authenticated admin layout/header
+  if (pathname === '/admin/login') {
+    return <div className="min-h-screen bg-naija-ink">{children}</div>;
+  }
+
   const session = await auth();
   const userRole = (session?.user as { role?: string })?.role;
   const isOwner = userRole === 'owner';
 
-  // If not authenticated, render bare children (e.g. for /admin/login)
+  // If not authenticated, render bare children
   // Protected admin pages are strictly guarded by middleware.ts which redirects to /admin/login
   if (!session?.user) {
     return <div className="min-h-screen bg-naija-ink">{children}</div>;

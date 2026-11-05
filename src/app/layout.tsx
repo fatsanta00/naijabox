@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ThemeProvider, themeInitScript } from '@/components/theme/ThemeProvider';
+import { PageViewTracker } from '@/components/analytics/PageViewTracker';
 
 const rawSiteUrl = (process.env.SITE_URL || 'https://naijabox.app').replace(/^\uFEFF/, '').trim().replace(/\/$/, '');
 const siteUrl = rawSiteUrl || 'https://naijabox.app';
@@ -53,6 +54,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-screen bg-naija-ink text-naija-text antialiased selection:bg-brand-500 selection:text-white">
         <ThemeProvider>
+          <PageViewTracker />
           <a
             href="#main-content"
             className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded-lg focus:font-bold focus:shadow-xl focus:outline-none"

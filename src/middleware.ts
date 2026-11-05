@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 import { nanoid } from 'nanoid';
+import { getToken } from 'next-auth/jwt';
 
 export const SESSION_COOKIE_NAME = 'nb_sid';
 
@@ -21,18 +22,30 @@ function checkLoginRateLimit(ip: string): boolean {
   return true;
 }
 
-/** Decode a NextAuth JWT payload (Base64url middle segment) without verifying signature.
- *  We only need to read the role — the signature is already verified by NextAuth on API calls.
- */
-function peekJwtRole(token: string): string | null {
+/** Decrypt and verify the NextAuth session token via Web Crypto API in Edge Middleware. */
+async function getAdminSession(request: NextRequest) {
+  const secret = process.env.AUTH_SECRET?.replace(/^\uFEFF/, '').trim();
+  if (!secret) return null;
+
+  const isHttps = request.url.startsWith('https://') || request.headers.get('x-forwarded-proto') === 'https';
+  const cookieName =
+    isHttps && request.cookies.has('__Secure-authjs.session-token')
+      ? '__Secure-authjs.session-token'
+      : (request.cookies.has('authjs.session-token')
+          ? 'authjs.session-token'
+          : (request.cookies.has('__Secure-authjs.session-token')
+              ? '__Secure-authjs.session-token'
+              : 'authjs.session-token'));
+
   try {
-    const parts = token.split('.');
-    if (parts.length < 2) return null;
-    const payload = JSON.parse(
-      Buffer.from(parts[1].replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('utf8')
-    ) as { role?: string };
-    return payload.role ?? null;
-  } catch {
+    const token = await getToken({
+      req: request,
+      secret,
+      cookieName,
+    });
+    return token as { role?: string; id?: string; email?: string } | null;
+  } catch (err) {
+    console.error('Middleware session verification failed:', err);
     return null;
   }
 }
@@ -45,7 +58,7 @@ const OWNER_ONLY_PATHS = [
   '/api/admin/users',
 ];
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // 0. Admin login rate limiting (max 10 attempts per 5 minutes per IP)
@@ -63,30 +76,22 @@ export function middleware(request: NextRequest) {
   }
 
   // 1. Admin route protection (ADR-005)
-  // If already authenticated and hitting /admin/login, redirect to dashboard
-  if (pathname.startsWith('/admin/login')) {
-    const existingToken =
-      request.cookies.get('authjs.session-token')?.value ||
-      request.cookies.get('__Secure-authjs.session-token')?.value;
-    if (existingToken) {
-      const role = peekJwtRole(existingToken);
-      if (role === 'owner' || role === 'moderator') {
-        return NextResponse.redirect(new URL('/admin', request.url));
-      }
+  // If already authenticated and hitting /admin/login, redirect immediately to dashboard
+  if (pathname === '/admin/login') {
+    const session = await getAdminSession(request);
+    if (session?.role === 'owner' || session?.role === 'moderator') {
+      return NextResponse.redirect(new URL('/admin', request.url));
     }
   }
 
   // Check auth session cookie for /admin (except /admin/login) and /api/admin/*
   if (
-    (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) ||
+    (pathname.startsWith('/admin') && pathname !== '/admin/login') ||
     pathname.startsWith('/api/admin')
   ) {
-    // Check NextAuth session token cookie (either secure or standard)
-    const token =
-      request.cookies.get('authjs.session-token')?.value ||
-      request.cookies.get('__Secure-authjs.session-token')?.value;
+    const session = await getAdminSession(request);
 
-    if (!token) {
+    if (!session || !session.role) {
       if (pathname.startsWith('/api/admin')) {
         return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
@@ -95,7 +100,7 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
-    const userRole = peekJwtRole(token);
+    const userRole = session.role;
     if (userRole !== 'owner' && userRole !== 'moderator') {
       if (pathname.startsWith('/api/admin')) {
         return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
@@ -105,18 +110,20 @@ export function middleware(request: NextRequest) {
 
     // 1b. Owner-only route enforcement
     const isOwnerOnlyPath = OWNER_ONLY_PATHS.some((p) => pathname.startsWith(p));
-    if (isOwnerOnlyPath) {
-      if (userRole !== 'owner') {
-        if (pathname.startsWith('/api/admin')) {
-          return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
-        }
-        // Redirect moderators to admin home
-        return NextResponse.redirect(new URL('/admin', request.url));
+    if (isOwnerOnlyPath && userRole !== 'owner') {
+      if (pathname.startsWith('/api/admin')) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
       }
+      return NextResponse.redirect(new URL('/admin', request.url));
     }
   }
 
-  const response = NextResponse.next();
+  request.headers.set('x-pathname', pathname);
+  const response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  });
 
   // 2. Anonymous session cookie for public usage (ADR-007)
   const existingSession = request.cookies.get(SESSION_COOKIE_NAME)?.value;

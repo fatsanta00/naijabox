@@ -1,17 +1,30 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { signIn } from 'next-auth/react';
 import { useSearchParams } from 'next/navigation';
 
 export default function AdminLoginPage() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/admin';
+  const rawCallback = searchParams.get('callbackUrl');
+  const callbackUrl = rawCallback && !rawCallback.includes('/admin/login') ? rawCallback : '/admin';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // If already authenticated, redirect straight to dashboard
+  useEffect(() => {
+    fetch('/api/auth/session')
+      .then((res) => res.json())
+      .then((session) => {
+        if (session?.user) {
+          window.location.href = callbackUrl;
+        }
+      })
+      .catch(() => {});
+  }, [callbackUrl]);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
