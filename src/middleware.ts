@@ -63,6 +63,19 @@ export function middleware(request: NextRequest) {
   }
 
   // 1. Admin route protection (ADR-005)
+  // If already authenticated and hitting /admin/login, redirect to dashboard
+  if (pathname.startsWith('/admin/login')) {
+    const existingToken =
+      request.cookies.get('authjs.session-token')?.value ||
+      request.cookies.get('__Secure-authjs.session-token')?.value;
+    if (existingToken) {
+      const role = peekJwtRole(existingToken);
+      if (role === 'owner' || role === 'moderator') {
+        return NextResponse.redirect(new URL('/admin', request.url));
+      }
+    }
+  }
+
   // Check auth session cookie for /admin (except /admin/login) and /api/admin/*
   if (
     (pathname.startsWith('/admin') && !pathname.startsWith('/admin/login')) ||
