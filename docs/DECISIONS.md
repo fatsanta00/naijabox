@@ -99,3 +99,9 @@ The PRD fixes product behaviour. These records cover implementation choices the 
 **Decision:** PriceCheck V1 is populated via admin manual entry and structured CSV import adapter.
 **Consequences:** High-quality, verified price intelligence from launch without fragile scrapers.
 
+## ADR-020: Optional public player accounts
+**Context:** Users want to optionally save their scores, track play history, view active streaks, and favourite experiences across sessions and devices, while anonymous play remains 100% accessible and ungated.
+**Decision:** Extend the `users` table with `role: 'player'` and optional `name`. Extend `sessions` with `userId` linked upon login/register. Add `user_favourites` table for favourited box experiences. Public auth APIs (`/api/public/auth/register`, `/api/public/auth/login`, `/api/public/auth/logout`, `/api/public/auth/me`, `/api/public/auth/favourites`) issue an HTTP-only player session cookie (`nb_user_token`). Anonymous sessions (`nb_sid`) continue operating without any gating or account requirement.
+**Consequences:** Players who choose to create an account gain cross-device persistence and an `/account` dashboard. Anonymous players remain completely unaffected with zero login friction.
+
+

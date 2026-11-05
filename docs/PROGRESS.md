@@ -343,3 +343,27 @@ This document tracks execution progress, verification steps, and learnings acros
     - `e2e/boxes.spec.ts`: Added Playwright test navigating difficulty select, starting game, answering question 1, checking explanation, and advancing to question 2 at 360px.
   - **Verification:** `pnpm db:seed` succeeded; Vitest passed 32/32 tests; Playwright passed 14/14 tests on Mobile Chrome (360px); `tsc --noEmit` clean; `next lint` clean.
   - **Learnings:** Wrapping the difficulty selector as the initial screen (before loading questions) improves perceived performance since the API fetch only fires after user commits to a tier.
+
+- **Task 3.5: Optional Public Player Accounts (`/account`)**
+  - **What was built:**
+    - ADR-020 accepted: Optional player accounts extend `users` with `role: 'player'`, `name` and relational `user_favourites` table, while anonymous play remains 100% functional and never gated behind login.
+    - `src/server/auth/playerToken.ts`: Native zero-dependency HMAC SHA-256 JWT utility with timing-safe signature verification for player session cookies (`nb_user_token`).
+    - API Endpoints:
+      - `POST /api/public/auth/register`: Creates player account, hashes password via bcrypt, links current anonymous `nb_sid` session in `sessions` table, and sets HTTP-only `nb_user_token` cookie.
+      - `POST /api/public/auth/login`: Authenticates player credentials, links current anonymous session, and issues `nb_user_token`.
+      - `POST /api/public/auth/logout`: Clears player token cookie while leaving anonymous `nb_sid` intact.
+      - `GET /api/public/auth/me`: Returns current authenticated player state or `{ success: false, user: null }`.
+      - `GET / POST / DELETE /api/public/auth/favourites`: CRUD for favourited box experiences.
+      - `GET /api/public/account/history`: Returns player's saved score history across all linked sessions, active daily streak calculation, and personal best reaction time.
+    - UI:
+      - `src/app/(public)/account/page.tsx` & `AccountPageClient.tsx`: Full responsive account dashboard at 360px and desktop. Shows player card, active streak counter 🔥, total boxes played 🎮, best reaction reflex ⚡, tabbed saved score history with `/r/[id]` deep-links, and bookmarkable favourite boxes with one-tap play. For unauthenticated users, displays a friendly non-intrusive registration/sign-in view with explicit "Play Anonymously Without Account" link.
+      - Navigation: Added "Account" links in `Header.tsx` (desktop + mobile drawer) and `Footer.tsx`.
+      - Middleware: Enforced strict role-based guards preventing player accounts from accessing `/admin` or `/api/admin`.
+    - Unit Tests: `src/server/auth/playerToken.test.ts` (3 tests) and `src/app/api/public/auth/auth.test.ts` (7 tests).
+    - E2E Test: Added mobile 360px flow test in `e2e/boxes.spec.ts` covering unauthenticated view, account registration, dashboard rendering, favourite toggling, and sign-out.
+  - **Verification:**
+    - Vitest: 12 test files, 42 tests passed cleanly (100%).
+    - Playwright: 15/15 tests passed on Mobile Chrome (360px).
+    - `pnpm typecheck`: 0 errors.
+    - `pnpm lint`: 0 warnings or errors.
+  - **Learnings:** Issuing a dedicated player token cookie (`nb_user_token`) while preserving the anonymous session cookie (`nb_sid`) decouples account features from core gameplay so that players can freely log in or out without disrupting active anonymous sessions.

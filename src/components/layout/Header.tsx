@@ -40,6 +40,12 @@ export function Header() {
           <Link href="/about" className="hover:text-white transition-colors">
             About
           </Link>
+          <Link
+            href="/account"
+            className="px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 hover:text-white text-brand-300 border border-brand-500/20 transition-all font-semibold"
+          >
+            Account
+          </Link>
         </nav>
 
         {/* Mobile Menu Hamburger (44px min tap target) */}
@@ -107,6 +113,13 @@ export function Header() {
             className="block py-2.5 px-3 rounded-lg text-base font-medium text-gray-200 hover:bg-naija-card"
           >
             About NaijaBox
+          </Link>
+          <Link
+            href="/account"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block py-2.5 px-3 rounded-lg text-base font-bold text-brand-300 bg-brand-500/10 border border-brand-500/20 hover:bg-brand-500/20"
+          >
+            👤 My Account & Scores
           </Link>
         </div>
       )}

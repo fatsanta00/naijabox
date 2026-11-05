@@ -8,6 +8,13 @@
       "when": 1792789969578,
       "tag": "0000_greedy_proudstar",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1793863676533,
+      "tag": "0001_last_talon",
+      "breakpoints": true
     }
   ]
 }

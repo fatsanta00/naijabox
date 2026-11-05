@@ -82,11 +82,18 @@ export function middleware(request: NextRequest) {
       return NextResponse.redirect(loginUrl);
     }
 
+    const userRole = peekJwtRole(token);
+    if (userRole !== 'owner' && userRole !== 'moderator') {
+      if (pathname.startsWith('/api/admin')) {
+        return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+      }
+      return NextResponse.redirect(new URL('/admin/login', request.url));
+    }
+
     // 1b. Owner-only route enforcement
     const isOwnerOnlyPath = OWNER_ONLY_PATHS.some((p) => pathname.startsWith(p));
     if (isOwnerOnlyPath) {
-      const role = peekJwtRole(token);
-      if (role !== 'owner') {
+      if (userRole !== 'owner') {
         if (pathname.startsWith('/api/admin')) {
           return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
         }

@@ -23,6 +23,9 @@ export function Footer() {
           <Link href="/#boxes" className="hover:text-white transition-colors">
             All Boxes
           </Link>
+          <Link href="/account" className="hover:text-white transition-colors text-brand-300 font-semibold">
+            My Account
+          </Link>
         </div>
         <p className="text-gray-400">
           NaijaBox — A box full of things to do. Built for the culture, internet humor, and curious minds.

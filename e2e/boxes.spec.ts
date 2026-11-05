@@ -261,4 +261,38 @@ test.describe('NaijaBox Mobile Web (360px) & Flow Tests', () => {
     await page.goto('/privacy');
     await expect(page.locator('h1')).toContainText('Privacy Policy');
   });
+
+  test('Optional player account register, dashboard, and sign out at 360px', async ({ page }) => {
+    const testEmail = `playere2e_${Date.now()}@example.com`;
+
+    // 1. Visit /account unauthenticated
+    await page.goto('/account');
+    await expect(page.locator('text=Loading your NaijaBox account...')).toBeHidden({ timeout: 15000 });
+    await expect(page.locator('h1')).toContainText('Save Your NaijaBox Legacy');
+    await expect(page.locator('text=Anonymous play is always 100% free')).toBeVisible();
+
+    // 2. Switch to Create Account
+    await page.click('button:has-text("Create Account")');
+    await page.fill('#name-input', 'E2E Naija Champ');
+    await page.fill('#email-input', testEmail);
+    await page.fill('#password-input', 'SecretPass123!');
+    await page.click('button[type="submit"]:has-text("Create Account")');
+
+    // 3. Authenticated dashboard appears
+    await expect(page.locator('h1')).toContainText('E2E Naija Champ', { timeout: 15000 });
+    await expect(page.getByText('Player', { exact: true })).toBeVisible();
+    await expect(page.locator('text=Active Streak')).toBeVisible();
+    await expect(page.locator('text=Saved Results')).toBeVisible();
+
+    // 4. Switch to Favourite Boxes tab and toggle a favourite
+    await page.click('button:has-text("Favourite Boxes")');
+    const favBtn = page.locator('button[aria-label*="Favourite"]').first();
+    await expect(favBtn).toBeVisible();
+    await favBtn.click();
+    await expect(page.locator('text=❤️').first()).toBeVisible();
+
+    // 5. Sign out returns to unauthenticated state cleanly
+    await page.click('button:has-text("Sign Out")');
+    await expect(page.locator('h1')).toContainText('Save Your NaijaBox Legacy');
+  });
 });

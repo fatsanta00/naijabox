@@ -48,7 +48,7 @@ export const conditionEnum = pgEnum('condition', ['new', 'used', 'refurbished'])
 
 export const paidLabelEnum = pgEnum('paid_label', ['sponsored', 'promoted']);
 
-export const userRoleEnum = pgEnum('user_role', ['owner', 'moderator']);
+export const userRoleEnum = pgEnum('user_role', ['owner', 'moderator', 'player']);
 
 export const reportReasonEnum = pgEnum('report_reason', [
   'offensive',
@@ -298,10 +298,27 @@ export const priceSnapshots = pgTable('price_snapshots', {
 export const users = pgTable('users', {
   id: uuid('id').defaultRandom().primaryKey(),
   email: text('email').notNull().unique(),
+  name: text('name'),
   passwordHash: text('password_hash').notNull(),
   role: userRoleEnum('role').notNull().default('moderator'),
   createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
 });
+
+export const userFavourites = pgTable(
+  'user_favourites',
+  {
+    id: uuid('id').defaultRandom().primaryKey(),
+    userId: uuid('user_id')
+      .notNull()
+      .references(() => users.id, { onDelete: 'cascade' }),
+    boxSlug: text('box_slug').notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true }).notNull().defaultNow(),
+  },
+  (t) => ({
+    uniqueUserBox: unique('user_favourites_user_box_unique').on(t.userId, t.boxSlug),
+    userIdx: index('user_favourites_user_idx').on(t.userId),
+  })
+);
 
 export const events = pgTable(
   'events',
@@ -368,5 +385,8 @@ export type Seller = typeof sellers.$inferSelect;
 export type Listing = typeof listings.$inferSelect;
 export type PriceSnapshot = typeof priceSnapshots.$inferSelect;
 export type User = typeof users.$inferSelect;
+export type InsertUser = typeof users.$inferInsert;
+export type UserFavourite = typeof userFavourites.$inferSelect;
+export type InsertUserFavourite = typeof userFavourites.$inferInsert;
 export type Event = typeof events.$inferSelect;
 export type Setting = typeof settings.$inferSelect;
