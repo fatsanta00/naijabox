@@ -256,7 +256,7 @@ export default function ReactionTimeBox({ slug, title }: BoxProps) {
                 key={i}
                 className="text-center p-2 rounded-lg bg-naija-surface/60 border border-naija-border/50"
               >
-                <div className="text-lg font-black text-brand-400">{r.ms}</div>
+                <div className="text-lg font-black text-brand-600 dark:text-brand-400">{r.ms}</div>
                 <div className="text-[10px] text-naija-muted">ms</div>
                 <div className="text-[10px] text-naija-muted">Round {i + 1}</div>
               </div>
@@ -297,7 +297,7 @@ export default function ReactionTimeBox({ slug, title }: BoxProps) {
     <div className="w-full max-w-xl mx-auto space-y-6">
       {/* Header */}
       <Card className="p-6 text-center space-y-2">
-        <h2 className="text-2xl font-black text-white">{title}</h2>
+        <h2 className="text-2xl font-black text-naija-text">{title}</h2>
         <p className="text-sm text-naija-muted">
           Wait for green, tap fast. {NUM_ROUNDS} rounds — average is your score.
         </p>
@@ -319,7 +319,7 @@ export default function ReactionTimeBox({ slug, title }: BoxProps) {
         )}
 
         {personalBest !== null && (
-          <p className="text-xs text-brand-400 font-semibold">🏆 Your PB: {personalBest}ms</p>
+          <p className="text-xs text-brand-600 dark:text-brand-400 font-semibold">🏆 Your PB: {personalBest}ms</p>
         )}
 
         {tooSoonCount > 0 && gameState === 'idle' && (
@@ -349,10 +349,10 @@ export default function ReactionTimeBox({ slug, title }: BoxProps) {
         ].join(' ')}
       >
         {gameState === 'waiting' && (
-          <span className="text-white/80 text-xl font-bold animate-pulse">Wait for green…</span>
+          <span className="text-naija-text/80 text-xl font-bold animate-pulse">Wait for green…</span>
         )}
         {gameState === 'ready' && (
-          <span className="text-white text-4xl font-black animate-bounce">TAP!</span>
+          <span className="text-naija-text text-4xl font-black animate-bounce">TAP!</span>
         )}
         {(gameState === 'idle' || gameState === 'clicked') && (
           <span className="text-naija-muted text-sm">Use the button below to start</span>
@@ -376,7 +376,7 @@ export default function ReactionTimeBox({ slug, title }: BoxProps) {
               key={i}
               className={[
                 'w-3 h-3 rounded-full transition-colors',
-                i < results.length ? 'bg-brand-500' : 'bg-naija-border',
+                i < results.length ? 'bg-brand-500' : 'bg-naija-cardSubtle',
               ].join(' ')}
               aria-hidden="true"
             />

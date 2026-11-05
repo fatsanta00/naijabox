@@ -235,7 +235,7 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
     return (
       <div className="w-full max-w-xl mx-auto space-y-4">
         <Card className="p-6 text-center space-y-4">
-          <p className="text-white">{error}</p>
+          <p className="text-naija-text">{error}</p>
           <Button onClick={loadQuestions} variant="primary" size="default">
             Try Again
           </Button>
@@ -270,10 +270,10 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
             <tbody>
               {rounds.map((r, i) => (
                 <tr key={i} className="border-b border-naija-border/20 last:border-0">
-                  <td className="py-1 pr-2 text-white max-w-[120px] truncate">{r.itemName}</td>
+                  <td className="py-1 pr-2 text-naija-text max-w-[120px] truncate">{r.itemName}</td>
                   <td className="py-1 pr-2 text-right text-naija-muted">{formatNGN(r.guess)}</td>
-                  <td className="py-1 pr-2 text-right text-brand-400">{formatNGN(r.real)}</td>
-                  <td className="py-1 text-right font-bold text-white">{r.score}</td>
+                  <td className="py-1 pr-2 text-right text-brand-600 dark:text-brand-400">{formatNGN(r.real)}</td>
+                  <td className="py-1 text-right font-bold text-naija-text">{r.score}</td>
                 </tr>
               ))}
             </tbody>
@@ -296,7 +296,7 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
         />
 
         <footer className="flex items-center justify-center gap-4 pt-2">
-          <Link href="/boxes/pricecheck" className="text-xs text-brand-400 hover:underline">
+          <Link href="/boxes/pricecheck" className="text-xs text-brand-600 dark:text-brand-400 hover:underline">
             🛒 Check real Naija prices →
           </Link>
         </footer>
@@ -327,10 +327,10 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
       <Card className="p-6 space-y-4">
         <div className="flex items-start justify-between gap-2">
           <div>
-            <span className="text-[10px] uppercase tracking-wider text-brand-400 font-bold">
+            <span className="text-[10px] uppercase tracking-wider text-brand-600 dark:text-brand-400 font-bold">
               {currentQ.options?.item?.category ?? 'Item'}
             </span>
-            <h2 className="text-xl font-black text-white mt-0.5">{currentQ.text}</h2>
+            <h2 className="text-xl font-black text-naija-text mt-0.5">{currentQ.text}</h2>
             {currentQ.options?.price_source && (
               <p className="text-[10px] text-naija-muted mt-1">
                 Source: {currentQ.options.price_source}
@@ -344,7 +344,7 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
         {phase === 'guessing' && (
           <div className="space-y-4">
             <div className="text-center">
-              <span className="text-3xl font-black text-brand-400">{formatNGN(guess)}</span>
+              <span className="text-3xl font-black text-brand-600 dark:text-brand-400">{formatNGN(guess)}</span>
             </div>
             <input
               type="range"
@@ -353,7 +353,7 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
               step={bounds.step}
               value={guess}
               onChange={(e) => setGuess(Number(e.target.value))}
-              className="w-full h-3 rounded-full appearance-none bg-naija-border accent-brand-500 cursor-pointer"
+              className="w-full h-3 rounded-full appearance-none bg-naija-cardSubtle accent-brand-500 cursor-pointer"
               aria-label={`Your price guess. Currently set to ${formatNGN(guess)}`}
             />
             <div className="flex justify-between text-[10px] text-naija-muted">
@@ -369,18 +369,18 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
             <div className="grid grid-cols-2 gap-3 text-center">
               <div className="rounded-lg bg-naija-surface/60 border border-naija-border/40 p-3">
                 <div className="text-[10px] text-naija-muted uppercase font-semibold mb-1">Your guess</div>
-                <div className="text-lg font-black text-white">{formatNGN(lastRound.guess)}</div>
+                <div className="text-lg font-black text-naija-text">{formatNGN(lastRound.guess)}</div>
               </div>
               <div className="rounded-lg bg-brand-500/10 border border-brand-500/30 p-3">
-                <div className="text-[10px] text-brand-400 uppercase font-semibold mb-1">Real price</div>
-                <div className="text-lg font-black text-brand-300">{formatNGN(lastRound.real)}</div>
+                <div className="text-[10px] text-brand-600 dark:text-brand-400 uppercase font-semibold mb-1">Real price</div>
+                <div className="text-lg font-black text-brand-600 dark:text-brand-300">{formatNGN(lastRound.real)}</div>
               </div>
             </div>
 
             {dl && (
               <div className="text-center space-y-1">
                 <span className="text-2xl">{dl.emoji}</span>
-                <p className="text-sm text-white font-semibold">{dl.text}</p>
+                <p className="text-sm text-naija-text font-semibold">{dl.text}</p>
                 <p className="text-xs text-naija-muted">
                   Off by {lastRound.diffPct.toFixed(1)}% · +{lastRound.score} points
                 </p>
@@ -399,7 +399,7 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
               onClick={() =>
                 analytics.track('price_guess_cta_clicked', { question_id: currentQ.id }, slug, currentQ.id)
               }
-              className="block text-center text-xs text-brand-400 hover:underline"
+              className="block text-center text-xs text-brand-600 dark:text-brand-400 hover:underline"
             >
               🛒 See real market listings on PriceCheck →
             </Link>
@@ -424,7 +424,7 @@ export default function GuessThePriceBox({ slug, title }: BoxProps) {
         <ReportButton questionId={currentQ.id} />
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="text-xs text-naija-muted hover:text-brand-400 transition-colors min-h-[44px] px-3"
+          className="text-xs text-naija-muted hover:text-brand-600 dark:text-brand-400 transition-colors min-h-[44px] px-3"
         >
           + Submit a question
         </button>

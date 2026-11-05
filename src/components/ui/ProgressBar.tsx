@@ -23,7 +23,7 @@ export function ProgressBar({
       {(label || showText) && (
         <div className="flex justify-between items-center mb-1.5 text-xs text-naija-muted">
           {label && <span>{label}</span>}
-          {showText && <span className="font-semibold text-gray-200">{percentage}%</span>}
+          {showText && <span className="font-semibold text-naija-text">{percentage}%</span>}
         </div>
       )}
       <div
@@ -32,7 +32,7 @@ export function ProgressBar({
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={label || 'Progress'}
-        className="h-2 w-full overflow-hidden rounded-full bg-naija-card border border-naija-border/60"
+        className="h-2 w-full overflow-hidden rounded-full bg-naija-cardSubtle border border-naija-border/80"
       >
         <div
           className="h-full bg-brand-500 rounded-full transition-all duration-300 ease-out"

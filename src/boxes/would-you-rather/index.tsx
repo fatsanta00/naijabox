@@ -160,7 +160,7 @@ export default function WouldYouRatherBox({ slug, title }: BoxProps) {
           WOULD YOU RATHER
         </span>
 
-        <h2 className="text-xl sm:text-2xl font-black text-white leading-snug">
+        <h2 className="text-xl sm:text-2xl font-black text-naija-text leading-snug">
           {currentQ.text}
         </h2>
 
@@ -182,10 +182,10 @@ export default function WouldYouRatherBox({ slug, title }: BoxProps) {
                 disabled={Boolean(selectedOptionId)}
                 className={`relative overflow-hidden p-5 rounded-2xl min-h-[96px] flex flex-col items-center justify-center text-center font-bold text-sm sm:text-base border transition-all duration-200 cursor-pointer select-none ${
                   isSelected
-                    ? 'border-brand-500 bg-brand-500/15 text-white ring-2 ring-brand-500/40'
+                    ? 'border-brand-500 bg-brand-500/15 text-naija-text ring-2 ring-brand-500/40'
                     : selectedOptionId
-                    ? 'border-naija-border bg-naija-card/60 text-gray-300 opacity-90'
-                    : 'border-naija-border bg-naija-card hover:bg-naija-border/80 text-white hover:border-gray-500 active:scale-[0.98]'
+                    ? 'border-naija-border bg-naija-cardSubtle text-naija-muted opacity-90'
+                    : 'border-naija-border bg-naija-card hover:bg-naija-cardSubtle/80 text-naija-text hover:border-gray-500 active:scale-[0.98]'
                 }`}
               >
                 {/* Stats Fill Bar */}
@@ -199,7 +199,7 @@ export default function WouldYouRatherBox({ slug, title }: BoxProps) {
                 <span className="relative z-10 leading-snug">{opt.text}</span>
 
                 {percentDisplay !== null && (
-                  <span className="relative z-10 mt-2 text-xs font-mono font-bold text-brand-300">
+                  <span className="relative z-10 mt-2 text-xs font-mono font-bold text-brand-600 dark:text-brand-300">
                     {percentDisplay}%
                   </span>
                 )}
@@ -252,7 +252,7 @@ export default function WouldYouRatherBox({ slug, title }: BoxProps) {
         <ReportButton questionId={currentQ.id} />
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="text-xs text-naija-muted hover:text-brand-400 min-h-[44px] inline-flex items-center"
+          className="text-xs text-naija-muted hover:text-brand-600 dark:text-brand-400 min-h-[44px] inline-flex items-center"
         >
           + Submit a dilemma
         </button>

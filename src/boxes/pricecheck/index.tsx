@@ -220,7 +220,7 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
     <div className="w-full max-w-2xl mx-auto space-y-6">
       {/* Search Header */}
       <Card className="p-6 text-center space-y-3">
-        <h2 className="text-2xl sm:text-3xl font-black text-white">{title}</h2>
+        <h2 className="text-2xl sm:text-3xl font-black text-naija-text">{title}</h2>
         <p className="text-sm text-naija-muted">
           Real market prices for smartphones, gadgets and lifestyle items in Nigeria. Check before you pay.
         </p>
@@ -238,10 +238,10 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search iPhone 15, Galaxy S24, Tecno, PS5..."
-            className="w-full px-4 py-3 rounded-xl bg-naija-surface border border-naija-border/60 text-white placeholder:text-naija-muted focus:outline-none focus:border-brand-500 text-sm min-h-[48px]"
+            className="w-full px-4 py-3 rounded-xl bg-naija-surface border border-naija-border/60 text-naija-text placeholder:text-naija-muted focus:outline-none focus:border-brand-500 text-sm min-h-[48px]"
           />
           {isSearching && (
-            <div className="absolute right-4 top-5 text-xs text-brand-400 animate-pulse">
+            <div className="absolute right-4 top-5 text-xs text-brand-600 dark:text-brand-400 animate-pulse">
               Searching...
             </div>
           )}
@@ -260,14 +260,14 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
                 className="w-full px-4 py-3 text-left hover:bg-naija-surface/80 flex items-center justify-between transition-colors min-h-[44px]"
               >
                 <div>
-                  <div className="text-sm font-bold text-white">{item.name}</div>
+                  <div className="text-sm font-bold text-naija-text">{item.name}</div>
                   <div className="text-xs text-naija-muted">
                     {item.brand ? `${item.brand} • ` : ''}
                     {item.category || 'Gadget'}
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="text-xs text-brand-400 font-bold">
+                  <div className="text-xs text-brand-600 dark:text-brand-400 font-bold">
                     {item.lowestPriceNgn ? `From ${formatNGN(item.lowestPriceNgn)}` : 'View prices'}
                   </div>
                 </div>
@@ -291,19 +291,19 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-naija-border/40">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-brand-400">
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-brand-600 dark:text-brand-400">
                     {productData.product.category || 'Gadget'}
                   </span>
                   {productData.product.brand && (
                     <span className="text-xs text-naija-muted">({productData.product.brand})</span>
                   )}
                 </div>
-                <h3 className="text-2xl font-black text-white">{productData.product.name}</h3>
+                <h3 className="text-2xl font-black text-naija-text">{productData.product.name}</h3>
               </div>
 
               <div className="text-left sm:text-right">
                 <span className="text-xs text-naija-muted block">Lowest Market Price</span>
-                <span className="text-2xl font-black text-brand-400">
+                <span className="text-2xl font-black text-brand-600 dark:text-brand-400">
                   {formatNGN(productData.lowestPrice)}
                 </span>
                 {productData.currentAvgPrice && (
@@ -316,7 +316,7 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
 
             {/* Is this a good price? Checker Tool */}
             <div className="p-4 rounded-xl bg-naija-surface/60 border border-naija-border/50 space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-white">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-naija-text">
                 💡 Good-Price Checker: Did they give you a fair quote?
               </h4>
               <p className="text-xs text-naija-muted">
@@ -329,7 +329,7 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
                   placeholder="e.g. 750,000"
                   value={customPriceCheck}
                   onChange={(e) => setCustomPriceCheck(e.target.value)}
-                  className="flex-1 px-3 py-2 rounded-lg bg-naija-card border border-naija-border/60 text-white text-sm focus:outline-none focus:border-brand-500 min-h-[44px]"
+                  className="flex-1 px-3 py-2 rounded-lg bg-naija-card border border-naija-border/60 text-naija-text text-sm focus:outline-none focus:border-brand-500 min-h-[44px]"
                 />
                 <Button onClick={evaluateCustomPrice} variant="primary" size="default">
                   Check Verdict
@@ -341,7 +341,7 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
                   <div className="font-bold flex items-center gap-1.5">
                     <span>{customVerdict.badge}:</span> {customVerdict.label}
                   </div>
-                  <p className="text-gray-200">{customVerdict.text}</p>
+                  <p className="text-naija-text">{customVerdict.text}</p>
                 </div>
               )}
             </div>
@@ -410,10 +410,10 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
                     >
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <span className="font-bold text-white text-sm">
+                          <span className="font-bold text-naija-text text-sm">
                             {l.sellerName || 'Market Vendor'}
                           </span>
-                          <span className="text-[10px] px-2 py-0.5 rounded uppercase font-semibold bg-naija-surface border border-naija-border text-gray-300">
+                          <span className="text-[10px] px-2 py-0.5 rounded uppercase font-semibold bg-naija-surface border border-naija-border text-naija-muted">
                             {l.condition}
                           </span>
                           {/* Mandatory PRD Non-Negotiable: Paid placements must be labelled */}
@@ -431,7 +431,7 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
 
                       <div className="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0">
                         <div className="text-right">
-                          <span className="text-base font-black text-brand-400">
+                          <span className="text-base font-black text-brand-600 dark:text-brand-400">
                             {formatNGN(l.priceNgn)}
                           </span>
                         </div>
@@ -442,7 +442,7 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => handleOutboundClick(l)}
-                            className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-white transition-colors min-h-[36px]"
+                            className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-semibold bg-brand-500 hover:bg-brand-400 text-naija-text transition-colors min-h-[36px]"
                           >
                             View Store &rarr;
                           </a>
@@ -477,12 +477,12 @@ export default function PriceCheckBox({ slug, title }: BoxProps) {
                 className="p-4 cursor-pointer flex items-center justify-between"
               >
                 <div>
-                  <span className="text-[10px] uppercase font-bold text-brand-400 block">
+                  <span className="text-[10px] uppercase font-bold text-brand-600 dark:text-brand-400 block">
                     {item.category}
                   </span>
-                  <span className="text-sm font-bold text-white">{item.title}</span>
+                  <span className="text-sm font-bold text-naija-text">{item.title}</span>
                 </div>
-                <span className="text-xs text-brand-400">&rarr;</span>
+                <span className="text-xs text-brand-600 dark:text-brand-400">&rarr;</span>
               </Card>
             ))}
           </div>

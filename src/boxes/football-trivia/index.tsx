@@ -167,13 +167,13 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
       <div className="w-full max-w-lg mx-auto space-y-6">
         <Card className="p-6 text-center space-y-4">
           <span className="inline-block text-3xl">⚽</span>
-          <h1 className="text-2xl sm:text-3xl font-black text-white">{title}</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-naija-text">{title}</h1>
           <p className="text-sm text-naija-muted">
             From the 1994 Golden Generation to the 1996 Olympic Gold and Osimhen’s Scudetto. Test your Super Eagles knowledge!
           </p>
 
           <div className="pt-4 space-y-3">
-            <p className="text-xs font-semibold text-brand-400 uppercase tracking-wider">
+            <p className="text-xs font-semibold text-brand-600 dark:text-brand-400 uppercase tracking-wider">
               Select Your Pitch Level
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -181,7 +181,7 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
                 onClick={() => handleStartGame('all')}
                 className="p-3.5 min-h-[48px] rounded-xl bg-naija-card border border-white/10 hover:border-brand-500/50 hover:bg-white/5 active:scale-95 text-left transition-all"
               >
-                <p className="font-bold text-white text-sm">🎲 All Rounder</p>
+                <p className="font-bold text-naija-text text-sm">🎲 All Rounder</p>
                 <p className="text-xs text-naija-muted">Mix of easy, medium & hard</p>
               </button>
 
@@ -229,7 +229,7 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
   if (phase === 'empty' || questions.length === 0) {
     return (
       <div className="text-center py-16 space-y-4 max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-white">No questions in this tier</h2>
+        <h2 className="text-2xl font-bold text-naija-text">No questions in this tier</h2>
         <p className="text-sm text-naija-muted">
           Be the first to submit a Nigerian football question or try another difficulty.
         </p>
@@ -285,17 +285,17 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
       {/* Header and Progress */}
       <Card className="p-4 sm:p-6 space-y-3">
         <div className="flex items-center justify-between text-xs text-naija-muted">
-          <span className="font-semibold uppercase tracking-wider text-brand-400">
+          <span className="font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
             Question {currentIdx + 1} of {questions.length}
           </span>
           <span className="font-mono bg-white/5 px-2 py-1 rounded">Score: {score}</span>
         </div>
         <ProgressBar value={currentIdx + 1} max={questions.length} />
         <div className="pt-2">
-          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-300">
+          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-600 dark:text-brand-300">
             Tier: {currentQ.difficulty || selectedDifficulty}
           </span>
-          <h2 className="text-lg sm:text-xl font-bold text-white mt-2 leading-relaxed">
+          <h2 className="text-lg sm:text-xl font-bold text-naija-text mt-2 leading-relaxed">
             {currentQ.text}
           </h2>
         </div>
@@ -305,7 +305,7 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
       <div className="space-y-3">
         {currentQ.options.map((opt) => {
           let btnStyle =
-            'bg-naija-card border-white/10 hover:border-brand-500/50 hover:bg-white/5 text-white';
+            'bg-naija-card border-white/10 hover:border-brand-500/50 hover:bg-white/5 text-naija-text';
 
           if (isAnswered) {
             const isThisCorrect = currentQ.correct?.includes(opt.id);
@@ -347,7 +347,7 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
           }`}
         >
           <div className="space-y-1">
-            <p className="font-bold text-sm text-white flex items-center gap-2">
+            <p className="font-bold text-sm text-naija-text flex items-center gap-2">
               {isCorrect ? '🎉 Correct!' : '❌ Missed it!'}
             </p>
             {currentQ.explanation && (
@@ -358,7 +358,7 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
           </div>
           <button
             onClick={handleNext}
-            className="w-full min-h-[48px] rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-sm uppercase tracking-wider transition-all focus:outline-none focus:ring-2 focus:ring-brand-400"
+            className="w-full min-h-[48px] rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-95 text-naija-text font-bold text-sm uppercase tracking-wider transition-all focus:outline-none focus:ring-2 focus:ring-brand-400"
           >
             {currentIdx + 1 < questions.length ? 'Next Question ➡️' : 'See Your Score 🏆'}
           </button>
@@ -370,7 +370,7 @@ export default function FootballTriviaBox({ slug, title }: BoxProps) {
         <ReportButton questionId={currentQ.id} />
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="hover:text-white transition-colors underline underline-offset-4 min-h-[44px] flex items-center"
+          className="hover:text-naija-text transition-colors underline underline-offset-4 min-h-[44px] flex items-center"
         >
           + Submit a football question
         </button>

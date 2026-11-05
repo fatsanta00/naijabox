@@ -145,7 +145,7 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
   if (excuses.length === 0) {
     return (
       <div className="text-center py-16 space-y-4 max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-white">No excuses loaded</h2>
+        <h2 className="text-2xl font-bold text-naija-text">No excuses loaded</h2>
         <p className="text-sm text-naija-muted">
           Be the first to submit a foolproof Nigerian excuse to the bank.
         </p>
@@ -168,10 +168,10 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
     <div className="w-full max-w-xl mx-auto space-y-6">
       {/* Header Card */}
       <Card className="p-6 text-center space-y-2">
-        <span className="inline-block text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-brand-500/15 text-brand-300 font-bold border border-brand-500/30">
+        <span className="inline-block text-[11px] uppercase tracking-wider px-3 py-1 rounded-full bg-brand-500/15 text-brand-600 dark:text-brand-300 font-bold border border-brand-500/30">
           🇳🇬 Emergency Exit System
         </span>
-        <h1 className="text-2xl sm:text-3xl font-black text-white">{title}</h1>
+        <h1 className="text-2xl sm:text-3xl font-black text-naija-text">{title}</h1>
         <p className="text-sm text-naija-muted">
           Need a quick, airtight excuse to escape wahala? Pick a scenario and generate immediate cover.
         </p>
@@ -189,8 +189,8 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
               onClick={() => setSelectedScenario(s.id)}
               className={`px-3 py-2 rounded-full text-xs font-semibold min-h-[44px] transition-all flex items-center gap-1.5 ${
                 selectedScenario === s.id
-                  ? 'bg-brand-500 text-white shadow-lg shadow-brand-500/20'
-                  : 'bg-naija-surface border border-naija-border/60 text-gray-300 hover:text-white'
+                  ? 'bg-brand-500 text-naija-text shadow-lg shadow-brand-500/20'
+                  : 'bg-naija-surface border border-naija-border/60 text-naija-muted hover:text-naija-text'
               }`}
             >
               <span>{s.emoji}</span>
@@ -214,17 +214,17 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
 
           {/* Main Excuse Text */}
           <div className="min-h-[100px] flex items-center justify-center py-2">
-            <blockquote className={`text-lg sm:text-xl font-bold text-white text-center leading-relaxed transition-opacity duration-150 ${isGenerating ? 'opacity-20' : 'opacity-100'}`}>
+            <blockquote className={`text-lg sm:text-xl font-bold text-naija-text text-center leading-relaxed transition-opacity duration-150 ${isGenerating ? 'opacity-20' : 'opacity-100'}`}>
               &ldquo;{currentExcuse.text}&rdquo;
             </blockquote>
           </div>
 
           {/* Delivery Advice */}
           <div className="p-3.5 rounded-xl bg-naija-card border border-naija-border/50 text-xs space-y-1">
-            <span className="text-brand-400 font-bold uppercase text-[10px] tracking-wider block">
+            <span className="text-brand-600 dark:text-brand-400 font-bold uppercase text-[10px] tracking-wider block">
               💡 Delivery Tip
             </span>
-            <p className="text-gray-300 italic">
+            <p className="text-naija-muted italic">
               {deliveryTip}
             </p>
           </div>
@@ -260,7 +260,7 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
 
             <button
               onClick={handleWhatsAppShare}
-              className="w-full px-4 py-2.5 rounded-xl text-xs font-bold bg-[#25D366] hover:bg-[#20ba59] text-white transition-colors flex items-center justify-center gap-1.5 min-h-[44px] sm:col-span-1"
+              className="w-full px-4 py-2.5 rounded-xl text-xs font-bold bg-[#25D366] hover:bg-[#20ba59] text-naija-text transition-colors flex items-center justify-center gap-1.5 min-h-[44px] sm:col-span-1"
             >
               <span>💬</span>
               <span>Send WhatsApp</span>
@@ -273,7 +273,7 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
       <div className="flex justify-between items-center text-xs text-naija-muted px-1">
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="hover:text-white transition-colors min-h-[44px] flex items-center"
+          className="hover:text-naija-text transition-colors min-h-[44px] flex items-center"
         >
           + Submit an excuse
         </button>
@@ -294,8 +294,8 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
 
         <div className="space-y-3 pt-2">
           <div className="flex justify-between items-center text-xs">
-            <h3 className="font-bold text-white uppercase tracking-wider">Try Another Box</h3>
-            <Link href="/#boxes" className="text-brand-400 hover:text-brand-300 font-semibold">
+            <h3 className="font-bold text-naija-text uppercase tracking-wider">Try Another Box</h3>
+            <Link href="/#boxes" className="text-brand-600 dark:text-brand-400 hover:text-brand-600 dark:text-brand-300 font-semibold">
               See all &rarr;
             </Link>
           </div>
@@ -305,10 +305,10 @@ export default function ExcuseGeneratorBox({ slug, title }: BoxProps) {
               <Link key={box.slug} href={`/boxes/${box.slug}`} className="group block focus:outline-none">
                 <Card interactive className="h-full p-3.5 flex flex-col justify-between">
                   <div>
-                    <span className="text-[10px] text-brand-400 uppercase font-semibold">
+                    <span className="text-[10px] text-brand-600 dark:text-brand-400 uppercase font-semibold">
                       {box.kind}
                     </span>
-                    <h4 className="text-sm font-bold text-white group-hover:text-brand-300 transition-colors line-clamp-1 mt-0.5">
+                    <h4 className="text-sm font-bold text-naija-text group-hover:text-brand-600 dark:text-brand-300 transition-colors line-clamp-1 mt-0.5">
                       {box.title}
                     </h4>
                   </div>

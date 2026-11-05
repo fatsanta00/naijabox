@@ -67,28 +67,28 @@ export default async function SlangDetailPage({ params }: PageProps) {
 
       {/* Breadcrumb / Back nav */}
       <div className="flex items-center gap-2 text-xs text-naija-muted">
-        <Link href="/slang" className="hover:text-white transition-colors">
+        <Link href="/slang" className="hover:text-naija-text transition-colors">
           &larr; Back to Slang Dictionary
         </Link>
         <span>•</span>
-        <span className="text-gray-400 capitalize">{slang.category}</span>
+        <span className="capitalize">{slang.category}</span>
       </div>
 
       {/* Main Term Card */}
-      <Card className="p-6 sm:p-8 space-y-6 border-brand-500/40 bg-naija-surface/90">
+      <Card className="p-6 sm:p-8 space-y-6 border-brand-500/40 bg-naija-surface">
         <div className="space-y-3">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs px-2.5 py-1 rounded-full bg-brand-500/20 text-brand-300 font-semibold border border-brand-500/30 uppercase tracking-wider">
+            <span className="text-xs px-2.5 py-1 rounded-full bg-brand-500/15 text-brand-600 dark:text-brand-300 font-semibold border border-brand-500/30 uppercase tracking-wider">
               {slang.category}
             </span>
             {slang.difficulty && (
-              <span className="text-[10px] px-2 py-0.5 rounded font-mono uppercase bg-naija-card text-gray-400 border border-naija-border">
+              <span className="text-[10px] px-2 py-0.5 rounded font-mono uppercase bg-naija-card text-naija-muted border border-naija-border">
                 Level: {slang.difficulty}
               </span>
             )}
           </div>
 
-          <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+          <h1 className="text-3xl sm:text-5xl font-black text-naija-text tracking-tight">
             {slang.term}
           </h1>
         </div>
@@ -98,18 +98,18 @@ export default async function SlangDetailPage({ params }: PageProps) {
           <h2 className="text-xs font-bold uppercase tracking-wider text-naija-muted">
             Definition & Meaning
           </h2>
-          <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
+          <p className="text-base sm:text-lg text-naija-text font-medium leading-relaxed">
             {slang.meaning}
           </p>
         </div>
 
         {/* Context / Explanation Box */}
         {slang.explanation && (
-          <div className="space-y-2 p-4 rounded-xl bg-naija-card/70 border border-naija-border/50">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-brand-400">
+          <div className="space-y-2 p-4 rounded-xl bg-naija-cardSubtle border border-naija-border/70">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400">
               Cultural Context & Usage
             </h3>
-            <p className="text-sm text-gray-300 leading-relaxed italic">
+            <p className="text-sm text-naija-muted leading-relaxed italic">
               &ldquo;{slang.explanation}&rdquo;
             </p>
           </div>
@@ -118,7 +118,7 @@ export default async function SlangDetailPage({ params }: PageProps) {
         {/* Attribution */}
         {slang.authorName && slang.showAttribution && (
           <div className="text-xs text-naija-muted">
-            Submitted by community member: <span className="text-gray-300 font-semibold">{slang.authorName}</span>
+            Submitted by community member: <span className="text-naija-text font-semibold">{slang.authorName}</span>
           </div>
         )}
 
@@ -140,7 +140,7 @@ export default async function SlangDetailPage({ params }: PageProps) {
       {/* Related / Other Slangs */}
       {otherTerms.length > 0 && (
         <div className="space-y-3 pt-4">
-          <h3 className="text-sm font-bold text-white tracking-tight">
+          <h3 className="text-sm font-bold text-naija-text tracking-tight">
             Other Popular Naija Slangs
           </h3>
           <div className="grid grid-cols-2 gap-3">
@@ -148,14 +148,14 @@ export default async function SlangDetailPage({ params }: PageProps) {
               <Link key={t.id} href={`/slang/${t.slug}`} className="group block focus:outline-none">
                 <Card interactive className="p-3.5 h-full flex flex-col justify-between">
                   <div>
-                    <h4 className="text-sm font-bold text-white group-hover:text-brand-300 transition-colors">
+                    <h4 className="text-sm font-bold text-naija-text group-hover:text-brand-600 dark:group-hover:text-brand-300 transition-colors">
                       {t.term}
                     </h4>
                     <p className="text-xs text-naija-muted line-clamp-1 mt-1">
                       {t.meaning}
                     </p>
                   </div>
-                  <span className="text-[10px] text-brand-400 font-semibold mt-2 inline-block">
+                  <span className="text-[10px] text-brand-600 dark:text-brand-400 font-semibold mt-2 inline-block">
                     View &rarr;
                   </span>
                 </Card>

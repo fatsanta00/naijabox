@@ -68,17 +68,17 @@ export function ResultLayout({
   return (
     <div className="w-full max-w-xl mx-auto space-y-8 animate-in fade-in duration-300">
       {/* 1. Result Display */}
-      <Card className="text-center p-6 sm:p-8 space-y-4 border-brand-500/40 bg-naija-surface/90 shadow-2xl">
-        <span className="inline-block text-xs uppercase tracking-wider px-3 py-1 rounded-full bg-brand-500/15 text-brand-300 font-semibold border border-brand-500/30">
+      <Card className="text-center p-6 sm:p-8 space-y-4 border-brand-500/40 bg-naija-surface shadow-2xl">
+        <span className="inline-block text-xs uppercase tracking-wider px-3 py-1 rounded-full bg-brand-500/15 text-brand-600 dark:text-brand-600 dark:text-brand-300 font-semibold border border-brand-500/30">
           Your Result
         </span>
         {resultScore !== undefined && (
-          <div className="text-4xl sm:text-5xl font-black text-white tracking-tight">
+          <div className="text-4xl sm:text-5xl font-black text-naija-text tracking-tight">
             {resultScore}
           </div>
         )}
-        <h2 className="text-2xl sm:text-3xl font-black text-white">{resultLabel}</h2>
-        <p className="text-sm sm:text-base text-gray-300 leading-relaxed max-w-md mx-auto">
+        <h2 className="text-2xl sm:text-3xl font-black text-naija-text">{resultLabel}</h2>
+        <p className="text-sm sm:text-base text-naija-muted leading-relaxed max-w-md mx-auto">
           {resultDescription}
         </p>
 
@@ -122,8 +122,8 @@ export function ResultLayout({
       {/* 4. Recommended Boxes Section (No dead ends per PRD) */}
       <div className="space-y-4 pt-6 border-t border-naija-border/60">
         <div className="flex justify-between items-center">
-          <h3 className="text-sm font-bold text-white tracking-tight">Try another box</h3>
-          <Link href="/#boxes" className="text-xs text-brand-400 hover:text-brand-300 font-medium">
+          <h3 className="text-sm font-bold text-naija-text tracking-tight">Try another box</h3>
+          <Link href="/#boxes" className="text-xs text-brand-600 dark:text-brand-600 dark:text-brand-400 hover:underline font-semibold">
             See all &rarr;
           </Link>
         </div>
@@ -133,10 +133,10 @@ export function ResultLayout({
             <Link key={box.slug} href={`/boxes/${box.slug}`} className="group block focus:outline-none">
               <Card interactive className="h-full p-4 flex flex-col justify-between">
                 <CardHeader className="p-0 pb-1.5">
-                  <span className="text-[10px] text-brand-400 uppercase font-semibold">
+                  <span className="text-[10px] text-brand-600 dark:text-brand-600 dark:text-brand-400 uppercase font-semibold">
                     {box.kind}
                   </span>
-                  <CardTitle className="text-sm group-hover:text-brand-300 transition-colors line-clamp-1">
+                  <CardTitle className="text-sm group-hover:text-brand-600 dark:group-hover:text-brand-600 dark:text-brand-300 transition-colors line-clamp-1">
                     {box.title}
                   </CardTitle>
                 </CardHeader>

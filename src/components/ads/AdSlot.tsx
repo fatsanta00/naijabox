@@ -41,8 +41,8 @@ export function AdSlot({ placement, slotId = 'default', className, ...props }: A
         <span>Sponsored</span>
       </div>
 
-      <div className="min-h-[90px] flex items-center justify-center text-xs text-gray-400 bg-naija-surface/60 rounded-lg border border-dashed border-naija-border/60">
-        <span className="text-gray-400">Ad Slot ({placement}:{slotId})</span>
+      <div className="min-h-[90px] flex items-center justify-center text-xs text-naija-muted bg-naija-surface/60 rounded-lg border border-dashed border-naija-border/60">
+        <span className="text-naija-muted">Ad Slot ({placement}:{slotId})</span>
       </div>
     </div>
   );

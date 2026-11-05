@@ -204,7 +204,7 @@ export default function FoodPersonalityBox({ slug, title }: BoxProps) {
   if (questions.length === 0) {
     return (
       <div className="text-center py-16 space-y-4 max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-white">No food questions found</h2>
+        <h2 className="text-2xl font-bold text-naija-text">No food questions found</h2>
         <p className="text-sm text-naija-muted">
           Our food kitchen is warming up. Help contribute the first personality dilemma!
         </p>
@@ -237,7 +237,7 @@ export default function FoodPersonalityBox({ slug, title }: BoxProps) {
 
       {/* Question Card */}
       <Card className="p-6 sm:p-8 space-y-6">
-        <h2 className="text-xl sm:text-2xl font-bold text-white text-center leading-snug">
+        <h2 className="text-xl sm:text-2xl font-bold text-naija-text text-center leading-snug">
           {currentQ.text}
         </h2>
 
@@ -247,7 +247,7 @@ export default function FoodPersonalityBox({ slug, title }: BoxProps) {
             <button
               key={opt.id}
               onClick={() => handleSelectOption(opt)}
-              className="w-full p-4 text-left rounded-xl bg-naija-surface border border-naija-border/60 hover:border-brand-500 hover:bg-naija-card text-sm sm:text-base text-gray-200 hover:text-white transition-all font-medium min-h-[48px] focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full p-4 text-left rounded-xl bg-naija-surface border border-naija-border/60 hover:border-brand-500 hover:bg-naija-card text-sm sm:text-base text-naija-text hover:text-naija-text transition-all font-medium min-h-[48px] focus:outline-none focus:ring-2 focus:ring-brand-500"
             >
               {opt.text}
             </button>
@@ -265,7 +265,7 @@ export default function FoodPersonalityBox({ slug, title }: BoxProps) {
       <div className="flex justify-between items-center text-xs text-naija-muted px-1">
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="hover:text-white transition-colors min-h-[44px] flex items-center"
+          className="hover:text-naija-text transition-colors min-h-[44px] flex items-center"
         >
           + Submit a food dilemma
         </button>

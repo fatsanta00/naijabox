@@ -181,7 +181,7 @@ export default function DecisionMakerBox({ slug, title }: BoxProps) {
         <Card className="p-8 text-center space-y-6">
           <p className="text-xs uppercase tracking-wider text-naija-muted font-bold">Deciding…</p>
           <div
-            className="text-3xl sm:text-4xl font-black text-brand-400 min-h-[72px] flex items-center justify-center transition-all"
+            className="text-3xl sm:text-4xl font-black text-brand-600 dark:text-brand-400 min-h-[72px] flex items-center justify-center transition-all"
             aria-live="polite"
             aria-atomic="true"
           >
@@ -223,7 +223,7 @@ export default function DecisionMakerBox({ slug, title }: BoxProps) {
   return (
     <div className="w-full max-w-xl mx-auto space-y-6">
       <Card className="p-6 text-center space-y-2">
-        <h2 className="text-2xl font-black text-white">{title}</h2>
+        <h2 className="text-2xl font-black text-naija-text">{title}</h2>
         <p className="text-sm text-naija-muted">
           Can&apos;t decide? Add your options and let NaijaBox sort it out for you.
         </p>
@@ -250,7 +250,7 @@ export default function DecisionMakerBox({ slug, title }: BoxProps) {
                 'border transition-colors min-h-[44px] cursor-pointer',
                 'focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-500',
                 selectedPreset?.id === p.id
-                  ? 'bg-brand-500 border-brand-500 text-white'
+                  ? 'bg-brand-500 border-brand-500 text-naija-text'
                   : 'bg-naija-surface border-naija-border/60 text-naija-muted hover:border-brand-500/50',
               ].join(' ')}
               aria-pressed={selectedPreset?.id === p.id}
@@ -283,7 +283,7 @@ export default function DecisionMakerBox({ slug, title }: BoxProps) {
           <div className="space-y-2">
             {customOptions.map((opt) => (
               <div key={opt.id} className="flex gap-2">
-                <span className="flex-1 px-3 py-2 rounded-lg bg-naija-surface border border-naija-border/50 text-sm text-white min-h-[44px] flex items-center">
+                <span className="flex-1 px-3 py-2 rounded-lg bg-naija-surface border border-naija-border/50 text-sm text-naija-text min-h-[44px] flex items-center">
                   {opt.value || <span className="text-naija-muted italic">Empty option</span>}
                 </span>
                 <button
@@ -306,7 +306,7 @@ export default function DecisionMakerBox({ slug, title }: BoxProps) {
                 onKeyDown={handleKeyDown}
                 placeholder="Type an option and press Enter or Add"
                 maxLength={80}
-                className="flex-1 px-3 py-2 rounded-lg bg-naija-surface border border-naija-border/50 text-sm text-white placeholder:text-naija-muted/60 focus:outline-none focus:border-brand-500 min-h-[44px]"
+                className="flex-1 px-3 py-2 rounded-lg bg-naija-surface border border-naija-border/50 text-sm text-naija-text placeholder:text-naija-muted/60 focus:outline-none focus:border-brand-500 min-h-[44px]"
                 aria-label="New option text"
               />
               <Button onClick={handleAddCustom} variant="secondary" size="default">

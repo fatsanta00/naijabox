@@ -41,23 +41,23 @@ export default async function HomePage() {
   const boxes = await getVisibleBoxes();
 
   return (
-    <div className="min-h-screen bg-naija-ink flex flex-col">
+    <div className="min-h-screen bg-naija-ink flex flex-col transition-colors duration-200">
       <Header />
 
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8 sm:py-16 space-y-12 sm:space-y-16">
         {/* Hero Section */}
         <section className="text-center space-y-4 max-w-2xl mx-auto pt-4 sm:pt-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs font-medium">
-            <span>✨</span> Fresh experiences inside
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/25 text-brand-600 dark:text-brand-300 text-xs font-semibold">
+            <span>✨</span> Fresh experiences inside • 100% free
           </div>
-          <h1 className="text-4xl sm:text-6xl font-black text-white tracking-tight leading-[1.1]">
+          <h1 className="text-4xl sm:text-6xl font-black text-naija-text tracking-tight leading-[1.1]">
             What&apos;s inside <br />
             <span className="text-brand-500 underline decoration-wavy decoration-brand-500/40">
               the box?
             </span>
           </h1>
           <p className="text-base sm:text-lg text-naija-muted leading-relaxed">
-            Games, quizzes, weird questions, useful tools and things you probably didn&apos;t know you needed.
+            Games, quizzes, weird questions, useful tools and things you probably didn&apos;t know you needed. Zero login, no sign-ups — just tap and play.
           </p>
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
@@ -68,7 +68,7 @@ export default async function HomePage() {
             </a>
             <Link
               href="/boxes/how-nigerian"
-              className="w-full sm:w-auto h-12 min-h-[48px] px-6 rounded-xl bg-naija-card hover:bg-naija-border text-gray-200 font-semibold text-sm inline-flex items-center justify-center border border-naija-border active:scale-95 transition-all"
+              className="w-full sm:w-auto h-12 min-h-[48px] px-6 rounded-xl bg-naija-card hover:bg-naija-cardSubtle text-naija-text font-semibold text-sm inline-flex items-center justify-center border border-naija-border active:scale-95 transition-all"
             >
               Take the Culture Test &rarr;
             </Link>
@@ -79,12 +79,12 @@ export default async function HomePage() {
         <section id="boxes" className="space-y-6 pt-4">
           <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-2 border-b border-naija-border/60 pb-3">
             <div>
-              <h2 className="text-2xl font-black text-white tracking-tight">The Box Grid</h2>
+              <h2 className="text-2xl font-black text-naija-text tracking-tight">The Box Grid</h2>
               <p className="text-xs sm:text-sm text-naija-muted">
                 Pick a box. Every experience is interactive, mobile-friendly and fast.
               </p>
             </div>
-            <span className="text-xs text-brand-400 font-medium">
+            <span className="text-xs text-brand-600 dark:text-brand-400 font-semibold">
               {boxes.length} Experiences Available
             </span>
           </div>
@@ -107,14 +107,14 @@ export default async function HomePage() {
                         </Chip>
                       )}
                     </div>
-                    <CardTitle className="group-hover:text-brand-400 transition-colors">
+                    <CardTitle className="group-hover:text-brand-600 dark:group-hover:text-brand-300 transition-colors">
                       {box.title}
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
                     <CardDescription>{box.tagline}</CardDescription>
                   </CardContent>
-                  <div className="px-5 pb-5 pt-3 flex items-center justify-between text-xs text-brand-400 font-semibold border-t border-naija-border/40 mt-3">
+                  <div className="px-5 pb-5 pt-3 flex items-center justify-between text-xs text-brand-600 dark:text-brand-400 font-semibold border-t border-naija-border/40 mt-3">
                     <span>Open Box</span>
                     <span className="transform group-hover:translate-x-1 transition-transform">
                       &rarr;

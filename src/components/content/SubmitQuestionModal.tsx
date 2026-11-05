@@ -81,7 +81,7 @@ export function SubmitQuestionModal({
           </div>
           <button
             onClick={onClose}
-            className="text-naija-muted hover:text-white p-2 text-lg font-bold min-h-[44px] min-w-[44px] inline-flex items-center justify-center"
+            className="text-naija-muted hover:text-naija-text p-2 text-lg font-bold min-h-[44px] min-w-[44px] inline-flex items-center justify-center cursor-pointer"
             aria-label="Close"
           >
             &times;
@@ -92,8 +92,8 @@ export function SubmitQuestionModal({
             <div
               className={`p-3 rounded-xl mb-4 text-xs font-medium border ${
                 statusMsg.type === 'success'
-                  ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'
-                  : 'bg-rose-500/15 border-rose-500/30 text-rose-300'
+                  ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300'
+                  : 'bg-rose-500/15 border-rose-500/30 text-rose-700 dark:text-rose-300'
               }`}
             >
               {statusMsg.text}
@@ -114,7 +114,7 @@ export function SubmitQuestionModal({
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-300 mb-1.5">
+              <label className="block text-xs font-semibold text-naija-text mb-1.5">
                 Question / Prompt *
               </label>
               <textarea
@@ -123,37 +123,37 @@ export function SubmitQuestionModal({
                 value={text}
                 onChange={(e) => setText(e.target.value)}
                 placeholder="e.g. Would you rather have free fuel for life or free flights?"
-                className="w-full p-3 rounded-xl bg-naija-card border border-naija-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full p-3 rounded-xl bg-naija-cardSubtle border border-naija-border text-naija-text placeholder:text-naija-muted text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium text-gray-300 mb-1.5">Option A *</label>
+                <label className="block text-xs font-semibold text-naija-text mb-1.5">Option A *</label>
                 <input
                   required
                   type="text"
                   value={optionA}
                   onChange={(e) => setOptionA(e.target.value)}
                   placeholder="Option 1"
-                  className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-card border border-naija-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-cardSubtle border border-naija-border text-naija-text placeholder:text-naija-muted text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
                 />
               </div>
               <div>
-                <label className="block text-xs font-medium text-gray-300 mb-1.5">Option B *</label>
+                <label className="block text-xs font-semibold text-naija-text mb-1.5">Option B *</label>
                 <input
                   required
                   type="text"
                   value={optionB}
                   onChange={(e) => setOptionB(e.target.value)}
                   placeholder="Option 2"
-                  className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-card border border-naija-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                  className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-cardSubtle border border-naija-border text-naija-text placeholder:text-naija-muted text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-gray-300 mb-1.5">
+              <label className="block text-xs font-semibold text-naija-text mb-1.5">
                 Explanation / Context (Optional)
               </label>
               <input
@@ -161,13 +161,13 @@ export function SubmitQuestionModal({
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
                 placeholder="Why is this interesting or funny?"
-                className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-card border border-naija-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-cardSubtle border border-naija-border text-naija-text placeholder:text-naija-muted text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
               />
             </div>
 
             <div className="pt-2 border-t border-naija-border/60">
               <div className="flex items-center justify-between mb-2">
-                <label htmlFor="attribution" className="text-xs font-medium text-gray-300 cursor-pointer">
+                <label htmlFor="attribution" className="text-xs font-medium text-naija-muted cursor-pointer">
                   Show my name publicly on the card
                 </label>
                 <input
@@ -185,7 +185,7 @@ export function SubmitQuestionModal({
                     value={authorName}
                     onChange={(e) => setAuthorName(e.target.value)}
                     placeholder="e.g. Tunde or @tunde_vibe"
-                    className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-card border border-naija-border text-white text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
+                    className="w-full h-11 min-h-[44px] px-3 rounded-xl bg-naija-cardSubtle border border-naija-border text-naija-text placeholder:text-naija-muted text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"
                   />
                 </div>
               )}

@@ -53,7 +53,7 @@ export default async function ResultDeepLinkPage({ params }: ResultPageProps) {
   const slug = exp?.key || 'how-nigerian';
 
   return (
-    <div className="min-h-screen bg-naija-ink flex flex-col">
+    <div className="min-h-screen bg-naija-ink flex flex-col transition-colors duration-200">
       <Header />
       <main className="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-8 flex flex-col justify-center">
         <ResultLayout

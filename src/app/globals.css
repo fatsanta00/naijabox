@@ -3,19 +3,41 @@
 @tailwind utilities;
 
 :root {
-  --background: #090a0f;
-  --foreground: #f3f4f6;
+  /* Nigerian-Themed Light Mode */
+  --background: #f7faf8;
+  --foreground: #072617;
+  --bg-ink: #f7faf8;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-subtle: #f0f5f2;
+  --border-color: #d2e2d8;
+  --text-main: #072617;
+  --text-muted: #3b5e4c;
+}
+
+.dark {
+  /* Nigerian-Themed Dark Mode */
+  --background: #050e08;
+  --foreground: #f0fbf4;
+  --bg-ink: #050e08;
+  --bg-surface: #0a1c11;
+  --bg-card: #0f2617;
+  --bg-card-subtle: #143320;
+  --border-color: #1c4028;
+  --text-main: #f0fbf4;
+  --text-muted: #84a994;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: var(--text-main);
+  background: var(--bg-ink);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   min-height: 100vh;
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Reduced motion preference respect */

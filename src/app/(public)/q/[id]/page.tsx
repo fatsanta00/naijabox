@@ -60,14 +60,14 @@ export default async function QuestionDeepLinkPage({ params }: QuestionPageProps
   const options = Array.isArray(q.options) ? q.options : [];
 
   return (
-    <div className="min-h-screen bg-naija-ink flex flex-col">
+    <div className="min-h-screen bg-naija-ink flex flex-col transition-colors duration-200">
       <Header />
       <main className="flex-1 max-w-xl w-full mx-auto p-4 sm:p-8 flex flex-col justify-center space-y-6">
         <div className="text-center space-y-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-amber-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-naija-muted">
             {exp?.title || 'Question'}
           </span>
-          <h1 className="text-2xl sm:text-3xl font-black text-white">{q.text}</h1>
+          <h1 className="text-2xl sm:text-3xl font-black text-naija-text">{q.text}</h1>
           {q.explanation && (
             <p className="text-sm text-naija-muted italic">&quot;{q.explanation}&quot;</p>
           )}
@@ -77,7 +77,7 @@ export default async function QuestionDeepLinkPage({ params }: QuestionPageProps
           {(options as Array<{ id: string; text: string }>).map((opt) => (
             <Link key={opt.id} href={`/boxes/${slug}`}>
               <Card interactive className="p-4 sm:p-5 mb-3 text-center border-naija-border">
-                <span className="font-bold text-white text-base sm:text-lg">{opt.text}</span>
+                <span className="font-bold text-naija-text text-base sm:text-lg">{opt.text}</span>
               </Card>
             </Link>
           ))}

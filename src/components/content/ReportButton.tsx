@@ -63,7 +63,7 @@ export function ReportButton({ questionId }: ReportButtonProps) {
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="text-xs text-naija-muted hover:text-gray-300 transition-colors p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center cursor-pointer select-none"
+        className="text-xs text-naija-muted hover:text-naija-text transition-colors p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center cursor-pointer select-none"
         aria-label="Report this question"
       >
         Report
@@ -79,7 +79,7 @@ export function ReportButton({ questionId }: ReportButtonProps) {
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-naija-muted hover:text-white p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center font-bold"
+                className="text-naija-muted hover:text-naija-text p-2 min-h-[44px] min-w-[44px] inline-flex items-center justify-center font-bold cursor-pointer"
                 aria-label="Close"
               >
                 &times;
@@ -87,13 +87,13 @@ export function ReportButton({ questionId }: ReportButtonProps) {
             </CardHeader>
             <CardContent>
               {submitted ? (
-                <div className="p-4 text-center text-emerald-300 text-sm font-medium">
+                <div className="p-4 text-center text-emerald-600 dark:text-emerald-300 text-sm font-medium">
                   ✓ Report submitted. Thank you for flagging!
                 </div>
               ) : (
                 <form onSubmit={handleReport} className="space-y-3">
                   {error && (
-                    <div className="p-2 text-xs rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                    <div className="p-2 text-xs rounded bg-rose-500/20 text-rose-700 dark:text-rose-300 border border-rose-500/30">
                       {error}
                     </div>
                   )}
@@ -102,7 +102,7 @@ export function ReportButton({ questionId }: ReportButtonProps) {
                     {REPORT_REASONS.map((r) => (
                       <label
                         key={r.id}
-                        className="flex items-center space-x-2 text-xs text-gray-300 p-2 rounded-lg bg-naija-card/60 hover:bg-naija-card cursor-pointer border border-naija-border/40 min-h-[44px]"
+                        className="flex items-center space-x-2 text-xs text-naija-text p-2 rounded-lg bg-naija-cardSubtle hover:bg-naija-card cursor-pointer border border-naija-border/70 min-h-[44px]"
                       >
                         <input
                           type="radio"
@@ -118,7 +118,7 @@ export function ReportButton({ questionId }: ReportButtonProps) {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-medium text-gray-400 mb-1">
+                    <label className="block text-xs font-semibold text-naija-muted mb-1">
                       Optional details
                     </label>
                     <textarea
@@ -126,7 +126,7 @@ export function ReportButton({ questionId }: ReportButtonProps) {
                       value={note}
                       onChange={(e) => setNote(e.target.value)}
                       placeholder="Explain what is wrong..."
-                      className="w-full p-2.5 rounded-xl bg-naija-card border border-naija-border text-xs text-white focus:outline-none focus:ring-2 focus:ring-brand-500"
+                      className="w-full p-2.5 rounded-xl bg-naija-cardSubtle border border-naija-border text-xs text-naija-text placeholder:text-naija-muted focus:outline-none focus:ring-2 focus:ring-brand-500"
                     />
                   </div>
 

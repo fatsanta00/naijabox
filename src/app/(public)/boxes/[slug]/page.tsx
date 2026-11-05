@@ -58,7 +58,7 @@ export default async function BoxPage({ params }: BoxPageProps) {
   const BoxComponent = React.lazy(box.component);
 
   return (
-    <main className="min-h-screen bg-naija-ink text-white flex flex-col items-center justify-start p-4 sm:p-6">
+    <main className="min-h-screen bg-naija-ink text-naija-text flex flex-col items-center justify-start p-4 sm:p-6 transition-colors duration-200">
       <Suspense
         fallback={
           <div className="flex flex-col items-center justify-center p-12 text-naija-muted">

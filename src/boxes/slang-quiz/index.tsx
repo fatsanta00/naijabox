@@ -162,8 +162,8 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
     return (
       <div className="w-full max-w-md mx-auto space-y-6 text-center">
         <div>
-          <span className="text-xs uppercase tracking-wider text-brand-400 font-bold">Vocabulary Test</span>
-          <h1 className="text-3xl font-black text-white mt-1">{title}</h1>
+          <span className="text-xs uppercase tracking-wider text-brand-600 dark:text-brand-400 font-bold">Vocabulary Test</span>
+          <h1 className="text-3xl font-black text-naija-text mt-1">{title}</h1>
           <p className="text-sm text-naija-muted mt-2">
             Select your street level. Can you tell your &quot;Japa&quot; from your &quot;Packaging&quot;?
           </p>
@@ -173,7 +173,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
           <Card interactive onClick={() => handleSelectDifficulty('easy')} className="p-5 text-left border-emerald-500/30 hover:border-emerald-500">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-bold text-white text-base">🟢 Beginner (Easy)</h3>
+                <h3 className="font-bold text-naija-text text-base">🟢 Beginner (Easy)</h3>
                 <p className="text-xs text-naija-muted">Common phrases every Nigerian hears daily</p>
               </div>
               <span className="text-xs text-emerald-400 font-semibold">Start &rarr;</span>
@@ -183,7 +183,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
           <Card interactive onClick={() => handleSelectDifficulty('medium')} className="p-5 text-left border-amber-500/30 hover:border-amber-500">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-bold text-white text-base">🟡 Street Level (Medium)</h3>
+                <h3 className="font-bold text-naija-text text-base">🟡 Street Level (Medium)</h3>
                 <p className="text-xs text-naija-muted">Market banter, Twitter slang, campus lingo</p>
               </div>
               <span className="text-xs text-amber-400 font-semibold">Start &rarr;</span>
@@ -193,7 +193,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
           <Card interactive onClick={() => handleSelectDifficulty('hard')} className="p-5 text-left border-rose-500/30 hover:border-rose-500">
             <div className="flex justify-between items-center">
               <div>
-                <h3 className="font-bold text-white text-base">🔴 Certified Veteran (Hard)</h3>
+                <h3 className="font-bold text-naija-text text-base">🔴 Certified Veteran (Hard)</h3>
                 <p className="text-xs text-naija-muted">Deep cuts, motor park codes, vintage terms</p>
               </div>
               <span className="text-xs text-rose-400 font-semibold">Start &rarr;</span>
@@ -203,7 +203,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
           <div className="pt-2 text-center">
             <Link
               href="/slang"
-              className="inline-flex items-center gap-1.5 text-xs text-brand-400 hover:text-brand-300 font-semibold"
+              className="inline-flex items-center gap-1.5 text-xs text-brand-600 dark:text-brand-400 hover:text-brand-600 dark:text-brand-300 font-semibold"
             >
               📖 Looking for definitions? Explore the Nigerian Slang Dictionary &rarr;
             </Link>
@@ -237,7 +237,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
           <div className="pt-2">
             <Link
               href="/slang"
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-400 hover:text-brand-300 transition-colors py-2 px-3 rounded-lg bg-brand-500/10 border border-brand-500/20"
+              className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 dark:text-brand-400 hover:text-brand-600 dark:text-brand-300 transition-colors py-2 px-3 rounded-lg bg-brand-500/10 border border-brand-500/20"
             >
               📖 Browse the full Nigerian Slang Dictionary &rarr;
             </Link>
@@ -250,7 +250,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
   if (questions.length === 0) {
     return (
       <div className="text-center py-16 space-y-4 max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-white">No questions in this tier yet</h2>
+        <h2 className="text-2xl font-bold text-naija-text">No questions in this tier yet</h2>
         <Button onClick={restart}>Choose Another Difficulty</Button>
       </div>
     );
@@ -276,7 +276,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
           <span className="text-xs uppercase tracking-wider text-naija-muted font-mono">
             WHAT DOES THIS MEAN?
           </span>
-          <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-black text-naija-text tracking-tight">
             &quot;{currentQ.text}&quot;
           </h2>
         </div>
@@ -284,7 +284,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
         {/* Options with Instant Feedback */}
         <div className="space-y-3 pt-2">
           {options.map((opt) => {
-            let btnStyle = 'border-naija-border bg-naija-card text-gray-200 hover:border-gray-500';
+            let btnStyle = 'border-naija-border bg-naija-card text-naija-text hover:border-gray-500';
 
             if (isAnswerRevealed) {
               if (opt.id === correctOptionId) {
@@ -313,8 +313,8 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
         {isAnswerRevealed && (
           <div className="pt-4 border-t border-naija-border/60 space-y-4 animate-in fade-in duration-200">
             {currentQ.explanation && (
-              <div className="p-3.5 rounded-xl bg-naija-card/80 border border-naija-border/60 text-xs sm:text-sm text-gray-300">
-                <strong className="text-brand-400 block mb-1">Context:</strong>
+              <div className="p-3.5 rounded-xl bg-naija-card/80 border border-naija-border/60 text-xs sm:text-sm text-naija-muted">
+                <strong className="text-brand-600 dark:text-brand-400 block mb-1">Context:</strong>
                 {currentQ.explanation}
               </div>
             )}
@@ -331,7 +331,7 @@ export default function SlangQuizBox({ slug, title }: BoxProps) {
         <ReportButton questionId={currentQ.id} />
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="text-xs text-naija-muted hover:text-brand-400 min-h-[44px] inline-flex items-center"
+          className="text-xs text-naija-muted hover:text-brand-600 dark:text-brand-400 min-h-[44px] inline-flex items-center"
         >
           + Submit slang
         </button>

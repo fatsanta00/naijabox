@@ -7,18 +7,18 @@ const chipVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-naija-card text-gray-200 border-naija-border',
-        brand: 'bg-brand-500/15 text-brand-300 border-brand-500/30',
-        yellow: 'bg-amber-400/15 text-amber-300 border-amber-400/30',
-        purple: 'bg-purple-500/15 text-purple-300 border-purple-500/30',
-        teal: 'bg-teal-500/15 text-teal-300 border-teal-500/30',
-        coral: 'bg-rose-500/15 text-rose-300 border-rose-500/30',
-        outline: 'bg-transparent text-gray-300 border-naija-border',
+        default: 'bg-naija-card text-naija-text border-naija-border',
+        brand: 'bg-brand-500/15 text-brand-600 dark:text-brand-600 dark:text-brand-300 border-brand-500/30',
+        yellow: 'bg-amber-400/15 text-amber-600 dark:text-amber-300 border-amber-400/30',
+        purple: 'bg-purple-500/15 text-purple-600 dark:text-purple-300 border-purple-500/30',
+        teal: 'bg-teal-500/15 text-teal-600 dark:text-teal-300 border-teal-500/30',
+        coral: 'bg-rose-500/15 text-rose-600 dark:text-rose-300 border-rose-500/30',
+        outline: 'bg-transparent text-naija-muted border-naija-border',
       },
       size: {
         sm: 'h-6 px-2.5 text-[11px]',
         default: 'h-7 px-3 text-xs',
-        interactive: 'h-11 min-h-[44px] px-4 text-sm cursor-pointer hover:bg-naija-border active:scale-95',
+        interactive: 'h-11 min-h-[44px] px-4 text-sm cursor-pointer hover:bg-naija-cardSubtle active:scale-95',
       },
     },
     defaultVariants: {

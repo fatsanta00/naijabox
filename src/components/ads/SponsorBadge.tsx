@@ -52,7 +52,7 @@ export function SponsorBadge({ experienceKey, sponsor, className = '' }: Sponsor
       <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-200">
         SPONSORED
       </span>
-      <span className="font-semibold text-gray-200">{displayLabel}</span>
+      <span className="font-semibold text-naija-text">{displayLabel}</span>
       {sponsor.url && <span className="text-[11px] text-amber-400 font-bold">&rarr;</span>}
     </div>
   );

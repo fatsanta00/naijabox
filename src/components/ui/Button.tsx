@@ -8,17 +8,17 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-brand-500 text-white shadow-md shadow-brand-500/20 hover:bg-brand-600 border border-brand-400/30',
+          'bg-brand-500 text-naija-text shadow-md shadow-brand-500/20 hover:bg-brand-600 border border-brand-400/30',
         secondary:
-          'bg-naija-card text-white hover:bg-naija-border border border-naija-border/80 shadow-sm',
+          'bg-naija-card text-naija-text hover:bg-naija-cardSubtle border border-naija-border/80 shadow-sm',
         outline:
-          'bg-transparent text-white border border-naija-border hover:bg-naija-card hover:border-gray-500',
+          'bg-transparent text-naija-text border border-naija-border hover:bg-naija-cardSubtle hover:border-brand-500/60',
         ghost:
-          'bg-transparent text-gray-300 hover:text-white hover:bg-naija-card/60',
+          'bg-transparent text-naija-muted hover:text-naija-text hover:bg-naija-cardSubtle',
         accent:
-          'bg-amber-400 text-naija-ink font-semibold hover:bg-amber-300 shadow-md shadow-amber-400/20',
+          'bg-brand-50 text-brand-800 dark:bg-brand-950/80 dark:text-brand-600 dark:text-brand-300 font-semibold hover:bg-brand-100 dark:hover:bg-brand-900 border border-brand-500/30 shadow-sm',
         danger:
-          'bg-rose-600 text-white hover:bg-rose-700 shadow-sm',
+          'bg-rose-600 text-naija-text hover:bg-rose-700 shadow-sm',
       },
       size: {
         default: 'h-11 min-h-[44px] px-5 py-2.5 text-base',

@@ -11,9 +11,9 @@ export const Card = React.forwardRef<HTMLDivElement, CardProps>(
       <div
         ref={ref}
         className={cn(
-          'rounded-2xl bg-naija-card/90 border border-naija-border p-5 shadow-lg backdrop-blur-sm',
+          'rounded-2xl bg-naija-card border border-naija-border p-5 shadow-md backdrop-blur-sm transition-colors duration-150',
           interactive &&
-            'cursor-pointer transition-all duration-200 hover:border-brand-500/50 hover:bg-naija-card hover:shadow-brand-500/10 hover:shadow-xl active:scale-[0.99]',
+            'cursor-pointer transition-all duration-200 hover:border-brand-500/60 hover:shadow-brand-500/10 hover:shadow-xl active:scale-[0.99]',
           className
         )}
         {...props}
@@ -34,7 +34,7 @@ CardHeader.displayName = 'CardHeader';
 
 export const CardTitle = React.forwardRef<HTMLHeadingElement, React.HTMLAttributes<HTMLHeadingElement>>(
   ({ className, children, ...props }, ref) => (
-    <h3 ref={ref} className={cn('font-bold text-xl leading-tight text-white tracking-tight', className)} {...props}>
+    <h3 ref={ref} className={cn('font-bold text-xl leading-tight text-naija-text tracking-tight', className)} {...props}>
       {children}
     </h3>
   )
@@ -49,9 +49,7 @@ export const CardDescription = React.forwardRef<HTMLParagraphElement, React.HTML
 CardDescription.displayName = 'CardDescription';
 
 export const CardContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
-    <div ref={ref} className={cn('pt-1', className)} {...props} />
-  )
+  ({ className, ...props }, ref) => <div ref={ref} className={cn('pt-1', className)} {...props} />
 );
 CardContent.displayName = 'CardContent';
 

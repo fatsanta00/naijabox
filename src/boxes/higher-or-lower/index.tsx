@@ -236,7 +236,7 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
   if (phase === 'empty' || !currentPair) {
     return (
       <div className="text-center py-16 space-y-4 max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-white">No price items available</h2>
+        <h2 className="text-2xl font-bold text-naija-text">No price items available</h2>
         <p className="text-sm text-naija-muted">
           We need at least two items to start the comparison game. Check back shortly!
         </p>
@@ -281,7 +281,7 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
                     className="p-3 rounded-xl bg-naija-card border border-white/5 flex items-center justify-between text-xs sm:text-sm"
                   >
                     <div className="space-y-0.5 max-w-[70%]">
-                      <p className="font-medium text-white truncate">
+                      <p className="font-medium text-naija-text truncate">
                         {r.nameB} <span className="text-naija-muted">vs</span> {r.nameA}
                       </p>
                       <p className="text-xs text-naija-muted">
@@ -304,12 +304,12 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
               {/* PriceCheck Cross-Promotion */}
               <div className="p-4 rounded-xl bg-brand-500/10 border border-brand-500/20 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
                 <div>
-                  <p className="font-bold text-white text-sm">Want to look up actual market prices?</p>
+                  <p className="font-bold text-naija-text text-sm">Want to look up actual market prices?</p>
                   <p className="text-xs text-naija-muted">Check laptops, smartphones, and electronics in Naija PriceCheck.</p>
                 </div>
                 <Link
                   href="/boxes/pricecheck"
-                  className="inline-flex items-center justify-center px-4 py-2 min-h-[44px] rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-xs uppercase tracking-wider transition-colors shrink-0"
+                  className="inline-flex items-center justify-center px-4 py-2 min-h-[44px] rounded-xl bg-brand-500 hover:bg-brand-600 text-naija-text font-bold text-xs uppercase tracking-wider transition-colors shrink-0"
                 >
                   Open PriceCheck 🔍
                 </Link>
@@ -336,14 +336,14 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
       {/* Header and Progress */}
       <Card className="p-4 sm:p-6 space-y-3">
         <div className="flex items-center justify-between text-xs text-naija-muted">
-          <span className="font-semibold uppercase tracking-wider text-brand-400">
+          <span className="font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400">
             Round {currentRoundIdx + 1} of {pairs.length}
           </span>
           <span className="font-mono bg-white/5 px-2 py-1 rounded">Score: {score}</span>
         </div>
         <ProgressBar value={currentRoundIdx + 1} max={pairs.length} />
         <div className="text-center pt-1">
-          <h1 className="text-xl sm:text-2xl font-black text-white">{title}</h1>
+          <h1 className="text-xl sm:text-2xl font-black text-naija-text">{title}</h1>
           <p className="text-xs sm:text-sm text-naija-muted">
             Is the second item more expensive or cheaper than the first?
           </p>
@@ -355,14 +355,14 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
         {/* Item A (Anchor item with known price) */}
         <Card className="p-5 flex flex-col justify-between border-brand-500/30 bg-gradient-to-b from-brand-950/20 to-naija-card">
           <div className="space-y-2">
-            <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-300">
+            <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-brand-500/20 text-brand-600 dark:text-brand-300">
               {categoryA}
             </span>
-            <h2 className="text-lg font-bold text-white line-clamp-2">{nameA}</h2>
+            <h2 className="text-lg font-bold text-naija-text line-clamp-2">{nameA}</h2>
           </div>
           <div className="mt-6 pt-4 border-t border-white/5">
             <span className="text-[11px] text-naija-muted block">Market Reference Price:</span>
-            <span className="text-2xl font-black text-brand-400 font-mono tracking-tight">
+            <span className="text-2xl font-black text-brand-600 dark:text-brand-400 font-mono tracking-tight">
               {formatNGN(priceA)}
             </span>
           </div>
@@ -374,7 +374,7 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
             <span className="inline-block text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-purple-500/20 text-purple-300">
               {categoryB}
             </span>
-            <h2 className="text-lg font-bold text-white line-clamp-2">{nameB}</h2>
+            <h2 className="text-lg font-bold text-naija-text line-clamp-2">{nameB}</h2>
           </div>
           <div className="mt-6 pt-4 border-t border-white/5">
             <span className="text-[11px] text-naija-muted block">Market Reference Price:</span>
@@ -399,21 +399,21 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
       {/* Action / Reveal Banner */}
       {phase === 'playing' ? (
         <Card className="p-5 space-y-4 text-center">
-          <p className="text-sm font-medium text-white">
-            Is <span className="text-brand-300 font-bold">{nameB}</span> higher or lower than{' '}
-            <span className="text-brand-300 font-bold">{formatNGN(priceA)}</span>?
+          <p className="text-sm font-medium text-naija-text">
+            Is <span className="text-brand-600 dark:text-brand-300 font-bold">{nameB}</span> higher or lower than{' '}
+            <span className="text-brand-600 dark:text-brand-300 font-bold">{formatNGN(priceA)}</span>?
           </p>
           <div className="grid grid-cols-2 gap-3">
             <button
               onClick={() => handleGuess('higher')}
-              className="min-h-[52px] rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-400"
+              className="min-h-[52px] rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-naija-text font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30 transition-all focus:outline-none focus:ring-2 focus:ring-emerald-400"
               aria-label="Guess Higher"
             >
               <span className="text-xl">⬆️</span> HIGHER
             </button>
             <button
               onClick={() => handleGuess('lower')}
-              className="min-h-[52px] rounded-xl bg-rose-600 hover:bg-rose-500 active:scale-95 text-white font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 transition-all focus:outline-none focus:ring-2 focus:ring-rose-400"
+              className="min-h-[52px] rounded-xl bg-rose-600 hover:bg-rose-500 active:scale-95 text-naija-text font-bold text-base flex items-center justify-center gap-2 shadow-lg shadow-rose-900/30 transition-all focus:outline-none focus:ring-2 focus:ring-rose-400"
               aria-label="Guess Lower"
             >
               <span className="text-xl">⬇️</span> LOWER
@@ -430,7 +430,7 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
         >
           <div className="space-y-1">
             <span className="text-3xl block">{isCorrect ? '🎉' : '❌'}</span>
-            <h3 className="text-xl font-black text-white">
+            <h3 className="text-xl font-black text-naija-text">
               {isCorrect ? 'Sharp! You got it right.' : 'Omo, you missed this one!'}
             </h3>
             <p className="text-xs text-naija-muted">
@@ -441,7 +441,7 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
 
           <button
             onClick={handleNextRound}
-            className="w-full min-h-[48px] rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-95 text-white font-bold text-sm uppercase tracking-wider transition-all focus:outline-none focus:ring-2 focus:ring-brand-400"
+            className="w-full min-h-[48px] rounded-xl bg-brand-500 hover:bg-brand-600 active:scale-95 text-naija-text font-bold text-sm uppercase tracking-wider transition-all focus:outline-none focus:ring-2 focus:ring-brand-400"
           >
             {currentRoundIdx + 1 < pairs.length ? 'Next Round ➡️' : 'See Final Score 🏆'}
           </button>
@@ -453,7 +453,7 @@ export default function HigherOrLowerBox({ slug, title }: BoxProps) {
         <ReportButton questionId={itemB.id} />
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="hover:text-white transition-colors underline underline-offset-4 min-h-[44px] flex items-center"
+          className="hover:text-naija-text transition-colors underline underline-offset-4 min-h-[44px] flex items-center"
         >
           + Suggest a price comparison
         </button>

@@ -19,7 +19,7 @@ describe('Base UI Components', () => {
     render(<Chip variant="brand">Naija Tech</Chip>);
     const chip = screen.getByText('Naija Tech');
     expect(chip).toBeInTheDocument();
-    expect(chip.className).toContain('text-brand-300');
+    expect(chip.className).toContain('text-brand-600 dark:text-brand-300');
   });
 
   it('ProgressBar renders with proper accessibility attributes', () => {

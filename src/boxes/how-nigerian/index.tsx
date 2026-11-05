@@ -149,7 +149,7 @@ export default function HowNigerianBox({ slug, title }: BoxProps) {
   if (questions.length === 0) {
     return (
       <div className="text-center py-16 space-y-4 max-w-md mx-auto">
-        <h2 className="text-2xl font-bold text-white">No questions available right now</h2>
+        <h2 className="text-2xl font-bold text-naija-text">No questions available right now</h2>
         <p className="text-sm text-naija-muted">Be the first to submit a question to this box!</p>
         <Button onClick={() => setSubmitModalOpen(true)}>+ Submit a Question</Button>
       </div>
@@ -189,12 +189,12 @@ export default function HowNigerianBox({ slug, title }: BoxProps) {
 
       {/* Question Card */}
       <Card className="p-6 sm:p-8 space-y-6 border-naija-border/80 bg-naija-surface">
-        <h2 className="text-xl sm:text-2xl font-black text-white leading-snug">
+        <h2 className="text-xl sm:text-2xl font-black text-naija-text leading-snug">
           {currentQ.text}
         </h2>
 
         {currentQ.authorName && currentQ.showAttribution && (
-          <p className="text-xs text-brand-400 font-medium">
+          <p className="text-xs text-brand-600 dark:text-brand-400 font-medium">
             Submitted by {currentQ.authorName}
           </p>
         )}
@@ -205,7 +205,7 @@ export default function HowNigerianBox({ slug, title }: BoxProps) {
             <button
               key={opt.id}
               onClick={() => handleSelectOption(opt)}
-              className="w-full text-left p-4 min-h-[52px] rounded-xl bg-naija-card hover:bg-naija-border border border-naija-border/70 text-gray-100 hover:text-white font-medium text-sm sm:text-base transition-all duration-150 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-brand-500"
+              className="w-full text-left p-4 min-h-[52px] rounded-xl bg-naija-card hover:bg-naija-cardSubtle border border-naija-border/70 text-naija-text hover:text-naija-text font-medium text-sm sm:text-base transition-all duration-150 active:scale-[0.99] focus:outline-none focus:ring-2 focus:ring-brand-500"
             >
               {opt.text}
             </button>
@@ -218,7 +218,7 @@ export default function HowNigerianBox({ slug, title }: BoxProps) {
         <ReportButton questionId={currentQ.id} />
         <button
           onClick={() => setSubmitModalOpen(true)}
-          className="text-xs text-naija-muted hover:text-brand-400 min-h-[44px] inline-flex items-center"
+          className="text-xs text-naija-muted hover:text-brand-600 dark:text-brand-400 min-h-[44px] inline-flex items-center"
         >
           + Submit a question
         </button>
