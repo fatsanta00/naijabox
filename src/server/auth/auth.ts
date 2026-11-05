@@ -65,5 +65,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
     strategy: 'jwt',
   },
-  secret: process.env.AUTH_SECRET,
+  secret: process.env.AUTH_SECRET?.replace(/^\uFEFF/, '').trim(),
 });

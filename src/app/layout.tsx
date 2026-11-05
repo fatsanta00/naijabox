@@ -2,10 +2,19 @@ import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { ThemeProvider, themeInitScript } from '@/components/theme/ThemeProvider';
 
-const siteUrl = process.env.SITE_URL || 'https://naijabox.app';
+const rawSiteUrl = (process.env.SITE_URL || 'https://naijabox.app').replace(/^\uFEFF/, '').trim().replace(/\/$/, '');
+const siteUrl = rawSiteUrl || 'https://naijabox.app';
+
+function getSafeMetadataBase(urlStr: string): URL {
+  try {
+    return new URL(urlStr);
+  } catch {
+    return new URL('https://naijabox.app');
+  }
+}
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: getSafeMetadataBase(siteUrl),
   title: {
     default: 'NaijaBox | A box full of things to do',
     template: '%s | NaijaBox',

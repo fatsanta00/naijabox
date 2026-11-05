@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: 'Slang Term Not Found — NaijaBox' };
   }
 
-  const baseUrl = process.env.SITE_URL || 'https://naijabox.app';
+  const baseUrl = (process.env.SITE_URL || 'https://naijabox.app').replace(/^\uFEFF/, '').trim().replace(/\/$/, '');
 
   return {
     title: `${slang.term} — Meaning, Origin & Context | Nigerian Slang Dictionary`,
@@ -46,7 +46,7 @@ export default async function SlangDetailPage({ params }: PageProps) {
     .filter((t) => t.slug !== slang.slug)
     .slice(0, 4);
 
-  const baseUrl = process.env.SITE_URL || 'https://naijabox.app';
+  const baseUrl = (process.env.SITE_URL || 'https://naijabox.app').replace(/^\uFEFF/, '').trim().replace(/\/$/, '');
 
   const jsonLd = {
     '@context': 'https://schema.org',

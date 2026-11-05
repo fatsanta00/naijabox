@@ -3,7 +3,10 @@ import { MetadataRoute } from 'next';
 import { SlangService } from '@/server/services/slangService';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.SITE_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://naijabox.app';
+  const baseUrl = (process.env.SITE_URL || process.env.NEXT_PUBLIC_APP_URL || 'https://naijabox.app')
+    .replace(/^\uFEFF/, '')
+    .trim()
+    .replace(/\/$/, '');
   const boxes = getAllBoxes();
 
   const boxUrls: MetadataRoute.Sitemap = boxes.map((box) => ({
