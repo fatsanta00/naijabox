@@ -18,6 +18,9 @@
     "vercel:setup": "tsx scripts/vercel-build.ts"
   },
   "dependencies": {
+    "@neon/config": "^1.10.1",
+    "@neon/env": "^1.6.9",
+    "@neondatabase/serverless": "^0.10.4",
     "bcryptjs": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

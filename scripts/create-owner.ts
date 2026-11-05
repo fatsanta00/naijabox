@@ -11,8 +11,8 @@
  */
 
 import 'dotenv/config';
-import postgres from 'postgres';
-import { drizzle } from 'drizzle-orm/postgres-js';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { neon } from '@neondatabase/serverless';
 import { eq } from 'drizzle-orm';
 import * as schema from '../src/server/db/schema';
 import { hashPassword } from '../src/server/auth/password';
@@ -58,7 +58,7 @@ async function main() {
   }
 
   const connStr: string = connectionString!;
-  const sql = postgres(connStr, { max: 1 });
+  const sql = neon(connStr);
   const db = drizzle(sql, { schema });
 
   try {
@@ -72,7 +72,6 @@ async function main() {
     if (existingOwners.length > 0) {
       console.warn(`⚠️ Warning: An owner account already exists (${existingOwners[0].email}).`);
       console.warn('   Refusing to overwrite existing owner. To reset, update database credentials directly.');
-      await sql.end();
       process.exit(0);
     }
 
@@ -111,7 +110,7 @@ async function main() {
     console.log('Role:  owner (full administrative permissions)');
     console.log('\n💡 Security reminder: Store this password in a secure password manager.');
   } finally {
-    await sql.end();
+    // Neon HTTP connection ends automatically
   }
 }
 

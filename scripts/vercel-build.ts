@@ -9,23 +9,22 @@
  *       "Build Command": pnpm build && pnpm vercel:setup
  */
 import 'dotenv/config';
-import { migrate } from 'drizzle-orm/postgres-js/migrator';
-import { drizzle } from 'drizzle-orm/postgres-js';
-import postgres from 'postgres';
+import { migrate } from 'drizzle-orm/neon-http/migrator';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { neon } from '@neondatabase/serverless';
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.DATABASE_URL_UNPOOLED || process.env.DATABASE_URL;
 if (!connectionString) {
-  console.error('DATABASE_URL is not set — skipping migration in vercel-build.');
+  console.error('DATABASE_URL or DATABASE_URL_UNPOOLED is not set — skipping migration in vercel-build.');
   process.exit(0);
 }
 
 async function main() {
-  console.log('[vercel-build] Running database migrations...');
-  const sql = postgres(connectionString!, { max: 1 });
+  console.log('[vercel-build] Running database migrations on Neon via HTTP...');
+  const sql = neon(connectionString!);
   const db = drizzle(sql);
   await migrate(db, { migrationsFolder: './drizzle' });
   console.log('[vercel-build] Migrations complete.');
-  await sql.end();
 }
 
 main().catch((err) => {

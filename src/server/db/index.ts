@@ -1,2 +1,2 @@
-export { db, migrationClient } from './client';
+export { db } from './client';
 export * from './schema';

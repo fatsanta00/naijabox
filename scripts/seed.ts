@@ -4,15 +4,15 @@
  * Run: pnpm db:seed
  */
 import 'dotenv/config';
-import postgres from 'postgres';
-import { drizzle } from 'drizzle-orm/postgres-js';
+import { drizzle } from 'drizzle-orm/neon-http';
+import { neon } from '@neondatabase/serverless';
 import * as schema from '../src/server/db/schema';
 import { hashPassword } from '../src/server/auth/password';
 
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) throw new Error('DATABASE_URL is required');
 
-const sql = postgres(connectionString, { max: 1 });
+const sql = neon(connectionString);
 const db = drizzle(sql, { schema });
 
 // ─── Helper ───────────────────────────────────────────────────────────────────
@@ -2527,7 +2527,6 @@ async function main() {
   console.log('✓ PriceCheck seed data');
 
   console.log('\n🎉 Seed complete! Review content at /admin before publishing.');
-  await sql.end();
 }
 
 main().catch((err) => {
