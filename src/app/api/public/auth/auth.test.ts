@@ -1,4 +1,4 @@
-import { describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { NextRequest } from 'next/server';
 import { POST as registerHandler } from './register/route';
 import { POST as loginHandler } from './login/route';
