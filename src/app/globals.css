@@ -15,7 +15,9 @@
   --text-muted: #3b5e4c;
 }
 
-.dark {
+.dark,
+.admin-portal,
+[data-admin='true'] {
   /* Nigerian-Themed Dark Mode */
   --background: #050e08;
   --foreground: #f0fbf4;
@@ -26,6 +28,38 @@
   --border-color: #1c4028;
   --text-main: #f0fbf4;
   --text-muted: #84a994;
+  color-scheme: dark;
+}
+
+/* Force dark contrast throughout Admin Portal regardless of public theme toggle */
+.admin-portal {
+  background-color: #050e08 !important;
+  color: #f0fbf4 !important;
+}
+
+.admin-portal input[type='text'],
+.admin-portal input[type='search'],
+.admin-portal input[type='email'],
+.admin-portal input[type='password'],
+.admin-portal input[type='number'],
+.admin-portal textarea,
+.admin-portal select {
+  background-color: #0a1c11 !important;
+  border-color: #1c4028 !important;
+  color: #f0fbf4 !important;
+}
+
+.admin-portal select option {
+  background-color: #0a1c11 !important;
+  color: #f0fbf4 !important;
+}
+
+.admin-portal th {
+  color: #84a994 !important;
+}
+
+.admin-portal td {
+  color: #f0fbf4 !important;
 }
 
 body {
